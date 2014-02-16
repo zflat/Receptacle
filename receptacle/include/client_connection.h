@@ -1,7 +1,7 @@
-// myclient.h
+// client_connection.h
 
-#ifndef MYCLIENT_H
-#define MYCLIENT_H
+#ifndef CLIENT_CONNECION_H
+#define CLIENT_CONNECTION_H
 
 #include <QObject>
 #include <QTcpSocket>
@@ -9,11 +9,11 @@
 #include <QThreadPool>
 #include "mytask.h"
 
-class MyClient : public QObject
+class ClientConnection : public QObject
 {
     Q_OBJECT
 public:
-    explicit MyClient(QObject *parent = 0);
+    explicit ClientConnection(QObject *parent = 0);
     void setSocket(qintptr Descriptor);
 
 signals:
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif // MYCLIENT_H
+#endif // CLIENT_CONNECTION_H

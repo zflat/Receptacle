@@ -1,18 +1,18 @@
-// myserver.h
+// dispatcher.h
 
-#ifndef MYSERVER_H
-#define MYSERVER_H
+#ifndef DISPATCHER_H
+#define DISPATCHER_H
 
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QAbstractSocket>
-#include "myclient.h"
+#include "client_connection.h"
 
-class MyServer : public QTcpServer
+class Dispatcher : public QTcpServer
 {
     Q_OBJECT
 public:
-    explicit MyServer(QObject *parent = 0);
+    explicit Dispatcher(QObject *parent = 0);
     void startServer();
 
 protected:
@@ -24,4 +24,4 @@ public slots:
 
 };
 
-#endif // MYSERVER_H
+#endif // DISPATCHER_H

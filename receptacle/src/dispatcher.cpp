@@ -1,15 +1,15 @@
-// myserver.cpp
+// dispatcher.cpp
 
-#include "myserver.h"
+#include "dispatcher.h"
 
-MyServer::MyServer(QObject *parent) :
+Dispatcher::Dispatcher(QObject *parent) :
     QTcpServer(parent)
 {
 }
 
-void MyServer::startServer()
+void Dispatcher::startServer()
 {
-    if(listen(QHostAddress::Any, 1234))
+    if(listen(QHostAddress::Any, 3333))
     {
         qDebug() << "Server: started";
     }
@@ -19,10 +19,10 @@ void MyServer::startServer()
     }
 }
 
-void MyServer::incomingConnection(qintptr socketDescriptor)
+void Dispatcher::incomingConnection(qintptr socketDescriptor)
 {
     // At the incoming connection, make a client
     // and set the socket
-    MyClient *client = new MyClient(this);
+    ClientConnection *client = new ClientConnection(this);
     client->setSocket(socketDescriptor);
 }

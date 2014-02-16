@@ -1,14 +1,14 @@
-// myclient.cpp
+// client_connection.cpp
 
-#include "myclient.h"
+#include "client_connection.h"
 
-MyClient::MyClient(QObject *parent) :
+ClientConnection::ClientConnection(QObject *parent) :
     QObject(parent)
 {
     QThreadPool::globalInstance()->setMaxThreadCount(5);
 }
 
-void MyClient::setSocket(qintptr descriptor)
+void ClientConnection::setSocket(qintptr descriptor)
 {
     // make a new socket
     socket = new QTcpSocket(this);
@@ -26,13 +26,13 @@ void MyClient::setSocket(qintptr descriptor)
 
 
 // asynchronous - runs separately from the thread we created
-void MyClient::connected()
+void ClientConnection::connected()
 {
     qDebug() << "Client connected event";
 }
 
 // asynchronous
-void MyClient::disconnected()
+void ClientConnection::disconnected()
 {
     qDebug() << "Client disconnected";
 }
@@ -42,9 +42,9 @@ void MyClient::disconnected()
 // Our code running in our current thread not in another QThread
 // That's why we're getting the thread from the pool
 
-void MyClient::readyRead()
+void ClientConnection::readyRead()
 {
-    qDebug() << "MyClient::readyRead()";
+    qDebug() << "ClientConnection::readyRead()";
     qDebug() << socket->readAll();
 
     // Time consumer
@@ -63,7 +63,7 @@ void MyClient::readyRead()
 
 // After a task performed a time consuming task,
 // we grab the result here, and send it to client
-void MyClient::TaskResult(int Number)
+void ClientConnection::TaskResult(int Number)
 {
     QByteArray Buffer;
     Buffer.append("\r\nTask result = ");

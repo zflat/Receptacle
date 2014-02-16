@@ -11,7 +11,7 @@ QT       -= gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = AsyncQTcpServer
+TARGET = Receptacle
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -20,13 +20,13 @@ TEMPLATE = app
 
 SOURCES += \
     $$PWD/src/main.cpp \
-    $$PWD/src/myserver.cpp \
-    $$PWD/src/myclient.cpp \
+    $$PWD/src/dispatcher.cpp \
+    $$PWD/src/client_connection.cpp \
     $$PWD/src/mytask.cpp
 
 HEADERS += \
-    $$PWD/include/myserver.h \
-    $$PWD/include/myclient.h \
+    $$PWD/include/dispatcher.h \
+    $$PWD/include/client_connection.h \
     $$PWD/include/mytask.h
 
 
