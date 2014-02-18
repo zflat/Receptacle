@@ -3,6 +3,7 @@
 #ifndef DISPATCHER_H
 #define DISPATCHER_H
 
+#include <QDir>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QAbstractSocket>
@@ -15,8 +16,13 @@ public:
     explicit Dispatcher(QObject *parent = 0);
     void startServer();
 
-protected:
+ protected:
     void incomingConnection(qintptr socketDescriptor);
+
+ private:
+    QDir pluginsDir;
+    void loadPlugins();
+    void populatePlugin(QObject *plugin);
 
 signals:
 

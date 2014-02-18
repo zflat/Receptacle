@@ -27,7 +27,8 @@ SOURCES += \
 HEADERS += \
     $$PWD/include/dispatcher.h \
     $$PWD/include/client_connection.h \
-    $$PWD/include/mytask.h
+    $$PWD/include/mytask.h \
+    $$PWD/include/util_interface.h
 
 
 INCLUDEPATH += $$PWD/src \
