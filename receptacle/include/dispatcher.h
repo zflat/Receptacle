@@ -7,7 +7,9 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QAbstractSocket>
+
 #include "client_connection.h"
+#include "util_collection.h"
 
 class Dispatcher : public QTcpServer
 {
@@ -22,7 +24,9 @@ public:
  private:
     QDir pluginsDir;
     void loadPlugins();
-    void populatePlugin(QObject *plugin);
+    void populateUtil(QObject *plugin);
+
+    UtilCollection utils;
 
 signals:
 

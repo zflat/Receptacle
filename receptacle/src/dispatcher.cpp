@@ -5,8 +5,8 @@
 #include "dispatcher.h"
 #include "util_interface.h"
 
-Dispatcher::Dispatcher(QObject *parent) : QTcpServer(parent){
-  this->loadPlugins();
+Dispatcher::Dispatcher(QObject *parent) : QTcpServer(parent), utils(){
+    this->loadPlugins();
 }
 
 void Dispatcher::loadPlugins(){
@@ -29,18 +29,18 @@ void Dispatcher::loadPlugins(){
     QObject *plugin = loader.instance();
     if (plugin) {
       // Add plugin to the list based on fileName
-      qDebug() << "Valid plugin file: " ;
-      qDebug() << fileName.toStdString().c_str() << endl;
+      qDebug() << "Plugin found: " << fileName.toStdString().c_str();
+      populateUtil(plugin);
     }
   }
   
 }
 
-void Dispatcher::populatePlugin(QObject *plugin){
+void Dispatcher::populateUtil(QObject *plugin){
   UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
-  if(iUtil){
+  if(iUtil && utils.insert_util(plugin)){
     // the plugin implements UtilInterface
-    
+    qDebug() << "Added util: " << iUtil->name();
   }
 }
 

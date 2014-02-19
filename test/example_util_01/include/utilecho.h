@@ -12,4 +12,6 @@ class UtilEcho : public QObject, public UtilInterface
 public:
     QString name() const;
     void run_util();
+    QString description() const;
+    QString command() const;
 };

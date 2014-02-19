@@ -22,13 +22,15 @@ SOURCES += \
     $$PWD/src/main.cpp \
     $$PWD/src/dispatcher.cpp \
     $$PWD/src/client_connection.cpp \
-    $$PWD/src/mytask.cpp
+    $$PWD/src/mytask.cpp \
+    $$PWD/src/util_collection.cpp
 
 HEADERS += \
     $$PWD/include/dispatcher.h \
     $$PWD/include/client_connection.h \
     $$PWD/include/mytask.h \
-    $$PWD/include/util_interface.h
+    $$PWD/include/util_interface.h \
+    $$PWD/include/util_collection.h
 
 
 INCLUDEPATH += $$PWD/src \
