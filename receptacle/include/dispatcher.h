@@ -7,22 +7,25 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QAbstractSocket>
+#include <QMutex>
 
+
+#include "host_controller.h"
 #include "client_connection.h"
-#include "util_collection.h"
 
 class Dispatcher : public QTcpServer
 {
     Q_OBJECT
 public:
-    explicit Dispatcher(QObject *parent = 0);
+    explicit Dispatcher(HostController* h_controller, QObject *parent = 0);
     void startServer();
 
  protected:
     void incomingConnection(qintptr socketDescriptor);
 
  private:
-    UtilCollection utils;
+    QMutex request_mutex;
+    HostController* controller;
 
 signals:
 

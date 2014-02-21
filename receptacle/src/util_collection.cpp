@@ -36,7 +36,7 @@ bool UtilCollection::insert_util(QObject *util_obj){
     }else{return false;}
 }
 
-bool UtilCollection::is_command(QString commmand){
+bool UtilCollection::has_command(QString commmand){
     return util_hash.keys().contains(commmand);
 }
 

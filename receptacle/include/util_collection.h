@@ -37,7 +37,7 @@ public:
     /*
      * Test if the given command is recognized in the command list
      */
-    bool is_command(QString commmand);
+    bool has_command(QString commmand);
 
 private:
     QDir pluginsDir;

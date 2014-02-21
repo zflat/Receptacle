@@ -5,16 +5,15 @@
 
 #include <QObject>
 #include <QTcpSocket>
-#include <QDebug>
 #include <QThreadPool>
-#include "mytask.h"
+#include <QDebug>
 
 class ClientConnection : public QObject
 {
     Q_OBJECT
 public:
     explicit ClientConnection(QObject *parent = 0);
-    void setSocket(qintptr Descriptor);
+    void setSocket(qintptr descriptor);
 
 signals:
     void command_sent(QString commmand);

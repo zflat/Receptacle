@@ -35,6 +35,7 @@ void ClientConnection::connected()
 void ClientConnection::disconnected()
 {
     qDebug() << "Client disconnected";
+    delete this;
 }
 
 // Our main thread of execution
@@ -48,18 +49,6 @@ void ClientConnection::readyRead()
     //qDebug() << socket->readAll();
     QString command = socket->readLine();
     emit command_sent(command);
-
-    // Time consumer
-    MyTask *mytask = new MyTask();
-    mytask->setAutoDelete(true);
-    
-    // using queued connection
-    connect(mytask, SIGNAL(Result(int)), this, SLOT(TaskResult(int)), Qt::QueuedConnection);
-
-    qDebug() << "Starting a new task using a thread from the QThreadPool";
-    
-    // QThreadPool::globalInstance() returns global QThreadPool instance
-    QThreadPool::globalInstance()->start(mytask);
 
 }
 

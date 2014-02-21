@@ -1,3 +1,5 @@
+#include <QDebug>
+#include <QThread>
 #include "utilecho.h"
 
 QString UtilEcho::name() const{
@@ -15,6 +17,12 @@ QString UtilEcho::command() const{
 }
 
 void UtilEcho::run_util(){
+    qDebug() << "Running echo01...";
+    for(int i=0; i<5; i++){
+        QThread::msleep(50);
+         qDebug()<<i<<endl;
+    }
+    qDebug() << "Done echo01";
 }
 
 
