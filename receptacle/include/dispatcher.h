@@ -22,15 +22,12 @@ public:
     void incomingConnection(qintptr socketDescriptor);
 
  private:
-    QDir pluginsDir;
-    void loadPlugins();
-    void populateUtil(QObject *plugin);
-
     UtilCollection utils;
 
 signals:
 
 public slots:
+    void queue_request(QString command);
 
 };
 

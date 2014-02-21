@@ -1,6 +1,8 @@
 #ifndef UTIL_COLLECTION_H
 #define UTIL_COLLECTION_H
 
+
+#include <QDir>
 #include <QHash>
 #include <QString>
 #include <QStringList>
@@ -38,6 +40,10 @@ public:
     bool is_command(QString commmand);
 
 private:
+    QDir pluginsDir;
+    void loadPlugins();
+    void populateUtil(QObject *plugin);
+
     QHash<QString, QObject*> util_hash;
 };
 

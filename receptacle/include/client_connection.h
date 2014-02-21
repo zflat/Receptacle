@@ -17,6 +17,7 @@ public:
     void setSocket(qintptr Descriptor);
 
 signals:
+    void command_sent(QString commmand);
 
 public slots:
     void connected();

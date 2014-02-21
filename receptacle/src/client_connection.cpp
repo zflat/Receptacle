@@ -45,7 +45,9 @@ void ClientConnection::disconnected()
 void ClientConnection::readyRead()
 {
     qDebug() << "ClientConnection::readyRead()";
-    qDebug() << socket->readAll();
+    //qDebug() << socket->readAll();
+    QString command = socket->readLine();
+    emit command_sent(command);
 
     // Time consumer
     MyTask *mytask = new MyTask();

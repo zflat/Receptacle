@@ -1,6 +1,12 @@
+#include <QApplication>
+#include <QPluginLoader>
+#include <QDebug>
+
 #include "util_collection.h"
+#include "util_interface.h"
 
 UtilCollection::UtilCollection() : util_hash(){
+    this->loadPlugins();
 }
 
 UtilCollection::~UtilCollection(){
@@ -13,12 +19,12 @@ QHashIterator<QString, QObject*> UtilCollection::plugins(){
 
 
 QStringList UtilCollection::command_list(){
-    new QStringList(this->util_hash.keys());
+    return (QStringList(this->util_hash.keys()));
 }
 
 
 QObject* UtilCollection::util(QString command){
-    return NULL;
+    return util_hash[command];
 }
 
 
@@ -30,7 +36,42 @@ bool UtilCollection::insert_util(QObject *util_obj){
     }else{return false;}
 }
 
-
 bool UtilCollection::is_command(QString commmand){
-    return false;
+    return util_hash.keys().contains(commmand);
+}
+
+void UtilCollection::loadPlugins(){
+  pluginsDir = QDir(qApp->applicationDirPath());
+
+#if defined(Q_OS_WIN)
+  if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+    pluginsDir.cdUp();
+#elif defined(Q_OS_MAC)
+  if (pluginsDir.dirName() == "MacOS") {
+    pluginsDir.cdUp();
+    pluginsDir.cdUp();
+    pluginsDir.cdUp();
+  }
+#endif
+
+  pluginsDir.cd("plugins");
+  foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+    QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+    QObject *plugin = loader.instance();
+    if (plugin) {
+      // Add plugin to the list based on fileName
+      qDebug() << "Plugin found: " << fileName.toStdString().c_str();
+      populateUtil(plugin);
+    }
+  }
+
+}
+
+
+void UtilCollection::populateUtil(QObject *plugin){
+  UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
+  if(iUtil && this->insert_util(plugin)){
+    // the plugin implements UtilInterface
+    qDebug() << "Added util: " << iUtil->name().toStdString().c_str();
+  }
 }
