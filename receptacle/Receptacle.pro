@@ -7,12 +7,12 @@
 
 QT       += core
 QT       += network
-QT       -= gui
+QT       += gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Receptacle
-CONFIG   += console
+CONFIG   += console gui
 CONFIG   -= app_bundle
 
 TEMPLATE = app
@@ -40,3 +40,5 @@ INCLUDEPATH += $$PWD/src \
 
 #FORMS += \
 #    $$PWD/forms/*.ui \
+
+include($$PWD/../QsLog/QsLog.pri)
