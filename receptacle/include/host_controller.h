@@ -16,6 +16,9 @@ public:
 
 private:
     UtilCollection* utils;
+
+private slots:
+       void exec_plugin(QString command);
 };
 
 #endif // HOST_CONTROLLER_H

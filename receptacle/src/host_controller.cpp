@@ -1,22 +1,29 @@
 #include "host_controller.h"
+#include "widgets/select_launcher.h"
 
 HostController::HostController(UtilCollection* u_collection): utils(u_collection){}
 
 void HostController::run_job(QString command){
-    if(!utils->has_command(command)){
-         qWarning() << "Command not recognized: " << command.toStdString().c_str();
-        return;
+    SelectLauncher* main = new SelectLauncher();
+    main->populate_command_options(utils);
+
+    if(command != NULL && command == ""){
+        // select the specified command
+
+        if(utils->has_command(command)){
+            // command is recognized
+            // disable command selection
+        }else{
+            qWarning() << "Command not recognized: " << command.toStdString().c_str();
+        }
+    }else{
+
     }
-    // command is recognized
 
-    QObject* plugin = utils->util(command);
-    UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
-    if(!iUtil){return;}
-    // plugin found
+    // open the main window
+    main->showNormal();
 
-    iUtil->run_util();
-
-
+/*
     // Time consumer
     MyTask *mytask = new MyTask();
     mytask->setAutoDelete(true);
@@ -28,6 +35,30 @@ void HostController::run_job(QString command){
 
     // QThreadPool::globalInstance() returns global QThreadPool instance
     QThreadPool::globalInstance()->start(mytask);
-
+*/
     return;
+}
+
+void HostController::exec_plugin(QString command){
+    if(command == NULL || command == ""){
+        return;
+    }
+
+    // select the specified command
+
+    if(utils->has_command(command)){
+        // command is recognized
+        // disable command selection
+    }else{
+        qWarning() << "Command not recognized: " << command.toStdString().c_str();
+    }
+
+
+
+    QObject* plugin = utils->util(command);
+    UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
+    if(!iUtil){return;}
+    // plugin found
+
+    iUtil->run_util();
 }

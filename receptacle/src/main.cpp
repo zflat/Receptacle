@@ -3,7 +3,7 @@
 
 #include <QDir>
 #include <iostream>
-#include <QCoreApplication>
+#include <QApplication>
 #include "dispatcher.h"
 
 /*
@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
 {
     Console();
 
-    QCoreApplication app(argc, argv);
+    QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed(false);
 
     // init the logging mechanism
     QsLogging::Logger& logger = QsLogging::Logger::instance();

@@ -24,7 +24,8 @@ SOURCES += \
     $$PWD/src/client_connection.cpp \
     $$PWD/src/mytask.cpp \
     $$PWD/src/util_collection.cpp \
-    $$PWD/src/host_controller.cpp
+    $$PWD/src/host_controller.cpp \
+    $$PWD/src/widgets/*.cpp
 
 HEADERS += \
     $$PWD/include/dispatcher.h \
@@ -32,7 +33,8 @@ HEADERS += \
     $$PWD/include/mytask.h \
     $$PWD/include/util_interface.h \
     $$PWD/include/util_collection.h \
-    include/host_controller.h
+    $$PWD/include/host_controller.h \
+    $$PWD/include/widgets/*.h
 
 
 INCLUDEPATH += $$PWD/src \
