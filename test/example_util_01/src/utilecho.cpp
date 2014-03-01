@@ -16,7 +16,7 @@ QString UtilEcho::command() const{
   return tr("echo01");
 }
 
-void UtilEcho::run_util(){
+void UtilEcho::run(){
     qDebug() << "Running echo01...";
     for(int i=0; i<5; i++){
         QThread::msleep(50);
@@ -24,7 +24,3 @@ void UtilEcho::run_util(){
     }
     qDebug() << "Done echo01";
 }
-
-
-
-

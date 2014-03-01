@@ -11,7 +11,7 @@ SOURCES += \
     $$PWD/src/utilecho.cpp \
 
 HEADERS += \
-    $$PWD/include/utilecho.h \
+    $$PWD/include/utilecho.h
 
 
 INCLUDEPATH += $$PWD/src \

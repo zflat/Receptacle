@@ -27,10 +27,9 @@ public:
     QMutex request_mutex;
     HostController* controller;
 
-signals:
-
 public slots:
     void queue_request(QString command);
+    void request_completed(QString command);
 
 };
 

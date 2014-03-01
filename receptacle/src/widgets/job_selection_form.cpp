@@ -12,20 +12,37 @@ JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
     this->setLayout(this->layout);
 }
 
-bool JobSelectionForm::populate_command_options(UtilCollection* utils){
+bool JobSelectionForm::populate_command_options(UtilCollection* utils_arg){
     if(this->box->count()>0){
         return false;
     }
-
-    QStringList commands = utils->command_list();
+    QStringList commands = utils_arg->command_list();
     foreach(QString cmd, commands){
         this->box->addItem(cmd);
     }
+    this->utils = utils_arg;
     return true;
 }
 
-bool JobSelectionForm::select_job(QString cmd){
+bool JobSelectionForm::command(QString cmd){
+    if(this->utils == NULL){
+        // error condition
+        return false;
+    }
+
+    if(cmd == NULL || cmd == ""){
+        command_unspecified();
+        return false;
+    }
+
+    if(!this->utils->has_command(cmd)){
+        command_unrecognized(cmd);
+        return false;
+    }
+
+    command_selected(cmd);
     this->box->setCurrentText(cmd);
     this->btn->setEnabled(false);
     this->box->setEnabled(false);
+    return true;
 }

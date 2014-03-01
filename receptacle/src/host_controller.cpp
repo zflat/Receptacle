@@ -1,42 +1,29 @@
 #include "host_controller.h"
-#include "widgets/select_launcher.h"
 
 HostController::HostController(UtilCollection* u_collection): utils(u_collection){}
 
 void HostController::run_job(QString command){
-    SelectLauncher* main = new SelectLauncher();
-    main->populate_command_options(utils);
-
-    if(command != NULL && command == ""){
-        // select the specified command
-
-        if(utils->has_command(command)){
-            // command is recognized
-            // disable command selection
-        }else{
-            qWarning() << "Command not recognized: " << command.toStdString().c_str();
-        }
-    }else{
-
+    if(this->main_window != NULL){
+        qWarning() << "Main window already allocated.";
     }
+    this->main_window = new SelectLauncher();
+    this->main_window->populate_command_options(utils);
+    QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
+    this->main_window->select_job(command);
+    QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(cancel_handler()));
 
     // open the main window
-    main->showNormal();
+    this->main_window->showNormal();
+}
 
-/*
-    // Time consumer
-    MyTask *mytask = new MyTask();
-    mytask->setAutoDelete(true);
 
-    // using queued connection
-    connect(mytask, SIGNAL(Result(int)), this, SLOT(TaskResult(int)), Qt::QueuedConnection);
+void HostController::notify_block(){
 
-    qDebug() << "Starting a new task using a thread from the QThreadPool";
+}
 
-    // QThreadPool::globalInstance() returns global QThreadPool instance
-    QThreadPool::globalInstance()->start(mytask);
-*/
-    return;
+void HostController::selected(QString cmd){
+    qWarning() << "selected..";
+    exec_plugin(cmd);
 }
 
 void HostController::exec_plugin(QString command){
@@ -48,17 +35,48 @@ void HostController::exec_plugin(QString command){
 
     if(utils->has_command(command)){
         // command is recognized
-        // disable command selection
     }else{
         qWarning() << "Command not recognized: " << command.toStdString().c_str();
     }
 
-
-
-    QObject* plugin = utils->util(command);
-    UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
-    if(!iUtil){return;}
+    QObject* pluginObj = utils->util(command);
+    if(pluginObj != NULL){
+        qDebug()<<"Plugin found for given command.";
+    }else{
+        qWarning()<<"Plugin unloaded....?";
+    }
+    UtilInterface* pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
+    qDebug()<<"Util constructed from given command.";
+    if(!pluginUtil){return;}
     // plugin found
+    //pluginUtil->worker->setAutoDelete(true);
+    //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    //QThreadPool::globalInstance()->start(pluginUtil->worker);
 
-    iUtil->run_util();
+
+/*
+        // Time consumer
+        MyTask *mytask = new MyTask();
+        mytask->setAutoDelete(true);
+
+        // using queued connection
+        //connect(mytask, SIGNAL(Result(int)), this, SLOT(TaskResult(int)), Qt::QueuedConnection);
+        QObject::connect(mytask, SIGNAL(Result(int)), this, SLOT(job_complete_handler()), Qt::QueuedConnection);
+
+        qDebug() << "Starting a new task using a thread from the QThreadPool";
+
+        // QThreadPool::globalInstance() returns global QThreadPool instance
+        QThreadPool::globalInstance()->start(mytask);
+*/
+}
+
+void HostController::cancel_handler(){
+    qDebug() << "closed window";
+    delete this->main_window;
+    this->main_window = NULL;
+    end_job(NULL);
+}
+
+void HostController::job_complete_handler(){
+    qDebug() << "job complete";
 }

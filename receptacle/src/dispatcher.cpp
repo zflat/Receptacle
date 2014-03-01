@@ -4,7 +4,9 @@
 #include "util_interface.h"
 
 Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
-    : QTcpServer(parent), controller(h_controller){}
+    : QTcpServer(parent), controller(h_controller){
+    QObject::connect(controller, SIGNAL(end_job(QString)), this, SLOT(request_completed(QString)));
+}
 
 void Dispatcher::startServer()
 {
@@ -33,10 +35,15 @@ void Dispatcher::queue_request(QString command){
     if(this->request_mutex.tryLock(100)){
         qDebug() << "Requested command queued: " << command.toStdString().c_str();
         controller->run_job(command);
-        this->request_mutex.unlock();
     }else{
         qDebug() << "Requested command" \
                  << command.toStdString().c_str() <<" blocked.";
     }
     return;
+}
+
+void Dispatcher::request_completed(QString command){
+    qDebug() << "Request " \
+             << command.toStdString().c_str() <<" ended.";
+    this->request_mutex.unlock();
 }
