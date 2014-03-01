@@ -49,6 +49,12 @@ void HostController::exec_plugin(QString command){
     qDebug()<<"Util constructed from given command.";
     if(!pluginUtil){return;}
     // plugin found
+    /*
+    UtilWorker* worker = pluginUtil->getWorker();
+    worker->setAutoDelete(true);
+    QObject::connect(worker, SIGNAL(result(int)), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    QThreadPool::globalInstance()->start(worker);
+*/
     //pluginUtil->worker->setAutoDelete(true);
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
     //QThreadPool::globalInstance()->start(pluginUtil->worker);

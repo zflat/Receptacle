@@ -56,6 +56,7 @@ void UtilCollection::loadPlugins(){
 
   pluginsDir.cd("plugins");
   foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+    qDebug()<< "File " << fileName.toStdString().c_str();
     QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
     QObject *plugin = loader.instance();
     if (plugin) {

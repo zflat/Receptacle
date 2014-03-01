@@ -11,13 +11,11 @@ class UtilWorker : public QObject, public QRunnable
     Q_OBJECT
 public:
     UtilWorker();
+    virtual void run();
 
 signals:
     // notify when we're done
     void result(int ret_val);
-
-protected:
-    void run();
 };
 
 #endif // UTIL_WORKER_H
