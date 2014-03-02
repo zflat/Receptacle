@@ -11,7 +11,7 @@ https://qt-project.org/doc/qt-5.0/qtwidgets/tools-plugandpaintplugins-basictools
 
 #include <QtPlugin>
 #include <QString>
-//#include "util_worker.h"
+#include "util_worker.h"
 
 class UtilInterface
 {
@@ -20,8 +20,9 @@ class UtilInterface
     virtual QString name() const = 0;
     virtual QString description() const = 0;
     virtual QString command() const = 0;
-    virtual void run() = 0;
-    //UtilWorker* worker;
+    virtual UtilWorker* getWorker() = 0;
+private:
+    UtilWorker* worker;
 };
 
 #define UtilInterface_iid "Receptacle.plugins.UtilInterface-v0.0.1"

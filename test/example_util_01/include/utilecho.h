@@ -1,3 +1,5 @@
+#ifndef UTILECHO_H
+#define UTILECHO_H
 #include <QObject>
 #include <QString>
 
@@ -11,8 +13,10 @@ class UtilEcho : public QObject, public UtilInterface
 
 public:
     QString name() const;
-    void run();
     QString description() const;
     QString command() const;
-    //UtilWorker* worker;
+    UtilWorker* getWorker();
+private:
+    UtilWorker* worker;
 };
+#endif
