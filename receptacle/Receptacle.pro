@@ -29,15 +29,16 @@ SOURCES += \
 HEADERS += \
     $$PWD/include/dispatcher.h \
     $$PWD/include/client_connection.h \
-    $$PWD/include/util_worker.h \
-    $$PWD/include/util_interface.h \
+    $$PWD/interfaces/util_interface.h \
+    $$PWD/interfaces/util_worker_interface.h \
     $$PWD/include/util_collection.h \
     $$PWD/include/host_controller.h \
     $$PWD/include/widgets/*.h
 
 
 INCLUDEPATH += $$PWD/src \
-    $$PWD/"include" \
+    $$PWD/include \
+    $$PWD/interfaces \
 
 #FORMS += \
 #    $$PWD/forms/*.ui \

@@ -5,13 +5,14 @@
 
 #include <QRunnable>
 #include <QObject>
+#include "util_worker_interface.h"
 
-class UtilEchoWorker : public QObject
+class UtilEchoWorker : public UtilWorkerInterface
 {
     Q_OBJECT
 public:
-    void initialize();
-    void run();
+    void init();
+    void start();
 
 signals:
     // notify when we're done

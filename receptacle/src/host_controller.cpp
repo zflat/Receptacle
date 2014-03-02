@@ -53,12 +53,14 @@ void HostController::exec_plugin(QString command){
     // plugin found
     qDebug() << pluginUtil->name().toStdString().c_str();
 
-    UtilWorker* worker = (UtilWorker *)(pluginUtil);
-    qDebug() << "Worker cast successful";
-    // QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-    // qDebug() << "Worker signale connect successful";
+    UtilWorkerInterface* worker = pluginUtil->newWorker();
+    qDebug() << "Worker retrieval successful";
 
-    worker->run();
+    QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    qDebug() << "Worker signale connect successful";
+
+    worker->init();
+    worker->start();
 
     //pluginUtil->worker->setAutoDelete(true);
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);

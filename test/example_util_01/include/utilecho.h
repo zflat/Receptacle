@@ -3,8 +3,8 @@
 #include <QObject>
 #include <QString>
 
-#include <QRunnable>
 #include "util_interface.h"
+#include "util_worker_interface.h"
 
 class UtilEcho : public QObject, public UtilInterface
 {
@@ -16,13 +16,6 @@ public:
     QString name() const;
     QString description() const;
     QString command() const;
-    QRunnable* getRunner();
-    QObject* getWorker();
-    int run();
-signals:
-    void complete();
-private:
-    QRunnable* runner;
-    QObject* worker;
+    UtilWorkerInterface* newWorker();
 };
 #endif
