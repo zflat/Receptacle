@@ -7,7 +7,6 @@ DESTDIR     = ../../build/debug/plugins
 
 
 SOURCES += \
-    $$PWD/src/main.cpp \
     $$PWD/src/utilecho.cpp \
     $$PWD/src/util_echoworker.cpp \
 
