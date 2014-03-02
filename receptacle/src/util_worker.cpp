@@ -9,7 +9,7 @@
 // This runs in the separate thread, and we do not have any control over this thread,
 // but Qt does.
 // This may just stay in the queue for several ms depending on how busy the server is.
-
+/*
 void UtilWorker::run()
 {
     // time consumer
@@ -23,3 +23,4 @@ void UtilWorker::run()
     qWarning() << "My Warning!";
     emit result(i);
 }
+*/

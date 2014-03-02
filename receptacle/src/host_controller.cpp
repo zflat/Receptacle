@@ -1,4 +1,5 @@
 #include "host_controller.h"
+#include "util_worker.h"
 
 HostController::HostController(UtilCollection* u_collection): utils(u_collection){}
 
@@ -46,10 +47,18 @@ void HostController::exec_plugin(QString command){
         qWarning()<<"Plugin unloaded....?";
     }
     UtilInterface* pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
+    // UtilWorker* pluginUtil = qobject_cast<UtilWorker *>(pluginObj);
     qDebug()<<"Util constructed from given command.";
     if(!pluginUtil){return;}
     // plugin found
     qDebug() << pluginUtil->name().toStdString().c_str();
+
+    UtilWorker* worker = (UtilWorker *)(pluginUtil);
+    qDebug() << "Worker cast successful";
+    // QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    // qDebug() << "Worker signale connect successful";
+
+    worker->run();
 
     //pluginUtil->worker->setAutoDelete(true);
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
@@ -80,5 +89,5 @@ void HostController::cancel_handler(){
 }
 
 void HostController::job_complete_handler(){
-    qDebug() << "job complete";
+    qDebug() << "job complete!(notified in signal handler)";
 }

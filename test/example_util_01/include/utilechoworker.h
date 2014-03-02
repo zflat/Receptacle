@@ -1,9 +1,10 @@
 #ifndef UTILECHOWORKER_H
 #define UTILECHOWORKER_H
 
-#include "util_worker.h"
+#include <QObject>
+#include <QRunnable>
 
-class UtilEchoWorker : public UtilWorker {
+class UtilEchoWorker : public QObject, public QRunnable {
     Q_OBJECT
 public:
     UtilEchoWorker();

@@ -22,7 +22,6 @@ SOURCES += \
     $$PWD/src/main.cpp \
     $$PWD/src/dispatcher.cpp \
     $$PWD/src/client_connection.cpp \
-    $$PWD/src/util_worker.cpp \
     $$PWD/src/util_collection.cpp \
     $$PWD/src/host_controller.cpp \
     $$PWD/src/widgets/*.cpp
