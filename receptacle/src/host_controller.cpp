@@ -1,5 +1,4 @@
 #include "host_controller.h"
-#include "util_worker.h"
 
 HostController::HostController(UtilCollection* u_collection): utils(u_collection){}
 
@@ -59,12 +58,15 @@ void HostController::exec_plugin(QString command){
     QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
     qDebug() << "Worker signale connect successful";
 
-    worker->init();
-    worker->start();
+    UtilRunner* bg_worker = new UtilRunner(worker);
+    // worker->init();
+    // worker->start();
 
-    //pluginUtil->worker->setAutoDelete(true);
+    bg_worker->setAutoDelete(true);
+
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-    //QThreadPool::globalInstance()->start(pluginUtil->worker);
+
+    QThreadPool::globalInstance()->start(bg_worker);
 
 
 /*
