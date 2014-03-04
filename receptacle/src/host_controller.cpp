@@ -46,9 +46,11 @@ void HostController::exec_plugin(QString command){
         qWarning()<<"Plugin unloaded....?";
     }
     UtilInterface* pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
+    // UtilWorker* pluginUtil = qobject_cast<UtilWorker *>(pluginObj);
     qDebug()<<"Util constructed from given command.";
     if(!pluginUtil){return;}
     // plugin found
+
     /*
     UtilWorker* worker = pluginUtil->getWorker();
     worker->setAutoDelete(true);
@@ -56,8 +58,25 @@ void HostController::exec_plugin(QString command){
     QThreadPool::globalInstance()->start(worker);
 */
     //pluginUtil->worker->setAutoDelete(true);
+
+    qDebug() << pluginUtil->name().toStdString().c_str();
+
+    UtilWorkerInterface* worker = pluginUtil->newWorker();
+    qDebug() << "Worker retrieval successful";
+
+    QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    qDebug() << "Worker signale connect successful";
+
+    UtilRunner* bg_worker = new UtilRunner(worker);
+    // worker->init();
+    // worker->start();
+
+    bg_worker->setAutoDelete(true);
+
+
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-    //QThreadPool::globalInstance()->start(pluginUtil->worker);
+
+    QThreadPool::globalInstance()->start(bg_worker);
 
 
 /*
@@ -84,5 +103,5 @@ void HostController::cancel_handler(){
 }
 
 void HostController::job_complete_handler(){
-    qDebug() << "job complete";
+    qDebug() << "job complete!(notified in signal handler)";
 }

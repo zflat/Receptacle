@@ -1,7 +1,10 @@
+#ifndef UTILECHO_H
+#define UTILECHO_H
 #include <QObject>
 #include <QString>
 
 #include "util_interface.h"
+#include "util_worker_interface.h"
 
 class UtilEcho : public QObject, public UtilInterface
 {
@@ -11,7 +14,8 @@ class UtilEcho : public QObject, public UtilInterface
 
 public:
     QString name() const;
-    void run_util();
     QString description() const;
     QString command() const;
+    UtilWorkerInterface* newWorker();
 };
+#endif

@@ -1,6 +1,6 @@
-// mytask.cpp
+// util_runner.cpp
 
-#include "util_worker.h"
+#include "util_runner.h"
 #include <QDebug>
 
 // When the thread pool kicks up
@@ -10,16 +10,11 @@
 // but Qt does.
 // This may just stay in the queue for several ms depending on how busy the server is.
 
-void UtilWorker::run()
+
+void UtilRunner::run()
 {
-    // time consumer
-
-    qDebug() << "Task started";
-
-    int i;
-    for(i = 0; i < 100; i++);
-
-    qDebug() << "Task done";
-    qWarning() << "My Warning!";
-    emit result(i);
+    this->worker->init();
+    this->worker->start();
+    emit result(0);
 }
+
