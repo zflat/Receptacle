@@ -17,7 +17,15 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += tst_unittest.cpp
+INCLUDEPATH += $$PWD/src \
+    $$PWD/inc \
+
+
+HEADERS += $$PWD/inc/*.h
+
+SOURCES += tst_unittest.cpp \
+        $$PWD/src/*.cpp
+
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 
