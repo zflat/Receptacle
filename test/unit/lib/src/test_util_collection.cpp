@@ -28,9 +28,9 @@ void TestUtilCollection::insert_util(){
     UtilCollection* utils = new UtilCollection();
     QCOMPARE(utils->insert_util(NULL), false);
 
-    // CASE: Adding uninitialized QObject
+    // CASE: Adding NULL pointer
     utils = new UtilCollection();
-    QObject* obj;
+    QObject* obj=NULL;
     QCOMPARE(utils->insert_util(obj), false);
 
     // CASE: Adding a non-util object
