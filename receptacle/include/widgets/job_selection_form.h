@@ -24,9 +24,10 @@ signals:
     void command_unspecified();
 
 public slots:
+    void btn_pressed_handler();
     bool command(QString cmd);
 
-private:
+protected:
     QLabel* label;
     QHBoxLayout* layout;
     QPushButton* btn;

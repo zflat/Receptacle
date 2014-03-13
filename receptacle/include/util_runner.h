@@ -19,7 +19,7 @@ signals:
     // notify when we're done
     void result(int ret_val);
     void complete();
-private:
+protected:
     UtilWorkerInterface* worker;
 };
 

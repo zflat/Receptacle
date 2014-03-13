@@ -10,6 +10,8 @@ JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
     this->layout->addWidget(this->box);
     this->layout->addWidget(this->btn);
     this->setLayout(this->layout);
+
+    QObject::connect(this->btn, SIGNAL(pressed()), this, SLOT(btn_pressed_handler()));
 }
 
 bool JobSelectionForm::populate_command_options(UtilCollection* utils_arg){
@@ -47,4 +49,9 @@ bool JobSelectionForm::command(QString cmd){
     this->btn->setEnabled(false);
     this->box->setEnabled(false);
     return true;
+}
+
+void JobSelectionForm::btn_pressed_handler(){
+    this->command(this->box->currentText());
+    return;
 }

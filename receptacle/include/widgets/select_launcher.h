@@ -17,7 +17,7 @@ public:
     void select_job(QString command);
     bool load_job_widget(QWidget* job_ui_widget);
 
-public slots:
+protected slots:
     void command_selected(QString cmd);
     void command_rejected(QString cmd);
     void command_pending();
@@ -26,7 +26,7 @@ signals:
     void close_sig();
     void selected(QString cmd);
 
-private:
+protected:
     //menubar
     //menufile
     //menuhelp

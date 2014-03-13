@@ -23,13 +23,13 @@ signals:
 public slots:
     void selected(QString cmd);
 
-private:
+protected:
     UtilCollection* utils;
     SelectLauncher* main_window;
     UtilInterface* current_util;
     UtilRunner* bg_worker;
 
-private slots:
+protected slots:
        void exec_plugin(QString command);
        void cancel_handler();
        void job_complete_handler();

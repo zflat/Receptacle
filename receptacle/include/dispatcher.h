@@ -25,7 +25,7 @@ public:
  protected:
     void incomingConnection(qintptr socketDescriptor);
 
- private:
+ protected:
     HostController* controller;
     QSemaphore request_mutex;
 

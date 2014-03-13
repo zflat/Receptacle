@@ -39,7 +39,7 @@ public:
      */
     bool has_command(QString commmand);
 
-private:
+protected:
     QDir pluginsDir;
     void loadPlugins();
     void populateUtil(QObject *plugin);
