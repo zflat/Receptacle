@@ -20,6 +20,7 @@ private Q_SLOTS:
     void testOpenCloseLauncher();
 private:
     Dispatcher* server;
+    HostController* host;
 };
 
 IntegrationTest::IntegrationTest()
@@ -37,10 +38,10 @@ void IntegrationTest::initTestCase()
 
     qApp->setQuitOnLastWindowClosed(false);
     UtilCollection* utils = new UtilCollection();
-    HostController* controller = new HostController(utils);
+    host = new HostController(utils);
 
     // Create an instance of a server and then start it.
-    server = new Dispatcher(controller);
+    server = new Dispatcher(host);
     server->startServer();
     return;
 }
@@ -55,10 +56,8 @@ void IntegrationTest::cleanupTestCase()
 void IntegrationTest::testOpenCloseLauncher()
 {
     server->queue_request("cmd");
-    while(server->queue_busy()){
-        qDebug() << "Waiting for utility to finish";
-        QTest::qSleep(300);
-    }
+    host->kill_job();
+    QTRY_VERIFY_WITH_TIMEOUT(!server->queue_busy(), 5000);
     QVERIFY2(true, "Failure");
 }
 

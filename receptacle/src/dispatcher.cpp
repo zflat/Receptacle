@@ -4,12 +4,12 @@
 #include "util_interface.h"
 
 Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
-    : QTcpServer(parent), controller(h_controller){
+    : QTcpServer(parent), controller(h_controller), request_mutex(1){
     QObject::connect(controller, SIGNAL(end_job(QString)), this, SLOT(request_completed(QString)));
 }
 
 Dispatcher::~Dispatcher(){
-    this->request_mutex.unlock();
+    this->request_mutex.release(1);
 }
 
 void Dispatcher::startServer()
@@ -36,7 +36,7 @@ void Dispatcher::incomingConnection(qintptr socketDescriptor)
 
 
 void Dispatcher::queue_request(QString command){
-    if(this->request_mutex.tryLock(100)){
+    if(this->request_mutex.tryAcquire(1, 100)){
         qDebug() << "Requested command queued: " << command.toStdString().c_str();
         controller->run_job(command);
     }else{
@@ -47,11 +47,11 @@ void Dispatcher::queue_request(QString command){
 }
 
 bool Dispatcher::queue_busy(){
-   return !this->request_mutex.tryLock(10);
+   return this->request_mutex.available()<1;
 }
 
 void Dispatcher::request_completed(QString command){
     qDebug() << "Request " \
              << command.toStdString().c_str() <<" ended.";
-    this->request_mutex.unlock();
+    this->request_mutex.release(1);
 }

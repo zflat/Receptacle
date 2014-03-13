@@ -7,7 +7,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QAbstractSocket>
-#include <QMutex>
+#include <QSemaphore>
 
 
 #include "host_controller.h"
@@ -26,8 +26,8 @@ public:
     void incomingConnection(qintptr socketDescriptor);
 
  private:
-    QMutex request_mutex;
     HostController* controller;
+    QSemaphore request_mutex;
 
 public slots:
     void queue_request(QString command);

@@ -17,6 +17,15 @@ void HostController::run_job(QString command){
 }
 
 
+void HostController::kill_job(){
+    if(bg_worker != NULL){
+        bg_worker->thread()->terminate();
+        bg_worker->thread()->wait();
+        delete bg_worker;
+    }
+    this->main_window->close();
+}
+
 void HostController::notify_block(){
 
 }
@@ -67,12 +76,11 @@ void HostController::exec_plugin(QString command){
     QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
     qDebug() << "Worker signale connect successful";
 
-    UtilRunner* bg_worker = new UtilRunner(worker);
+    bg_worker = new UtilRunner(worker);
     // worker->init();
     // worker->start();
 
     bg_worker->setAutoDelete(true);
-
 
     //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
 
