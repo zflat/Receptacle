@@ -4,7 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += widgets testlib
+QT       += widgets
+QT       += testlib
+QT       += network
+QT       += core
+QT       += gui
 
 TARGET = tst_integrationtest
 CONFIG   += console
@@ -19,10 +23,10 @@ INCLUDEPATH += $$PWD/src \
 
 
 
-HEADERS += $$PWD/inc/*.h
+# HEADERS += $$PWD/inc/*.h
 
 SOURCES += tst_integrationtest.cpp \
-        $$PWD/src/*.cpp
+       # $$PWD/src/*.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
