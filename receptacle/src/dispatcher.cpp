@@ -8,6 +8,10 @@ Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
     QObject::connect(controller, SIGNAL(end_job(QString)), this, SLOT(request_completed(QString)));
 }
 
+Dispatcher::~Dispatcher(){
+    this->request_mutex.unlock();
+}
+
 void Dispatcher::startServer()
 {
   if(listen(QHostAddress::Any, 3333)){
@@ -40,6 +44,10 @@ void Dispatcher::queue_request(QString command){
                  << command.toStdString().c_str() <<" blocked.";
     }
     return;
+}
+
+bool Dispatcher::queue_busy(){
+   return !this->request_mutex.tryLock(10);
 }
 
 void Dispatcher::request_completed(QString command){

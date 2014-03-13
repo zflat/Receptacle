@@ -9,9 +9,9 @@ void HostController::run_job(QString command){
     this->main_window = new SelectLauncher();
     this->main_window->populate_command_options(utils);
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
-    this->main_window->select_job(command);
     QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(cancel_handler()));
 
+    this->main_window->select_job(command);
     // open the main window
     this->main_window->showNormal();
 }

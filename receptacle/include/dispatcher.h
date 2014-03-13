@@ -17,8 +17,10 @@ class Dispatcher : public QTcpServer
 {
     Q_OBJECT
 public:
+    ~Dispatcher();
     explicit Dispatcher(HostController* h_controller, QObject *parent = 0);
     void startServer();
+    bool queue_busy();
 
  protected:
     void incomingConnection(qintptr socketDescriptor);
