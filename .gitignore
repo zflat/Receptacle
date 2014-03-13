@@ -15,6 +15,7 @@
 build/*
 */build/*
 */build*
+*build/
 
 # Compiled Dynamic libraries
 *.so
