@@ -44,7 +44,7 @@ void IntegrationTest::initTestCase()
 
 void IntegrationTest::cleanupTestCase()
 {
-    qDebug() << "Server stopped";
+    qDebug() << "Server cleanup";
     qApp->exit(0);
 }
 
