@@ -1,6 +1,6 @@
 #include "host_controller.h"
 
-HostController::HostController(UtilCollection* u_collection): utils(u_collection){}
+HostController::HostController(UtilCollection* u_collection): utils(u_collection), bg_worker(NULL){}
 
 void HostController::run_job(QString command){
     if(this->main_window != NULL){
@@ -18,10 +18,13 @@ void HostController::run_job(QString command){
 
 
 void HostController::kill_job(){
-    if(bg_worker != NULL){
-        bg_worker->thread()->terminate();
-        bg_worker->thread()->wait();
+    if(this->bg_worker != NULL){
+        if(this->thread() != NULL){
+            this->thread()->terminate();
+            this->thread()->wait();
+        }
         delete bg_worker;
+        this->bg_worker = NULL;
     }
     this->main_window->close();
 }

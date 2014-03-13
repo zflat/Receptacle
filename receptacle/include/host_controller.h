@@ -16,6 +16,7 @@ public:
     void run_job(QString command);
     void kill_job();
     void notify_block();
+
 signals:
     void end_job(QString cmd);
 

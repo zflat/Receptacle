@@ -57,7 +57,7 @@ void IntegrationTest::testOpenCloseLauncher()
 {
     server->queue_request("cmd");
     host->kill_job();
-    QTRY_VERIFY_WITH_TIMEOUT(!server->queue_busy(), 5000);
+    QTRY_VERIFY_WITH_TIMEOUT(!server->queue_busy(), 1000);
     QVERIFY2(true, "Failure");
 }
 
