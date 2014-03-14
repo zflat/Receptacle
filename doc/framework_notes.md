@@ -72,6 +72,9 @@ Testing seems to be a weak point for QT, but there is passable support.
 
 Logging is another fundamental component of *Receptact* since many utilities will be automation utilities. When a long-running script encounters problems, a detailed log is extremely useful. Providing a record of actions provided by utilities is a major component of *Receptact*.
 
+ - http://qt-project.org/wiki/Browser_for_QDebug_output
+ - http://qtway.blogspot.com/2009/11/persistent-logging-for-debug-purpose.html
+
 ## Build Tools ##
 
 The qmake utility for generating makefiles speeds up development and allows for the repository to contain projects for unit testing, integration testing and example plugins in addition to the main project. The qmake utility may not be preferred for all projects, but *Receptact* is a small project and does not need much sophistication.
