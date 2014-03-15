@@ -9,21 +9,22 @@
 
 #include <QPlainTextEdit>
 #include <QVBoxLayout>
+#include <QSizePolicy>
 
 class LogText : public QPlainTextEdit{
 public:
     LogText(QWidget *parent=0);
     QPlainTextEdit* text_area();
 public slots:
-    bool save_to_file(QString const fname="");
-protected:
-    QVBoxLayout* layout;
+    bool save_to_file(QString fname="");
 };
 
 class LogTextPage : public QWidget{
 public:
     LogTextPage(QWidget *parent=0);
-    PlainTextEdit* text_area;
+    QPlainTextEdit* text_area;
+protected:
+    QVBoxLayout* page_layout;
 };
 
 #endif // LOG_TEXT_H

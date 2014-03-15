@@ -1,16 +1,18 @@
 #include "widgets/log_text.h"
 
-LogText::LogText(QWidget *parent=0) : QPlainTextEdit(parent){
+LogText::LogText(QWidget *parent) : QPlainTextEdit(parent){
     this->setReadOnly(true);
     this->setCursorWidth(8);
-    this->setSizePolicy(QSizePolicy::Policy::Expanding,QSizePolicy::Policy::Expanding);
+    //QSizePolicy::Policy* policy_expanding = new QSizePolicy(QSizePolicy::Policy::Expanding);
+
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->resize(200, 200);
 }
 
-LogText::text_area(){
-    return &this;
+QPlainTextEdit* LogText::text_area(){
+    return this;
 }
 
-LogText::save_to_file(QString const fname=""){
+bool LogText::save_to_file(QString fname){
     return false;
 }

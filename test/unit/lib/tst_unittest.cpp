@@ -1,5 +1,6 @@
 #include <QString>
 #include <QtTest>
+#include <QCoreApplication>
 
 class UnitTest : public QObject
 {
@@ -34,13 +35,26 @@ void UnitTest::testCase1()
 // QTEST_APPLESS_MAIN(UnitTest)
 
 #include "test_util_collection.h"
+#include "test_log_text_page.h"
 
 int main(int argc, char *argv[]){
+
+    QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed(false);
+
     TestUtilCollection testutilcollection;
     QTest::qExec(&testutilcollection, argc, argv);
 
+    TestLogTextPage testlogtextpage;
+    QTest::qExec(&testlogtextpage, argc, argv);
+
     return(0);
+
+    // Construct application before running tests
+    // http://stackoverflow.com/a/16711202
+    app.exec();
 }
+
 
 #include "tst_unittest.moc"
 
