@@ -7,5 +7,8 @@ LogTextPage::LogTextPage(QWidget *parent) : QWidget(parent){
     //this->page_layout = new QVBoxLayout();
     this->text_area = new LogText(this);
     this->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    qDebug()<< "Constructor completed";
+}
+
+void LogTextPage::appendText(QString str){
+    this->text_area->appendPlainText(str);
 }

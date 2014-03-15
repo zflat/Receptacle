@@ -7,9 +7,12 @@
 class TestLogTextPage : public QObject{
  Q_OBJECT
 private slots:
-    void constructor();
+    void testConstructor();
+    void testAppendTextSlot();
     void initTestCase();
     void cleanupTestCase();
+signals:
+    void send_text(QString message);
 };
 
 #endif //TEST_LOG_TEXT_PAGE_H

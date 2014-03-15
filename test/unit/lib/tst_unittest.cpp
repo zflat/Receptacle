@@ -48,11 +48,11 @@ int main(int argc, char *argv[]){
     TestLogTextPage testlogtextpage;
     QTest::qExec(&testlogtextpage, argc, argv);
 
-    return(0);
 
     // Construct application before running tests
     // http://stackoverflow.com/a/16711202
-    app.exec();
+    // app.exec();
+    return(0);
 }
 
 

@@ -23,6 +23,8 @@ class LogTextPage : public QWidget{
 public:
     LogTextPage(QWidget *parent=0);
     QPlainTextEdit* text_area;
+public slots:
+    void appendText(QString str);
 protected:
     QVBoxLayout* page_layout;
 };
