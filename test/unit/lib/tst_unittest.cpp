@@ -36,6 +36,7 @@ void UnitTest::testCase1()
 
 #include "test_util_collection.h"
 #include "test_log_text_page.h"
+#include "test_log_emitter.h"
 
 int main(int argc, char *argv[]){
 
@@ -47,6 +48,9 @@ int main(int argc, char *argv[]){
 
     TestLogTextPage testlogtextpage;
     QTest::qExec(&testlogtextpage, argc, argv);
+
+    TestLogEmitter testlogemitter;
+    QTest::qExec(&testlogemitter, argc, argv);
 
 
     // Construct application before running tests
