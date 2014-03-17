@@ -21,10 +21,10 @@ INCLUDEPATH += $$PWD/src \
     $$PWD/inc \
 
 
-HEADERS += $$PWD/inc/*.h
+HEADERS += $$PWD/inc/*.h \
 
 SOURCES += tst_unittest.cpp \
-        $$PWD/src/*.cpp
+        $$PWD/src/*.cpp \
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
