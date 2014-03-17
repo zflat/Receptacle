@@ -5,15 +5,19 @@
 #include <QtWidgets>
 
 #include "log_emitter.h"
+#include "message_subscriber.h"
 
 class TestLogEmitter : public QObject{
  Q_OBJECT
 private slots:
     void testPublishMessage();
-    void initTestCase();
-    void cleanupTestCase();
+    void init();
+    void cleanup();
 private:
     LogEmitter* emitter;
+    MessageSubscriber *info_sub;
+    QString* info_message;
+
 signals:
     void send_text(QString const message);
 };

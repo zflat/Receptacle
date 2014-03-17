@@ -37,9 +37,19 @@ void UnitTest::testCase1()
 #include "test_util_collection.h"
 #include "test_log_text_page.h"
 #include "test_log_emitter.h"
+#include <QPointer>
+
+#include "log_emitter.h"
+
+QPointer<LogEmitter> logger;
+void log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, const QString &msg){
+    if(logger)
+        logger->publish_message(type, context, msg);
+}
+
 
 int main(int argc, char *argv[]){
-
+    qInstallMessageHandler(0);
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
@@ -49,8 +59,11 @@ int main(int argc, char *argv[]){
     TestLogTextPage testlogtextpage;
     QTest::qExec(&testlogtextpage, argc, argv);
 
+
+    qInstallMessageHandler(log_handler_forwarder);
     TestLogEmitter testlogemitter;
     QTest::qExec(&testlogemitter, argc, argv);
+    qInstallMessageHandler(0);
 
 
     // Construct application before running tests

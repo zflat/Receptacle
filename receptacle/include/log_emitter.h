@@ -5,13 +5,16 @@
 
 #include <QObject>
 #include <QString>
+#include <QDebug>
+#include <QCoreApplication>
 
 class LogEmitter : public QObject
 {
     Q_OBJECT
 public:
     LogEmitter();
-    void publish_message(QtMsgType type, const char *msg);
+    ~LogEmitter();
+    void publish_message(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 signals:
     void info_message(const QString &msg);
