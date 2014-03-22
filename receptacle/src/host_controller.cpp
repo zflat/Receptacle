@@ -1,4 +1,5 @@
 #include "host_controller.h"
+#include <QDateTime>
 
 HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emitter): \
     utils(u_collection),logger(log_emitter), bg_worker(NULL){}
@@ -15,6 +16,12 @@ void HostController::run_job(QString command){
 
     this->main_window->select_job(command);
     // open the main window
+
+    // Log username
+    // http://bytes.com/topic/c/answers/691168-username-caller
+    // Log Date and time
+    qDebug()<< QDateTime::currentDateTime().toString().toStdString().c_str();
+
     this->main_window->showNormal();
 }
 
