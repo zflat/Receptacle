@@ -11,6 +11,7 @@ class TestLogEmitter : public QObject{
  Q_OBJECT
 private slots:
     void testPublishMessage();
+    void testMessageHandler();
     void init();
     void cleanup();
 private:

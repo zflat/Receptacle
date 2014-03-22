@@ -6,7 +6,7 @@ MessageSubscriber::MessageSubscriber(QObject *parent) :
 }
 
 void MessageSubscriber::set_message(const QString &msg){
-    this->message = msg;
+    this->message = msg.trimmed();
     return;
 }
 
