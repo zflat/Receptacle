@@ -18,8 +18,8 @@ int main(int argc, char *argv[]){
     TestUtilCollection testutilcollection;
     QTest::qExec(&testutilcollection, argc, argv);
 
-    TestLogTextPage testlogtextpage;
-    QTest::qExec(&testlogtextpage, argc, argv);
+    TestLogText testlogtext;
+    QTest::qExec(&testlogtext, argc, argv);
 
     TestLogEmitter testlogemitter;
     QTest::qExec(&testlogemitter, argc, argv);

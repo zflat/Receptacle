@@ -4,13 +4,11 @@
 #include <QtTest/QTest>
 #include <QtWidgets>
 
-class TestLogTextPage : public QObject{
+class TestLogText : public QObject{
  Q_OBJECT
 private slots:
     void testConstructor();
     void testAppendTextSlot();
-    void initTestCase();
-    void cleanupTestCase();
 signals:
     void send_text(QString message);
 };

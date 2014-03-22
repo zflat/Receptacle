@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include "util_collection.h"
 #include "job_selection_form.h"
+#include "log_text.h"
 
 class SelectLauncher : public QMainWindow{
     Q_OBJECT
@@ -47,12 +48,17 @@ protected:
 
     //tabs
     QTabWidget* tabs_widget;
+
     //log text page
+    LogText* msg_log;
+
     //err/warn text page
+    LogText* err_log;
 
 protected:
      void closeEvent(QCloseEvent *event);
-
+     LogText* create_msg_log(QWidget *parent=0);
+     LogText* create_err_log(QWidget *parent=0);
 };
 
 #endif // SELECT_LAUNCHER_H

@@ -16,3 +16,8 @@ QPlainTextEdit* LogText::text_area(){
 bool LogText::save_to_file(QString fname){
     return false;
 }
+
+
+void LogTextPage::appendText(QString str){
+    this->text_area->appendPlainText(str);
+}

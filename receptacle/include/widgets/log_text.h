@@ -17,6 +17,7 @@ public:
     QPlainTextEdit* text_area();
 public slots:
     bool save_to_file(QString fname="");
+    void appendText(QString str);
 };
 
 class LogTextPage : public QWidget{

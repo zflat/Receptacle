@@ -3,32 +3,21 @@
 
 #include <QMainWindow>
 
-void TestLogTextPage::testConstructor(){
+void TestLogText::testConstructor(){
     // CASE: default
     QMainWindow* win = new QMainWindow();
     qDebug() << "Default constructor";
-    LogTextPage* page = new LogTextPage(win);
+    LogText* page = new LogText(win);
     QVERIFY2(page != NULL, "LogTextPage constructor returns non null");
-    QVERIFY2(page->text_area != NULL, "LogTextPage constructor creates a text_area");
+    QVERIFY2(page->text_area() != NULL, "LogTextPage constructor creates a text_area");
     qDebug() << "Constructor success";
 }
 
-void TestLogTextPage::testAppendTextSlot(){
-    LogTextPage* page = new LogTextPage();
-    QVERIFY2(page->text_area->toPlainText() == "", "Plain text is initially blank");
-    QObject::connect(this, &TestLogTextPage::send_text, page, &LogTextPage::appendText);
+void TestLogText::testAppendTextSlot(){
+    LogText* log = new LogText();
+    QVERIFY2(log->text_area()->toPlainText() == "", "Plain text is initially blank");
+    QObject::connect(this, &TestLogText::send_text, log, &LogText::appendText);
     QString test_str = "TESTSTR";
     emit send_text(test_str);
-    QVERIFY2(page->text_area->toPlainText() == test_str, "Plain text must match the test_str value");
-}
-
-
-void TestLogTextPage::initTestCase()
-{
-}
-
-
-void TestLogTextPage::cleanupTestCase()
-{
-
+    QVERIFY2(log->text_area()->toPlainText() == test_str, "Plain text must match the test_str value");
 }

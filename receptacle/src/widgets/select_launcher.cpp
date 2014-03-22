@@ -7,6 +7,12 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->central_widget = new QWidget(this);
     this->tabs_widget = new QTabWidget(this->central_widget);
 
+    this->tabs_widget->addTab(this->create_msg_log(this->tabs_widget),"Util");
+    this->msg_log->showMaximized();
+
+    this->tabs_widget->addTab(this->create_err_log(this->tabs_widget),"Errors");
+    this->err_log->showMaximized();
+
     this->job_ui = new QWidget(this->central_widget);
     this->job_ui->setLayout(job_ui_layout);
 
@@ -19,12 +25,21 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
 
     central_layout->addWidget(this->select_form);
     //central_layout->addWidget(this->job_ui);
-    //central_layout->addWidget(this->tabs_widget);
+    central_layout->addWidget(this->tabs_widget);
 
     this->central_widget->setLayout(central_layout);
     this->setCentralWidget(this->central_widget);
 }
 
+LogText* SelectLauncher::create_msg_log(QWidget *parent){
+    this->msg_log = new LogText(parent);
+    return this->msg_log;
+}
+
+LogText* SelectLauncher::create_err_log(QWidget *parent){
+    this->err_log = new LogText(parent);
+    return this->err_log;
+}
 
 void SelectLauncher::command_selected(QString cmd){
     selected(cmd);
