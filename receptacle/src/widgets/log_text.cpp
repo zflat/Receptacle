@@ -18,6 +18,6 @@ bool LogText::save_to_file(QString fname){
 }
 
 
-void LogTextPage::appendText(QString str){
-    this->text_area->appendPlainText(str);
+void LogText::appendText(QString str){
+    this->text_area()->appendPlainText(str);
 }
