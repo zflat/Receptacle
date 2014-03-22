@@ -7,10 +7,13 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->central_widget = new QWidget(this);
     this->tabs_widget = new QTabWidget(this->central_widget);
 
-    this->tabs_widget->addTab(this->create_msg_log(this->tabs_widget),"Util");
+
+    this->msg_log = new LogText(this->tabs_widget);
+    this->tabs_widget->addTab(this->msg_log,"Util");
     this->msg_log->showMaximized();
 
-    this->tabs_widget->addTab(this->create_err_log(this->tabs_widget),"Errors");
+    this->err_log = new LogText(this->tabs_widget);
+    this->tabs_widget->addTab(this->err_log,"Errors");
     this->err_log->showMaximized();
 
     this->job_ui = new QWidget(this->central_widget);
@@ -31,14 +34,30 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->setCentralWidget(this->central_widget);
 }
 
-LogText* SelectLauncher::create_msg_log(QWidget *parent){
-    this->msg_log = new LogText(parent);
-    return this->msg_log;
-}
 
-LogText* SelectLauncher::create_err_log(QWidget *parent){
-    this->err_log = new LogText(parent);
-    return this->err_log;
+bool SelectLauncher::connect_logger(LogEmitter* log_emitter){
+    if(!log_emitter || !this->msg_log || !this->err_log)
+        return false;
+
+    this->logger = log_emitter;
+    QObject::connect(this->logger, &LogEmitter::info_message,\
+                     this->msg_log, &LogText::appendText);
+    QObject::connect(this->logger, &LogEmitter::warn_message,\
+                     this->msg_log, &LogText::appendText);
+    QObject::connect(this->logger, &LogEmitter::critical_message,\
+                     this->msg_log, &LogText::appendText);
+    QObject::connect(this->logger, &LogEmitter::fatal_message,\
+                     this->msg_log, &LogText::appendText);
+
+
+    QObject::connect(this->logger, &LogEmitter::warn_message,\
+                     this->err_log, &LogText::appendText);
+    QObject::connect(this->logger, &LogEmitter::critical_message,\
+                     this->err_log, &LogText::appendText);
+    QObject::connect(this->logger, &LogEmitter::fatal_message,\
+                     this->err_log, &LogText::appendText);
+
+    return true;
 }
 
 void SelectLauncher::command_selected(QString cmd){

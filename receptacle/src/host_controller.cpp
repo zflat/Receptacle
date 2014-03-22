@@ -1,6 +1,7 @@
 #include "host_controller.h"
 
-HostController::HostController(UtilCollection* u_collection): utils(u_collection), bg_worker(NULL){}
+HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emitter): \
+    utils(u_collection),logger(log_emitter), bg_worker(NULL){}
 
 void HostController::run_job(QString command){
     if(this->main_window != NULL){
@@ -8,6 +9,7 @@ void HostController::run_job(QString command){
     }
     this->main_window = new SelectLauncher();
     this->main_window->populate_command_options(utils);
+    this->main_window->connect_logger(this->logger);
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
     QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(cancel_handler()));
 

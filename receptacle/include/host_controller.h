@@ -7,12 +7,13 @@
 #include "util_runner.h"
 #include "util_collection.h"
 #include "widgets/select_launcher.h"
+#include "log_emitter.h"
 
 class HostController : public QObject
 {
     Q_OBJECT
 public:
-    HostController(UtilCollection* u_collection);
+    HostController(UtilCollection* u_collection, LogEmitter* log_emitter);
     void run_job(QString command);
     void kill_job();
     void notify_block();
@@ -25,6 +26,7 @@ public slots:
 
 protected:
     UtilCollection* utils;
+    LogEmitter* logger;
     SelectLauncher* main_window;
     UtilInterface* current_util;
     UtilRunner* bg_worker;

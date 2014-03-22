@@ -8,6 +8,7 @@
 #include "util_collection.h"
 #include "job_selection_form.h"
 #include "log_text.h"
+#include "log_emitter.h"
 
 class SelectLauncher : public QMainWindow{
     Q_OBJECT
@@ -15,6 +16,7 @@ class SelectLauncher : public QMainWindow{
 public:
     SelectLauncher(QWidget *parent=0);
     bool populate_command_options(UtilCollection* utils);
+    bool connect_logger(LogEmitter* log_emitter);
     void select_job(QString command);
     bool load_job_widget(QWidget* job_ui_widget);
 
@@ -55,10 +57,10 @@ protected:
     //err/warn text page
     LogText* err_log;
 
+    LogEmitter* logger;
+
 protected:
      void closeEvent(QCloseEvent *event);
-     LogText* create_msg_log(QWidget *parent=0);
-     LogText* create_err_log(QWidget *parent=0);
 };
 
 #endif // SELECT_LAUNCHER_H
