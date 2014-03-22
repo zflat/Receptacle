@@ -12,12 +12,19 @@ class TestLogEmitter : public QObject{
 private slots:
     void testPublishMessage();
     void testMessageHandler();
+    void testContinuityLevels();
     void init();
     void cleanup();
 private:
     LogEmitter* emitter;
     MessageSubscriber *info_sub;
+    MessageSubscriber *warn_sub;
+    MessageSubscriber *critical_sub;
+    MessageSubscriber *fatal_sub;
     QString* info_message;
+    QString* warn_message;
+    QString* critical_message;
+    QString* fatal_message;
 
 signals:
     void send_text(QString const message);

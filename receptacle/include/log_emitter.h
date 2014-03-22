@@ -21,6 +21,9 @@ signals:
     void warn_message(const QString &msg);
     void critical_message(const QString &msg);
     void fatal_message(const QString &msg);
+
+protected:
+    const QString detailed_msg(const QMessageLogContext &context, const QString &msg);
 };
 
 #endif // LOG_EMITTER_H
