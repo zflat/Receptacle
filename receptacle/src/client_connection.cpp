@@ -35,7 +35,7 @@ void ClientConnection::setSocket(qintptr descriptor)
     // make a new socket
     socket = new QTcpSocket(this);
 
-    qDebug() << "A new socket created!";
+    qDebug() << tr("A new socket created!");
 
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
@@ -43,20 +43,20 @@ void ClientConnection::setSocket(qintptr descriptor)
 
     socket->setSocketDescriptor(descriptor);
 
-    qDebug() << " Client connected at " << descriptor;
+    qDebug() << tr(" Client connected at ") << descriptor;
 }
 
 
 // asynchronous - runs separately from the thread we created
 void ClientConnection::connected()
 {
-    qDebug() << "Client connected event";
+    qDebug() << tr("Client connected event");
 }
 
 // asynchronous
 void ClientConnection::disconnected()
 {
-    qDebug() << "Client disconnected";
+    qDebug() << tr("Client disconnected");
     delete this;
 }
 
@@ -67,7 +67,7 @@ void ClientConnection::disconnected()
 
 void ClientConnection::readyRead()
 {
-    qDebug() << "ClientConnection::readyRead()";
+    qDebug() << tr("ClientConnection::readyRead()");
     //qDebug() << socket->readAll();
     QString command = socket->readLine();
     emit command_sent(command);
@@ -79,7 +79,7 @@ void ClientConnection::readyRead()
 void ClientConnection::TaskResult(int Number)
 {
     QByteArray Buffer;
-    Buffer.append("\r\nTask result = ");
+    Buffer.append(tr("\r\nTask result = "));
     Buffer.append(QString::number(Number));
 
     socket->write(Buffer);

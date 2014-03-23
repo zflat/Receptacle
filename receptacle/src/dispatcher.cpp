@@ -36,10 +36,10 @@ Dispatcher::~Dispatcher(){
 void Dispatcher::startServer()
 {
   if(listen(QHostAddress::Any, 3333)){
-    qDebug() << "Server: started";
+    qDebug() << tr("Server: started");
   }
   else{
-    qDebug() << "Server: not started!";
+    qDebug() << tr("Server: not started!");
   }
 }
 

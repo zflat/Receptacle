@@ -23,19 +23,23 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "widgets/select_launcher.h"
 
 SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
+    this->setWindowTitle("Launcher");
 
-    qDebug() << "Setup launcher started";
+    this->create_actions();
+    this->create_menus();
+
+    qDebug() << tr("Setup launcher started");
     QVBoxLayout* job_ui_layout = new QVBoxLayout();
     this->central_widget = new QWidget(this);
     this->tabs_widget = new QTabWidget(this->central_widget);
 
 
     this->msg_log = new LogText(this->tabs_widget);
-    this->tabs_widget->addTab(this->msg_log,"Main");
+    this->tabs_widget->addTab(this->msg_log,tr("Main"));
     this->msg_log->showMaximized();
 
     this->err_log = new LogText(this->tabs_widget);
-    this->tabs_widget->addTab(this->err_log,"Error/Warn");
+    this->tabs_widget->addTab(this->err_log,tr("Error/Warn"));
     this->err_log->showMaximized();
 
     this->job_ui = new QWidget(this->central_widget);
@@ -54,6 +58,29 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
 
     this->central_widget->setLayout(central_layout);
     this->setCentralWidget(this->central_widget);
+}
+
+
+void SelectLauncher::create_menus(){
+
+    menu_file = menuBar()->addMenu(tr("&File"));
+    menu_file->addAction(exitAct);
+
+    menu_file->addAction(saveLogText);
+    menu_file->addAction(saveErrWarnText);
+}
+
+void SelectLauncher::create_actions(){
+    exitAct = new QAction(tr("E&xit"), this);
+    exitAct->setShortcuts(QKeySequence::Quit);
+    connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+
+
+    saveLogText = new QAction(tr("Save Log"), this);
+    connect(saveLogText, SIGNAL(triggered()), this, SLOT(save_log_text()));
+    saveErrWarnText = new QAction(tr("Save errors & warnings log"), this);
+    connect(saveErrWarnText, SIGNAL(triggered()), this, SLOT(save_err_warn_text()));
+
 }
 
 
@@ -110,4 +137,33 @@ bool SelectLauncher::load_job_widget(QWidget *job_ui_widget){
 void SelectLauncher::closeEvent(QCloseEvent *event){
    emit close_sig();
    event->accept();
+}
+
+
+void SelectLauncher::save_log_text(){
+    QString saveFileName = QFileDialog::getSaveFileName(
+                  this,
+                  tr("Save Log Output"),
+                  tr("%1/logfile.txt").arg(QDir::homePath()),
+                  tr("Text Files (*.txt);;All Files (*)")
+                  );
+
+    if(saveFileName.isEmpty())
+        return;
+
+    this->msg_log->save_to_file(saveFileName);
+}
+
+void SelectLauncher::save_err_warn_text(){
+    QString saveFileName = QFileDialog::getSaveFileName(
+                  this,
+                  tr("Save Log Output"),
+                  tr("%1/err_warn_file.txt").arg(QDir::homePath()),
+                  tr("Text Files (*.txt);;All Files (*)")
+                  );
+
+    if(saveFileName.isEmpty())
+        return;
+
+    this->err_log->save_to_file(saveFileName);
 }

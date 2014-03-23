@@ -21,7 +21,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /*
- * A Browser for QDebug Log Output
+ * Example code: A Browser for QDebug Log Output
  * http://qt-project.org/wiki/Browser_for_QDebug_output
  *
  */
@@ -31,13 +31,20 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QPlainTextEdit>
 #include <QVBoxLayout>
 #include <QSizePolicy>
+#include <QFileDialog>
+#include <QDir>
+#include <QFile>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QCloseEvent>
+#include <QKeyEvent>
 
 class LogText : public QPlainTextEdit{
 public:
     LogText(QWidget *parent=0);
     QPlainTextEdit* text_area();
 public slots:
-    bool save_to_file(QString fname="");
+    bool save_to_file(QString fname);
     void appendText(QString str);
 };
 

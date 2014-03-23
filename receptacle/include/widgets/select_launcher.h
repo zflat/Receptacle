@@ -24,8 +24,13 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtWidgets/QMainWindow>
 #include <QWidget>
+#include <QAction>
+#include <QMenu>
+#include <QMenuBar>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <QFileDialog>
+#include <QDir>
 #include "util_collection.h"
 #include "job_selection_form.h"
 #include "log_text.h"
@@ -52,8 +57,11 @@ signals:
 
 protected:
     //menubar
+    QMenuBar* menubar;
     //menufile
+    QMenu* menu_file;
     //menuhelp
+    QMenu* menu_help;
 
     //menu actions
 
@@ -80,8 +88,21 @@ protected:
 
     LogEmitter* logger;
 
+    QAction* exitAct;
+    QAction* saveLogText;
+    QAction* saveErrWarnText;
+    QAction* aboutAct;
+    QAction* aboutQtAct;
+    QAction* aboutPluginsAct;
+
 protected:
-     void closeEvent(QCloseEvent *event);
+    void create_menus();
+    void create_actions();
+    void closeEvent(QCloseEvent *event);
+
+protected slots:
+    void save_log_text();
+    void save_err_warn_text();
 };
 
 #endif // SELECT_LAUNCHER_H

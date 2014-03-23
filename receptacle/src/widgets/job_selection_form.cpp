@@ -54,13 +54,13 @@ bool JobSelectionForm::command(QString cmd){
     }
 
     if(cmd == NULL || cmd == ""){
-        qDebug()<< "No command specified.";
+        qDebug()<< tr("No command specified.");
         command_unspecified();
         return false;
     }
 
     if(!this->utils->has_command(cmd)){
-        qDebug()<< "Command not recognized.";
+        qDebug()<< tr("Command not recognized.");
         command_unrecognized(cmd);
         return false;
     }

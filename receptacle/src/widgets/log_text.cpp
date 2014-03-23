@@ -33,7 +33,24 @@ QPlainTextEdit* LogText::text_area(){
 }
 
 bool LogText::save_to_file(QString fname){
-    return false;
+    if(fname.isEmpty())
+        return false;
+
+    QFile file(fname);
+    if(!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::warning(
+                    this,
+                    tr("Error"),
+                    QString(tr("<nobr>File '%1'<br/>cannot be opened for writing.<br/><br/>"
+                               "The log output could <b>not</b> be saved!</nobr>"))
+                    .arg(fname));
+        return false;
+    }
+
+    QTextStream stream(&file);
+    stream << this->text_area()->toPlainText();
+    file.close();
+    return true;
 }
 
 
