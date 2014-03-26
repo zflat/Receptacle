@@ -46,3 +46,6 @@ Makefile*
 # QtCreator
 
 *.autosave
+
+# gh-pages branch
+html/
