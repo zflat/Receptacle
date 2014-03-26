@@ -1,5 +1,6 @@
 
-# Receptacle
+Receptacle {#mainpage}
+=========
 
 Desktop application for running automation utilities.
 
@@ -30,6 +31,12 @@ Classes and methods are documented in the code and then HTML documentation is ge
 
 See https://chronodekar.wordpress.com/2013/12/19/configuring-doxygen-with-github/ for the setup to send doxygen as github pages.
 
+## Specifying version
+
+See http://www.openguru.com/2009/11/qt-best-way-to-set-application-version.html
+and http://qt-project.org/faq/answer/how_can_i_add_version_information_to_my_application
+
+    qDebug() << QT_VERSION_STR;
 
 # Copyright
 

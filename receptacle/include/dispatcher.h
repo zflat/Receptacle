@@ -41,7 +41,16 @@ class Dispatcher : public QTcpServer
 public:
     ~Dispatcher();
     explicit Dispatcher(HostController* h_controller, QObject *parent = 0);
+
+    /**
+     * @brief Call startServer to listen for client connections. Server does not process requests until this is called.
+     */
     void startServer();
+
+    /**
+     * @brief A 'busy signal' check.
+     * @return True when the dispatcher is busy, false otherwise
+     */
     bool queue_busy();
 
  protected:
@@ -52,7 +61,16 @@ public:
     QSemaphore request_mutex;
 
 public slots:
+    /**
+     * @brief Asynchronous request for a job to run
+     * @param QString command specifying the requested job
+     */
     void queue_request(QString command);
+
+    /**
+     * @brief Handler to cleanup after a job finishes and prepares for the next job to run.
+     * @param QString command of the job that just finished
+     */
     void request_completed(QString command);
 
 };
