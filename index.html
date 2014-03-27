@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -58,6 +65,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('index.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,30 +100,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>Desktop application for running automation utilities.</p>
 <h2>What is Receptacle?</h2>
-<p>Receptacle is a desktop application that serves as a host for plugins. The hosted plugins typically perform desktop automation jobs and may use a GUI.</p>
-<h2>About plugins</h2>
-<p>Plugins have two main parts that follow a factory pattern. The first part implements <a class="el" href="classUtilInterface.html">UtilInterface</a> and provides information describing the plugin and is used to construct a background worker. The second part of a plugin implements <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> and is the background worker that contains the subroutine logic the plugin executes.</p>
-<h3>Developing a plugin</h3>
-<p>Create a library application that follows the <a href="http://qt-project.org/doc/qt-4.8/plugins-howto.html">QT plugin API</a> and implement <a class="el" href="classUtilInterface.html">UtilInterface</a> and <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a>. See the examples under /test/example_plugins for more information.</p>
-<h3>Adding a plugin to the application</h3>
-<p>Plugins are discovered at runtime. Plugins are made available to the application by placing the plugin library into a /plugins subdirectory from the executable.</p>
-<h1>Documentation</h1>
-<h2>Architecture Diagrams</h2>
-<p>See /doc for diagrams showing the general architecture of Receptacle.</p>
-<h2>Doxygen</h2>
-<p>Classes and methods are documented in the code and then HTML documentation is generated using doxygen.</p>
-<p>See <a href="https://chronodekar.wordpress.com/2013/12/19/configuring-doxygen-with-github/">https://chronodekar.wordpress.com/2013/12/19/configuring-doxygen-with-github/</a> for the setup to send doxygen as github pages.</p>
-<h2>Specifying version</h2>
-<p>See <a href="http://www.openguru.com/2009/11/qt-best-way-to-set-application-version.html">http://www.openguru.com/2009/11/qt-best-way-to-set-application-version.html</a> and <a href="http://qt-project.org/faq/answer/how_can_i_add_version_information_to_my_application">http://qt-project.org/faq/answer/how_can_i_add_version_information_to_my_application</a> </p>
-<pre class="fragment">qDebug() &lt;&lt; QT_VERSION_STR;
-</pre><h1>Copyright</h1>
-<p>(c) 2014 William Wedler, See COPYING and COPYING.LESSER for details. The <a href="http://www.dwheeler.com/essays/floss-license-slide.html">FLOSS licence guide</a> provides a compatibility summary. </p>
+<p>Receptacle is a desktop application that serves as a host for plugins. The hosted plugins typically perform desktop automation jobs and may use a GUI. </p>
 </div></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 26 2014 19:43:45 for Receptacle by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.4
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Wed Mar 26 2014 20:14:11 for Receptacle by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
 </body>
 </html>
