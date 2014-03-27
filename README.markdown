@@ -1,5 +1,5 @@
 
-Receptacle {#mainpage}
+Receptacle
 =========
 
 Desktop application for running automation utilities.
