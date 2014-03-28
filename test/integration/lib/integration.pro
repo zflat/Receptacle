@@ -42,4 +42,4 @@ SOURCES += tst_integrationtest.cpp \
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
-include($$PWD/../../../receptacle/Receptacle.pri)
+include($$PWD/../../../lib/Receptacle.pri)

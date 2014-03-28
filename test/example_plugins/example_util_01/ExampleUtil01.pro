@@ -37,5 +37,5 @@ HEADERS += \
 
 INCLUDEPATH += $$PWD/src \
     $$PWD/"include" \
-    $$PWD/../../../receptacle/interfaces
+    $$PWD/../../../lib/interfaces
 

@@ -44,4 +44,4 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 #
 # Using .pri files as example http://bazaar.launchpad.net/~benlau/penpen/trunk/files/head:/tests/unittests/
 #
-include($$PWD/../../../receptacle/Receptacle.pri)
+include($$PWD/../../../lib/Receptacle.pri)
