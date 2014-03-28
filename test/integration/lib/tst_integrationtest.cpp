@@ -82,16 +82,20 @@ void IntegrationTest::testOpenCloseLauncher()
     QVERIFY2(true, "Failure");
 }
 
-QTEST_MAIN(IntegrationTest)
-/*
-int main(int argc, char *argv[])
-{
+
+// QTEST_MAIN(IntegrationTest)
+
+int main(int argc, char *argv[]){
+    // Construct application before running tests
+    // http://stackoverflow.com/a/16711202
+    QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed(false);
+
     IntegrationTest test1;
     QTest::qExec(&test1, argc, argv);
 
     return 0;
 }
-*/
 
 
 #include "tst_integrationtest.moc"

@@ -32,4 +32,3 @@ SOURCES += \
     $$PWD/src/main.cpp \
 
 include($$PWD/Receptacle.pri)
-include($$PWD/../QsLog/QsLog.pri)
