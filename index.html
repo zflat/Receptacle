@@ -44,6 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -82,7 +84,7 @@ $(document).ready(function(){initNavTree('index.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,9 +102,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h2>What is Receptacle?</h2>
 <p>Receptacle is a desktop application that serves as a host for plugins. The hosted plugins typically perform desktop automation jobs and may use a GUI.</p>
 <h2>About plugins</h2>
-<p>Plugins have two main parts that follow a factory pattern. The first part implements UtilInterface and provides information describing the plugin and is used to construct a background worker. The second part of a plugin implements UtilWorkerInterface and is the background worker that contains the subroutine logic the plugin executes.</p>
+<p>Plugins have two main parts that follow a factory pattern. The first part implements <a class="el" href="classUtilInterface.html">UtilInterface</a> and provides information describing the plugin and is used to construct a background worker. The second part of a plugin implements <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> and is the background worker that contains the subroutine logic the plugin executes.</p>
 <h3>Developing a plugin</h3>
-<p>Create a library application that follows the <a href="http://qt-project.org/doc/qt-4.8/plugins-howto.html">QT plugin API</a> and implement UtilInterface and UtilWorkerInterface. See the examples under /test/example_plugins for more information.</p>
+<p>Create a library application that follows the <a href="http://qt-project.org/doc/qt-4.8/plugins-howto.html">QT plugin API</a> and implement <a class="el" href="classUtilInterface.html">UtilInterface</a> and <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a>. See the examples under /test/example_plugins for more information.</p>
 <h3>Adding a plugin to the application</h3>
 <p>Plugins are discovered at runtime. Plugins are made available to the application by placing the plugin library into a /plugins subdirectory from the executable.</p>
 <h1>Documentation</h1>
@@ -121,7 +123,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 27 2014 21:53:44 for Receptacle by
+    <li class="footer">Generated on Thu Mar 27 2014 21:55:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
