@@ -41,6 +41,9 @@ public:
     void kill_job();
     void notify_block();
 
+protected:
+    void job_cleanup();
+
 signals:
     void end_job(QString cmd);
 

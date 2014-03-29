@@ -19,9 +19,6 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "QsLog.h"
-#include "QsLogDest.h"
-
 #include <QDir>
 #include <iostream>
 #include <QApplication>
@@ -67,18 +64,6 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
-
-    if(false){
-        // init the logging mechanism
-        QsLogging::Logger& logger = QsLogging::Logger::instance();
-        logger.setLoggingLevel(QsLogging::TraceLevel);
-        QsLogging::DestinationPtr debugDestination(\
-              QsLogging::DestinationFactory::MakeDebugOutputDestination() );
-        logger.addDestination(debugDestination);
-
-        QLOG_INFO()<< "Using QsLog library";
-    }
-
     UtilCollection* utils = new UtilCollection();
     HostController* controller = new HostController(utils, logger);
 

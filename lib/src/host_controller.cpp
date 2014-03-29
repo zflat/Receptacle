@@ -44,7 +44,7 @@ void HostController::run_job(QString command){
     qDebug()<< QDateTime::currentDateTime().toString().toStdString().c_str();
 
     this->main_window->showNormal();
-}
+} // run_job
 
 
 void HostController::kill_job(){
@@ -74,10 +74,12 @@ void HostController::exec_plugin(QString command){
     }
 
     // select the specified command
-
     if(utils->has_command(command)){
         // command is recognized
-    }else{
+    }else if(command.isEmpty()){
+        qDebug() << tr("No command specified.");
+    }
+    else{
         qWarning() << "Command not recognized: " << command.toStdString().c_str();
     }
 
@@ -93,14 +95,6 @@ void HostController::exec_plugin(QString command){
     if(!pluginUtil){return;}
     // plugin found
 
-    /*
-    UtilWorker* worker = pluginUtil->getWorker();
-    worker->setAutoDelete(true);
-    QObject::connect(worker, SIGNAL(result(int)), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-    QThreadPool::globalInstance()->start(worker);
-*/
-    //pluginUtil->worker->setAutoDelete(true);
-
     qDebug() << pluginUtil->name().toStdString().c_str();
 
     UtilWorkerInterface* worker = pluginUtil->newWorker();
@@ -109,38 +103,22 @@ void HostController::exec_plugin(QString command){
     QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
     qDebug() << "Worker signale connect successful";
 
-    bg_worker = new UtilRunner(worker);
-    // worker->init();
-    // worker->start();
-
-    bg_worker->setAutoDelete(true);
-
-    //QObject::connect(pluginObj, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-
+    bg_worker = new UtilRunner(command, worker, logger);
+    bg_worker->setAutoDelete(false);
     QThreadPool::globalInstance()->start(bg_worker);
-
-
-/*
-        // Time consumer
-        MyTask *mytask = new MyTask();
-        mytask->setAutoDelete(true);
-
-        // using queued connection
-        //connect(mytask, SIGNAL(Result(int)), this, SLOT(TaskResult(int)), Qt::QueuedConnection);
-        QObject::connect(mytask, SIGNAL(Result(int)), this, SLOT(job_complete_handler()), Qt::QueuedConnection);
-
-        qDebug() << "Starting a new task using a thread from the QThreadPool";
-
-        // QThreadPool::globalInstance() returns global QThreadPool instance
-        QThreadPool::globalInstance()->start(mytask);
-*/
 }
 
 void HostController::cancel_handler(){
     qDebug() << "closed window";
+    job_cleanup();
+}
+
+void HostController::job_cleanup(){
     delete this->main_window;
     this->main_window = NULL;
-    end_job(NULL);
+    QString current_cmd = (NULL != bg_worker) ? bg_worker->command() : NULL;
+    delete bg_worker;
+    end_job(current_cmd);
 }
 
 void HostController::job_complete_handler(){

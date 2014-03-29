@@ -24,19 +24,32 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "util_runner.h"
 #include <QDebug>
+#include <QFinalState>
 
-// When the thread pool kicks up
-// it's going to hit this run, and it's going to do this time consuming task.
-// After it's done, we're going to send the results back to our main thread.
-// This runs in the separate thread, and we do not have any control over this thread,
-// but Qt does.
-// This may just stay in the queue for several ms depending on how busy the server is.
-
+UtilRunner::UtilRunner(QString cmd, UtilWorkerInterface* util_worker, LogEmitter* err_emitter): \
+    command_str(cmd),  worker(util_worker), \
+    err_flag(err_emitter, SIGNAL(critical_message(QString))),\
+    warn_flag(err_emitter, SIGNAL(warn_message(QString)))\
+    {
+}
 
 void UtilRunner::run()
 {
-    this->worker->init();
-    this->worker->start();
+    worker->init();
+    worker->start();
     emit result(0);
 }
 
+
+QString UtilRunner::command(){
+    return QString(this->command_str);
+}
+
+bool UtilRunner::is_hidden(){
+    QString run_silent_flag = worker->meta_lookup("silent");
+    bool run_silent = ! run_silent_flag.isNull() || ! run_silent_flag.isEmpty();
+
+    bool end_shown = err_flag.count() > 0;
+
+    return run_silent && !end_shown;
+}

@@ -26,22 +26,51 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QRunnable>
 #include <QObject>
+#include <QSignalSpy>
 #include "util_worker_interface.h"
+#include "log_emitter.h"
 
 class UtilRunner : public QObject, public QRunnable
 {
     Q_OBJECT
 public:
-    UtilRunner(UtilWorkerInterface* util_worker):worker(util_worker){}
+    /**
+     * @brief Constructor
+     * @param cmd QString associated with the worker
+     * @param util_worker implements the utility business logic for the given command
+     * @param err_emitter LogEmitter used to monitor the qDebug log levels
+     */
+    UtilRunner(QString cmd, UtilWorkerInterface* util_worker, LogEmitter* err_emitter);
+
+    /**
+     * @brief Accessor method for the command associated with this worker
+     * @return QString command
+     */
+    QString command();
+
+    /**
+     * @brief Determine if the utility shall be hidden or shown based on current state
+     * @return bool True if the utilility shall be hidden, False otherwise
+     */
+    bool is_hidden();
 protected:
+
+    /**
+     * @brief Perform time-consuming task in a background thread when the thread pool queues it.
+     */
     void run();
 
 signals:
-    // notify when we're done
+    /**
+     * @brief Notify when the worker execution has finished
+     * @param ret_val int Return value code
+     */
     void result(int ret_val);
-    void complete();
 protected:
+    QString command_str;
     UtilWorkerInterface* worker;
+    QSignalSpy err_flag;
+    QSignalSpy warn_flag;
 };
 
 #endif // UTIL_RUNNER_H

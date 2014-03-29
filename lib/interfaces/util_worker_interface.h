@@ -34,20 +34,24 @@ http://stackoverflow.com/questions/9070817/qobject-factory-in-qt-pluginnon-creat
 #ifndef UTIL_WORKER_INTERFACE_H
 #define UTIL_WORKER_INTERFACE_H
 
-#include <QtPlugin>
-#include <QString>
 #include <QObject>
+#include <QHash>
+#include <QString>
 
 class UtilWorkerInterface : public QObject
 {
     Q_OBJECT
  public:
-    UtilWorkerInterface( QObject* parent=0) : QObject( parent ){}
+    UtilWorkerInterface( QObject* parent=0) : QObject( parent ), meta_hash(){}
     virtual ~UtilWorkerInterface(){}
-    virtual void init() = 0;
-    virtual void start() = 0;
- signals:
-    void complete();
+    virtual void init(){}
+    virtual void start(){}
+    virtual QString meta_lookup(const QString &key){
+        return (meta_hash.contains(key)) ? meta_hash.value(key, NULL) : NULL;
+    }
+
+ protected:
+    QHash<QString, QString> meta_hash;
 };
 
 #endif //UTIL_WORKER_INTERFACE_H

@@ -19,6 +19,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#include <stdio.h>
+#include <QPointer>
 #include <QString>
 #include <QtTest>
 #include <QCoreApplication>
@@ -26,8 +28,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "test_util_collection.h"
 #include "test_log_text_page.h"
 #include "test_log_emitter.h"
-#include <QPointer>
-#include <stdio.h>
+#include "test_util_runner.h"
 
 
 int main(int argc, char *argv[]){
@@ -45,6 +46,8 @@ int main(int argc, char *argv[]){
     TestLogEmitter testlogemitter;
     QTest::qExec(&testlogemitter, argc, argv);
 
+    TestUtilRunner testutilrunner;
+    QTest::qExec(&testutilrunner, argc, argv);
 
     if(false){app.exec();}
     return(0);
