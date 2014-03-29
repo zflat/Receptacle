@@ -123,31 +123,156 @@ Inheritance diagram for UtilRunner:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a8862812047387e6362998d18e50a1576"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8862812047387e6362998d18e50a1576"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>result</b> (int ret_val)</td></tr>
+<tr class="memitem:a8862812047387e6362998d18e50a1576"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a8862812047387e6362998d18e50a1576">result</a> (int ret_val)</td></tr>
+<tr class="memdesc:a8862812047387e6362998d18e50a1576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify when the worker execution has finished.  <a href="#a8862812047387e6362998d18e50a1576">More...</a><br/></td></tr>
 <tr class="separator:a8862812047387e6362998d18e50a1576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2647bd4994c885b54bc9140ea8907326"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2647bd4994c885b54bc9140ea8907326"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>complete</b> ()</td></tr>
-<tr class="separator:a2647bd4994c885b54bc9140ea8907326"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeea5ec2ef931a8bb34361d05f9a0395d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeea5ec2ef931a8bb34361d05f9a0395d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UtilRunner</b> (<a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *util_worker)</td></tr>
-<tr class="separator:aeea5ec2ef931a8bb34361d05f9a0395d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19080083bf08189fa202d352bcd2b456"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a19080083bf08189fa202d352bcd2b456">UtilRunner</a> (QString cmd, <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *util_worker, <a class="el" href="classLogEmitter.html">LogEmitter</a> *err_emitter)</td></tr>
+<tr class="memdesc:a19080083bf08189fa202d352bcd2b456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a19080083bf08189fa202d352bcd2b456">More...</a><br/></td></tr>
+<tr class="separator:a19080083bf08189fa202d352bcd2b456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea706926c017872504963d78873ac57e"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#aea706926c017872504963d78873ac57e">command</a> ()</td></tr>
+<tr class="memdesc:aea706926c017872504963d78873ac57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor method for the command associated with this worker.  <a href="#aea706926c017872504963d78873ac57e">More...</a><br/></td></tr>
+<tr class="separator:aea706926c017872504963d78873ac57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41be1c035ea4bc05ba356a3c75b23bdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a41be1c035ea4bc05ba356a3c75b23bdf">is_hidden</a> ()</td></tr>
+<tr class="memdesc:a41be1c035ea4bc05ba356a3c75b23bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if the utility shall be hidden or shown based on current state.  <a href="#a41be1c035ea4bc05ba356a3c75b23bdf">More...</a><br/></td></tr>
+<tr class="separator:a41be1c035ea4bc05ba356a3c75b23bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a64c2b4c66a819a57bd0d2f4d0c614727"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64c2b4c66a819a57bd0d2f4d0c614727"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a64c2b4c66a819a57bd0d2f4d0c614727">run</a> ()</td></tr>
+<tr class="memdesc:a64c2b4c66a819a57bd0d2f4d0c614727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform time-consuming task in a background thread when the thread pool queues it. <br/></td></tr>
 <tr class="separator:a64c2b4c66a819a57bd0d2f4d0c614727"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a3d5694eaccd49a7320e189644cdebe67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d5694eaccd49a7320e189644cdebe67"></a>
+QString&#160;</td><td class="memItemRight" valign="bottom"><b>command_str</b></td></tr>
+<tr class="separator:a3d5694eaccd49a7320e189644cdebe67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae4d14b30b0373b546e93c607e4d3ed1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae4d14b30b0373b546e93c607e4d3ed1"></a>
 <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>worker</b></td></tr>
 <tr class="separator:aae4d14b30b0373b546e93c607e4d3ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac950865d6bafcdf727c4e940d7ef53df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac950865d6bafcdf727c4e940d7ef53df"></a>
+QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>err_flag</b></td></tr>
+<tr class="separator:ac950865d6bafcdf727c4e940d7ef53df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21e92c11b29d43517575952da8462e8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21e92c11b29d43517575952da8462e8c"></a>
+QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></td></tr>
+<tr class="separator:a21e92c11b29d43517575952da8462e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a19080083bf08189fa202d352bcd2b456"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UtilRunner::UtilRunner </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *&#160;</td>
+          <td class="paramname"><em>util_worker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLogEmitter.html">LogEmitter</a> *&#160;</td>
+          <td class="paramname"><em>err_emitter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>QString associated with the worker </td></tr>
+    <tr><td class="paramname">util_worker</td><td>implements the utility business logic for the given command </td></tr>
+    <tr><td class="paramname">err_emitter</td><td><a class="el" href="classLogEmitter.html">LogEmitter</a> used to monitor the qDebug log levels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aea706926c017872504963d78873ac57e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString UtilRunner::command </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Accessor method for the command associated with this worker. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString command </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a41be1c035ea4bc05ba356a3c75b23bdf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UtilRunner::is_hidden </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determine if the utility shall be hidden or shown based on current state. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if the utilility shall be hidden, False otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8862812047387e6362998d18e50a1576"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UtilRunner::result </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ret_val</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notify when the worker execution has finished. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ret_val</td><td>int Return value code </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/include/<a class="el" href="util__runner_8h_source.html">util_runner.h</a></li>
 <li>lib/src/util_runner.cpp</li>
@@ -158,7 +283,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classUtilRunner.html">UtilRunner</a></li>
-    <li class="footer">Generated on Thu Mar 27 2014 21:55:15 for Receptacle by
+    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

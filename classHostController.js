@@ -4,6 +4,7 @@ var classHostController =
     [ "cancel_handler", "classHostController.html#a21acb90d36d327dd97d09547392ffb86", null ],
     [ "end_job", "classHostController.html#a4d4363eb6183182a91dc63f7e986f250", null ],
     [ "exec_plugin", "classHostController.html#ab2eb0283243dd26bffd779beb9049bf2", null ],
+    [ "job_cleanup", "classHostController.html#a62e5af07ddb18c212a82560f6c0567ee", null ],
     [ "job_complete_handler", "classHostController.html#ace92aab91b00c03ee1a34cd448e69232", null ],
     [ "kill_job", "classHostController.html#ad27e37385e5c709f7528fdc00fee1190", null ],
     [ "notify_block", "classHostController.html#a1b779f01d38b3709110b0b66b01bf46a", null ],

@@ -103,11 +103,11 @@ $(document).ready(function(){initNavTree('classUtilWorkerInterface.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classUtilWorkerInterface-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">UtilWorkerInterface Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">UtilWorkerInterface Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -119,23 +119,26 @@ Inheritance diagram for UtilWorkerInterface:</div>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
-<tr class="memitem:a0c7344544ec3a223016ddfedfb1668eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c7344544ec3a223016ddfedfb1668eb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>complete</b> ()</td></tr>
-<tr class="separator:a0c7344544ec3a223016ddfedfb1668eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae397c5f9f3496c75690c2072a1fec80a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae397c5f9f3496c75690c2072a1fec80a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UtilWorkerInterface</b> (QObject *parent=0)</td></tr>
 <tr class="separator:ae397c5f9f3496c75690c2072a1fec80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7960a43a176c8a1b3050dd268f64485"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7960a43a176c8a1b3050dd268f64485"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()=0</td></tr>
-<tr class="separator:ad7960a43a176c8a1b3050dd268f64485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13130a192e1511aaece3090425d831c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13130a192e1511aaece3090425d831c3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()=0</td></tr>
-<tr class="separator:a13130a192e1511aaece3090425d831c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0547e4ad630f0aa600fb7d5de824a25e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0547e4ad630f0aa600fb7d5de824a25e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:a0547e4ad630f0aa600fb7d5de824a25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e07195401af2b2bfd9c42919bc332d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1e07195401af2b2bfd9c42919bc332d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()</td></tr>
+<tr class="separator:ab1e07195401af2b2bfd9c42919bc332d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7299f63944eae8cce664c399eec334ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7299f63944eae8cce664c399eec334ec"></a>
+virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>meta_lookup</b> (const QString &amp;key)</td></tr>
+<tr class="separator:a7299f63944eae8cce664c399eec334ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aec12651acbc2c6a539b3dc21d8a32755"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec12651acbc2c6a539b3dc21d8a32755"></a>
+QHash&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>meta_hash</b></td></tr>
+<tr class="separator:aec12651acbc2c6a539b3dc21d8a32755"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>lib/interfaces/<a class="el" href="util__worker__interface_8h_source.html">util_worker_interface.h</a></li>
@@ -146,7 +149,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()=
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a></li>
-    <li class="footer">Generated on Thu Mar 27 2014 21:55:15 for Receptacle by
+    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
