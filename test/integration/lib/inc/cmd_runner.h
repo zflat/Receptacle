@@ -20,8 +20,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#ifndef TEST_PRINT_H
-#define TEST_PRINT_H
+#ifndef CMD_RUNNER_H
+#define CMD_RUNNER_H
 
 #include <QString>
 #include <QtTest>
@@ -33,38 +33,29 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "job_selection_form_decorator.h"
 #include "select_launcher_decorator.h"
 #include "log_emitter.h"
-#include "cmd_runner.h"
-#include "hostwin_closer.h"
 
-class TestPrint : public QObject
+
+class CmdRunner : public QObject
 {
     Q_OBJECT
 
 public:
-    TestPrint(){}
+   CmdRunner(HostControllerDecorator* host_target, Dispatcher* server_target): \
+        host(host_target), server(server_target){}
 
-private Q_SLOTS:
-    void initTestCase();
-    void cleanupTestCase();
-    void init();
-    void cleanup();
-    void testCommandPrint();
-    void testWarnPrint();
-    void testCriticalPrint();
-    void testCommandDelayedPrint();
+   void send_command(QString cmd);
+
+signals:
+   void command_completed();
+   void ready4close();
+
+public Q_SLOTS:
+   void end_curr_util();
+
 private:
-    QPointer<LogEmitter> logger;
-    Dispatcher* server;
-    HostControllerDecorator* host;    
-    UtilCollection* utils;
-    SelectLauncherDecorator* launcher;
-    JobSelectionFormDecorator* selection_form;
-    QHash<QString, QWidget*>  host_widgets;
-    CmdRunner* cmd;
-    HostwinCloser* ender;
-
-    void send_print_command(QString cmd);
-    void end_print_util();
+   HostControllerDecorator* host;
+   Dispatcher* server;
+   
 };
 
-#endif // TEST_PRINT_H
+#endif // CMD_RUNNER_H

@@ -66,6 +66,26 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->setCentralWidget(this->central_widget);
 }
 
+void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
+    if(is_notification){
+        QString style_markup;
+        switch(type){
+            case QtDebugMsg:
+                break;
+            case QtWarningMsg:
+                style_markup = "";
+                break;
+            case QtCriticalMsg:
+            case QtFatalMsg:
+                style_markup = "";
+                break;
+        }
+        // set the status bar background color
+    }else{
+        // pass along to the top selection form
+        select_form->indicate_msg_level(type);
+    }
+}
 
 void SelectLauncher::create_menus(){
 

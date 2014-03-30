@@ -34,10 +34,17 @@ void test_print_log_handler_forwarder(QtMsgType type, const QMessageLogContext &
 }
 
 
-
-
 void TestPrint::initTestCase()
 {
+}
+
+
+void TestPrint::cleanupTestCase()
+{
+}
+
+
+void TestPrint::init(){
     test_print_logger = new LogEmitter();
     qInstallMessageHandler(test_print_log_handler_forwarder);
     utils = new UtilCollection();
@@ -46,11 +53,19 @@ void TestPrint::initTestCase()
     // Create an instance of a server and then start it.
     server = new Dispatcher(host);
     server->startServer();
-    return;
+
+
+    cmd = new CmdRunner(host, server);
+    ender = new HostwinCloser(host, server);
 }
 
-void TestPrint::cleanupTestCase()
-{
+void TestPrint::cleanup(){
+    delete cmd;
+    cmd = NULL;
+    delete ender;
+    ender = NULL;
+
+
     delete utils;
     delete host;
     delete server;
@@ -59,44 +74,29 @@ void TestPrint::cleanupTestCase()
 
 void TestPrint::testCommandPrint()
 {
-    send_print_command("Print");
-    end_print_util();
-}
-
-void TestPrint::send_print_command(QString cmd){
-      QSignalSpy host_result(host, SIGNAL(util_result(int)));
-      server->queue_request(cmd);
-      QTest::qWait(10);
-      QTRY_VERIFY_WITH_TIMEOUT(host_result.count() > 0, 1000);
-      QTest::qWait(10);
-/*
-      SelectLauncher* launcher_obj = host->get_main_window_obj();
-      QTRY_VERIFY_WITH_TIMEOUT(launcher_obj, 100);
-      QVERIFY2(launcher_obj, "Launcher obj is retrieved.");
-
-      launcher = host->get_main_window();
-      QVERIFY2(launcher, "Launcher is retrieved.");
-      QTRY_VERIFY_WITH_TIMEOUT(launcher, 100);
-*/
-}
-
-void TestPrint::end_print_util(){
-    if(host->get_main_window_obj())
-        host->get_main_window_obj()->close();
-    QTest::qWait(10);
-    QTRY_VERIFY_WITH_TIMEOUT(!server->queue_busy(), 1000);
+    QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
+    cmd->send_command("Print");
 }
 
 void TestPrint::testCommandDelayedPrint()
 {
-    send_print_command("DelayedPrint");
-    end_print_util();
+    QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
+    cmd->send_command("DelayedPrint");
 }
 
-
-
 void TestPrint::testWarnPrint(){
-    send_print_command("WarnPrint");
+    QObject::connect(cmd, SIGNAL(ready4close()), ender, SLOT(end_curr_util()));
+    QSignalSpy spy(cmd, SIGNAL(command_completed()));
+    cmd->send_command("WarnPrint");
+
+    QTRY_VERIFY_WITH_TIMEOUT(spy.count() > 0, 1000);
+    QTest::qWait(50);
+
+    SelectLauncherDecorator* l = host->get_main_window();
+    qDebug() << "Stylesheet:";
+    qDebug() <<  l->styleSheet().toStdString().c_str();
+
+    cmd->ready4close();
 
     // Check for color change to yellow
     /*
@@ -104,15 +104,14 @@ void TestPrint::testWarnPrint(){
     QVERIFY2(selection_form, "selection_form is retrieved.");
 
     selection_form->get_select_form_color();
-*/
-    end_print_util();
+    */
 }
 
-
 void TestPrint::testCriticalPrint(){
-    send_print_command("CriticalPrint");
+    QObject::connect(cmd, SIGNAL(ready4close()), ender, SLOT(end_curr_util()));
+    cmd->send_command("CriticalPrint");
 
     // Check for color change to red
 
-    end_print_util();
+    cmd->ready4close();
 }

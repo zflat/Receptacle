@@ -63,12 +63,26 @@ signals:
     void close_sig();
     void selected(QString cmd);
 
+public slots:
+
+    /**
+     * @brief Visual indication that the message type has been published
+     * @param type
+     *   QtMsgType indicating the error level
+     * @param is_notification
+     *   bool indicating if this is an indidication (less obtrusive) or notification (more obtrusive)
+     */
+    void show_msg_level(QtMsgType type, bool is_notification);
+
+   // void show_warning(QString str);
+   // void show_err(QString str);
+
 protected slots:
     void command_selected(QString cmd);
     void command_rejected(QString cmd);
     void command_pending();
     void save_log_text();
-    void save_err_warn_text();
+    void save_err_warn_text();    
 
 protected:
 
