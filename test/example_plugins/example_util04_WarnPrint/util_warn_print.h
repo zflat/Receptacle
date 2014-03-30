@@ -26,6 +26,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QRunnable>
 #include <QObject>
 #include <QDebug>
+#include <QThread>
 #include "util_worker.h"
 
 class UtilWarnPrintWorker : public UtilWorker
@@ -33,7 +34,7 @@ class UtilWarnPrintWorker : public UtilWorker
     Q_OBJECT
 public:
     void start(){
-        qWarning() << "Run in plugin UtilWarnPrintWorker <---" ;
+        qWarning() << "Warning in plugin UtilWarnPrintWorker <---" ;
         emit complete();
     }
 };

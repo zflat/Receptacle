@@ -28,6 +28,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include "host_controller.h"
+#include "select_launcher_decorator.h"
 
 /**
  * @brief Subclass HostControllerDecorator to provide getters to protected members.
@@ -37,7 +38,10 @@ class HostControllerDecorator : public HostController
 public:
     HostControllerDecorator(UtilCollection* u_collection, LogEmitter* log_emitter): \
         HostController(u_collection, log_emitter){}
-    SelectLauncher* get_main_window(){return main_window;}
+    SelectLauncher* get_main_window_obj(){return main_window;}
+    SelectLauncherDecorator* get_main_window(){
+        return static_cast<SelectLauncherDecorator*>(main_window);
+    }
     UtilInterface* get_current_util(){return current_util;}
     UtilRunner* get_bg_worker(){return bg_worker;}
 };

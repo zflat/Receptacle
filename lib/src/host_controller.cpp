@@ -140,13 +140,14 @@ void HostController::job_cleanup(){
     }else{
         current_cmd = "";
     }
-    emit end_job(current_cmd);
+    Q_EMIT end_job(current_cmd);
+    qDebug() << "HostController cleanup complete";
 }
 
 void HostController::job_complete_handler(int result){
     // notify that the job is not running
     main_window->set_is_running_bg(false);
-    emit util_result(result);
+    Q_EMIT util_result(result);
 
     qDebug() << "job complete!(notified in signal handler)";
 

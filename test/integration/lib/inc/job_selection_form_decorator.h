@@ -20,35 +20,29 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+#ifndef JOB_SELECTION_FORM_DECORATOR_H
+#define JOB_SELECTION_FORM_DECORATOR_H
+
 #include <QString>
 #include <QtTest>
 
-#ifndef TEST_LAUNCHER_H
-#define TEST_LAUNCHER_H
+#include "widgets/job_selection_form.h"
 
-#include "dispatcher.h"
-#include "util_collection.h"
-#include "host_controller_decorator.h"
-#include "log_emitter.h"
-
-
-class TestLauncher : public QObject
+/**
+ * @brief Subclass HostControllerDecorator to provide getters to protected members.
+ */
+class JobSelectionFormDecorator : public JobSelectionForm
 {
-    Q_OBJECT
-
 public:
-    //TestLauncher(QPointer<LogEmitter> logger_ref): logger(logger_ref){}
-    TestLauncher(){}
+    JobSelectionFormDecorator(QWidget *parent) : JobSelectionForm(parent){}
 
-private Q_SLOTS:
-    void initTestCase();
-    void cleanupTestCase();
-    void testOpenCloseLauncher();
-private:
-    Dispatcher* server;
-    HostControllerDecorator* host;
-    UtilCollection* utils;
-    QPointer<LogEmitter>  logger;
+    void get_select_form_color(){
+        qDebug() << "Style sheet";
+        qDebug() << box->styleSheet().toStdString().c_str();
+        this->box;
+        return;
+    }
 };
 
-#endif // TEST_LAUNCHER_H
+
+#endif // JOB_SELECTION_FORM_DECORATOR_H

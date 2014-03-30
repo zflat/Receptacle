@@ -30,7 +30,9 @@ Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
 }
 
 Dispatcher::~Dispatcher(){
-    this->request_mutex.release(1);
+    this->close();
+    request_mutex.release(request_mutex.available());
+    qDebug()<<"Server closed";
 }
 
 void Dispatcher::startServer()
@@ -68,6 +70,7 @@ void Dispatcher::queue_request(QString command){
 }
 
 bool Dispatcher::queue_busy(){
+   qDebug() << "check for busy server";
    return this->request_mutex.available()<1;
 }
 
@@ -75,4 +78,5 @@ void Dispatcher::request_completed(QString command){
     qDebug() << "Request " \
              << command.toStdString().c_str() <<" ended.";
     this->request_mutex.release(1);
+    qDebug() << "request_mutex released";
 }

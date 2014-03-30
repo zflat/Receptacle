@@ -76,3 +76,20 @@ void JobSelectionForm::btn_pressed_handler(){
     this->command(this->box->currentText());
     return;
 }
+
+void JobSelectionForm::indicate_msg_level(QtMsgType type){
+    QString style_markup;
+    switch(type){
+        case QtDebugMsg:
+            break;
+        case QtWarningMsg:
+            style_markup = "QComboBox {border: 2px solid yellow}";
+            break;
+        case QtCriticalMsg:
+        case QtFatalMsg:
+            style_markup = "QComboBox {border: 2px solid red}";
+            break;
+    }
+    this->box->setStyleSheet(style_markup);
+    qDebug() << box->styleSheet();
+}

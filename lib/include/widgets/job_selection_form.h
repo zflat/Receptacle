@@ -49,6 +49,13 @@ public slots:
     void btn_pressed_handler();
     bool command(QString cmd);
 
+    /**
+     * @brief Visual indication that the message type has been published
+     * @param type
+     *   QtMsgType indicating the error level
+     */
+    void indicate_msg_level(QtMsgType type);
+
 protected:
     QLabel* label;
     QHBoxLayout* layout;

@@ -20,35 +20,26 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+#ifndef SELECT_LAUNCHER_DECORATOR_H
+#define SELECT_LAUNCHER_DECORATOR_H
+
 #include <QString>
 #include <QtTest>
 
-#ifndef TEST_LAUNCHER_H
-#define TEST_LAUNCHER_H
+#include "widgets/select_launcher.h"
 
-#include "dispatcher.h"
-#include "util_collection.h"
-#include "host_controller_decorator.h"
-#include "log_emitter.h"
-
-
-class TestLauncher : public QObject
+/**
+ * @brief Subclass HostControllerDecorator to provide getters to protected members.
+ */
+class SelectLauncherDecorator : public SelectLauncher
 {
-    Q_OBJECT
-
 public:
-    //TestLauncher(QPointer<LogEmitter> logger_ref): logger(logger_ref){}
-    TestLauncher(){}
+    SelectLauncherDecorator(QWidget *parent) : SelectLauncher(parent){}
 
-private Q_SLOTS:
-    void initTestCase();
-    void cleanupTestCase();
-    void testOpenCloseLauncher();
-private:
-    Dispatcher* server;
-    HostControllerDecorator* host;
-    UtilCollection* utils;
-    QPointer<LogEmitter>  logger;
+    QWidget* get_job_select_form(){
+        return this->select_form;
+    }
 };
 
-#endif // TEST_LAUNCHER_H
+
+#endif // SELECT_LAUNCHER_DECORATOR_H

@@ -30,6 +30,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "dispatcher.h"
 #include "util_collection.h"
 #include "host_controller_decorator.h"
+#include "job_selection_form_decorator.h"
+#include "select_launcher_decorator.h"
 #include "log_emitter.h"
 
 
@@ -38,16 +40,26 @@ class TestPrint : public QObject
     Q_OBJECT
 
 public:
-    TestPrint();
+    TestPrint(){}
 
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testCommandPrint();
+    void testWarnPrint();
+    void testCriticalPrint();
     void testCommandDelayedPrint();
 private:
+    QPointer<LogEmitter> logger;
     Dispatcher* server;
-    HostControllerDecorator* host;
+    HostControllerDecorator* host;    
+    UtilCollection* utils;
+    SelectLauncherDecorator* launcher;
+    JobSelectionFormDecorator* selection_form;
+    QHash<QString, QWidget*>  host_widgets;
+
+    void send_print_command(QString cmd);
+    void end_print_util();
 };
 
 #endif // TEST_PRINT_H

@@ -28,6 +28,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "test_utils_populated.h"
 
 int main(int argc, char *argv[]){
+
     // Construct application before running tests
     // http://stackoverflow.com/a/16711202
     QApplication app(argc, argv);
@@ -36,12 +37,13 @@ int main(int argc, char *argv[]){
     TestUtilsPopulated test1;
     QTest::qExec(&test1, argc, argv);
 
-    TestLauncher test2;
-    QTest::qExec(&test2, argc, argv);
+    TestLauncher* test2=new TestLauncher();
+    QTest::qExec(test2, argc, argv);
+    delete test2;
 
-    TestPrint test3;
-    QTest::qExec(&test3, argc, argv);
-
+    TestPrint* test3=new TestPrint();
+    QTest::qExec(test3, argc, argv);
+    delete test3;
 
     qApp->exit(0);
     return 0;
@@ -49,7 +51,6 @@ int main(int argc, char *argv[]){
 
 
 #include "tst_integrationtest.moc"
-
 
 
 // testrunner approach

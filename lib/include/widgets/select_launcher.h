@@ -31,6 +31,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QVBoxLayout>
 #include <QFileDialog>
 #include <QDir>
+#include <QHash>
 #include "util_collection.h"
 #include "job_selection_form.h"
 #include "log_text.h"
@@ -70,6 +71,9 @@ protected slots:
     void save_err_warn_text();
 
 protected:
+
+    QHash< QString, QWidget* > widgets;
+
     //menubar
     QMenuBar* menubar;
     //menufile

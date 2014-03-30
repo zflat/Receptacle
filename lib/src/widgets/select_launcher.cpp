@@ -49,7 +49,11 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
 
     QVBoxLayout* central_layout= new QVBoxLayout;
 
+    //JobSelectionForm* sel_frm_ptr = new JobSelectionForm(this->central_widget);
     this->select_form = new JobSelectionForm(this->central_widget);
+
+    widgets.insert("TEST", this->select_form);
+
     QObject::connect(this->select_form, SIGNAL(command_selected(QString)), this, SLOT(command_selected(QString)));
     QObject::connect(this->select_form, SIGNAL(command_unrecognized(QString)), this, SLOT(command_rejected(QString)));
     QObject::connect(this->select_form, SIGNAL(command_unspecified()), this, SLOT(command_pending()));

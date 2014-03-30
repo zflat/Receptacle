@@ -22,19 +22,31 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include "test_utils_populated.h"
+#include "log_emitter.h"
 
 
-TestUtilsPopulated::TestUtilsPopulated(): utils(NULL){}
+QPointer<LogEmitter> test_util_populated_logger;
+void test_util_populated_log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, const QString &msg){
+    if(test_util_populated_logger)
+        test_util_populated_logger->publish_message(type, context, msg);
+
+    printf("%s\n", msg.toStdString().c_str());
+}
+
 
 void TestUtilsPopulated::initTestCase()
 {
     utils = new UtilCollection();
+    test_util_populated_logger = new LogEmitter();
+    qInstallMessageHandler(test_util_populated_log_handler_forwarder);
 }
 
 void TestUtilsPopulated::cleanupTestCase()
 {
     if(NULL != utils)
         delete utils;
+
+    qInstallMessageHandler(0);
 }
 
 void TestUtilsPopulated::testPopulatedContains()

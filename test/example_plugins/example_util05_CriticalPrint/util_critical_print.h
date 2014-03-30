@@ -33,7 +33,7 @@ class UtilCriticalPrintWorker : public UtilWorker
     Q_OBJECT
 public:
     void start(){
-        qCritical() << "Run in plugin UtilWarnPrintWorker <---" ;
+        qCritical() << "Run in plugin UtilCriticalPrintWorker <---" ;
         emit complete();
     }
 };

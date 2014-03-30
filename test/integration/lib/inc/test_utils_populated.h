@@ -28,6 +28,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include "util_collection.h"
+#include "log_emitter.h"
 
 
 class TestUtilsPopulated : public QObject
@@ -35,7 +36,7 @@ class TestUtilsPopulated : public QObject
     Q_OBJECT
 
 public:
-    TestUtilsPopulated();
+    TestUtilsPopulated(): utils(NULL){}
 
 private Q_SLOTS:
     void initTestCase();
@@ -44,6 +45,7 @@ private Q_SLOTS:
 private:
     UtilCollection* utils;
     void verify_command(QString cmd);
+    QPointer<LogEmitter>  logger;
 };
 
 #endif // TEST_UTILS_POPULATED_H
