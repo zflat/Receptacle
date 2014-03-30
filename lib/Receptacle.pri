@@ -34,11 +34,12 @@ HEADERS += \
     $$PWD/include/dispatcher.h \
     $$PWD/include/client_connection.h \
     $$PWD/interfaces/util_interface.h \
-    $$PWD/interfaces/util_worker_interface.h \
+    $$PWD/interfaces/util_worker.h \
     $$PWD/include/util_collection.h \
     $$PWD/include/util_runner.h \
     $$PWD/include/host_controller.h \
     $$PWD/include/log_emitter.h \
+    $$PWD/include/signal_counter.h \
     $$PWD/include/widgets/*.h
 
 

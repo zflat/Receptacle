@@ -26,7 +26,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <QFinalState>
 
-UtilRunner::UtilRunner(QString cmd, UtilWorkerInterface* util_worker, LogEmitter* err_emitter): \
+UtilRunner::UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emitter): \
     command_str(cmd),  worker(util_worker), \
     err_flag(err_emitter, SIGNAL(critical_message(QString))),\
     warn_flag(err_emitter, SIGNAL(warn_message(QString)))\
@@ -37,6 +37,7 @@ void UtilRunner::run()
 {
     worker->init();
     worker->start();
+    qDebug("Worker is done running.");
     emit result(0);
 }
 
@@ -52,4 +53,8 @@ bool UtilRunner::is_hidden(){
     bool end_shown = err_flag.count() > 0;
 
     return run_silent && !end_shown;
+}
+
+void UtilRunner::request_cancel(){
+    worker->exit_early();
 }

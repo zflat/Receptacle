@@ -33,7 +33,8 @@ void HostController::run_job(QString command){
     this->main_window->populate_command_options(utils);
     this->main_window->connect_logger(this->logger);
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
-    QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(cancel_handler()));
+    QObject::connect(this->main_window, SIGNAL(close_requested()), this, SLOT(cancel_handler()));
+    QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(job_cleanup()));
 
     this->main_window->select_job(command);
     // open the main window
@@ -48,6 +49,8 @@ void HostController::run_job(QString command){
 
 
 void HostController::kill_job(){
+    cancel_handler();
+    /*
     if(this->bg_worker != NULL){
         if(this->thread() != NULL){
             this->thread()->terminate();
@@ -57,6 +60,7 @@ void HostController::kill_job(){
         this->bg_worker = NULL;
     }
     this->main_window->close();
+    */
 }
 
 void HostController::notify_block(){
@@ -97,30 +101,66 @@ void HostController::exec_plugin(QString command){
 
     qDebug() << pluginUtil->name().toStdString().c_str();
 
-    UtilWorkerInterface* worker = pluginUtil->newWorker();
+    UtilWorker* worker = pluginUtil->newWorker();
     qDebug() << "Worker retrieval successful";
 
-    QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
-    qDebug() << "Worker signale connect successful";
 
     bg_worker = new UtilRunner(command, worker, logger);
     bg_worker->setAutoDelete(false);
+
+    //QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    connect(bg_worker, SIGNAL(result(int)), this, SLOT(job_complete_handler(int)));
+    qDebug() << "Util Runner signal connect successful";
+
+    // notify that the bg worker is running
+    main_window->set_is_running_bg(true);
     QThreadPool::globalInstance()->start(bg_worker);
 }
 
 void HostController::cancel_handler(){
-    qDebug() << "closed window";
-    job_cleanup();
+    if(NULL != bg_worker ){
+        // tell the bg worker to quit
+        bg_worker->request_cancel();
+    }else if(NULL != main_window){
+        main_window->close();
+    }
 }
 
 void HostController::job_cleanup(){
-    delete this->main_window;
-    this->main_window = NULL;
-    QString current_cmd = (NULL != bg_worker) ? bg_worker->command() : NULL;
-    delete bg_worker;
-    end_job(current_cmd);
+    qDebug() << "closed window";
+    if(NULL != main_window){
+        delete main_window;
+        main_window = NULL;
+    }
+    QString current_cmd;
+    if(NULL != bg_worker){
+        current_cmd = bg_worker->command();
+        delete bg_worker;
+        bg_worker = NULL;
+    }else{
+        current_cmd = "";
+    }
+    emit end_job(current_cmd);
 }
 
-void HostController::job_complete_handler(){
+void HostController::job_complete_handler(int result){
+    // notify that the job is not running
+    main_window->set_is_running_bg(false);
+    emit util_result(result);
+
     qDebug() << "job complete!(notified in signal handler)";
+
+    /* Decide to close the main window or not
+     *
+     * Close the main window when UtilRunner indicates the utility
+     * is hidden & the windows is minimized
+     *
+     * Close the main window when close has been requested.
+     */
+    bool should_close_window = main_window->get_is_pending_close() ||
+            (bg_worker->is_hidden() && main_window->isMinimized());
+
+    if(should_close_window){
+        main_window->close();
+    }
 }

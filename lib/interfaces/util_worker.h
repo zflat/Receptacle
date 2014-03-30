@@ -31,28 +31,42 @@ Object Factory with plugins:
 http://stackoverflow.com/questions/9070817/qobject-factory-in-qt-pluginnon-creator
  */
 
-#ifndef UTIL_WORKER_INTERFACE_H
-#define UTIL_WORKER_INTERFACE_H
+#ifndef UTIL_WORKER_H
+#define UTIL_WORKER_H
 
 #include <QObject>
 #include <QHash>
 #include <QString>
 
-class UtilWorkerInterface : public QObject
+
+class UtilWorker : public QObject
 {
     Q_OBJECT
  public:
-    UtilWorkerInterface( QObject* parent=0) : QObject( parent ), meta_hash(){}
-    virtual ~UtilWorkerInterface(){}
+    UtilWorker( QObject* parent=0) : QObject( parent ), meta_hash(), \
+        is_terminate_requested(false){}
+    virtual ~UtilWorker(){}
     virtual void init(){}
-    virtual void start(){}
+    virtual void start(){emit complete(0);}
     virtual QString meta_lookup(const QString &key){
         return (meta_hash.contains(key)) ? meta_hash.value(key, NULL) : NULL;
     }
-
- protected:
+public slots:
+    /**
+     * @brief exit_early indicates that a cancel request has been made.
+     */
+    virtual void exit_early(){is_terminate_requested = true;}
+ signals:
+    // notify when we're done
+    void complete(int result=0);
+  protected:
     QHash<QString, QString> meta_hash;
+
+    /**
+     * @brief is_terminate_requested flags the worker that early exit has been requested when set to True
+     */
+    bool is_terminate_requested;
 };
 
-#endif //UTIL_WORKER_INTERFACE_H
+#endif //UTIL_WORKER_H
 

@@ -19,15 +19,18 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// util_runner.h
+/**
+ * @file util_runner.h
+ */
+
 
 #ifndef UTIL_RUNNER_H
 #define UTIL_RUNNER_H
 
 #include <QRunnable>
 #include <QObject>
-#include <QSignalSpy>
-#include "util_worker_interface.h"
+#include "signal_counter.h"
+#include "util_worker.h"
 #include "log_emitter.h"
 
 class UtilRunner : public QObject, public QRunnable
@@ -36,11 +39,14 @@ class UtilRunner : public QObject, public QRunnable
 public:
     /**
      * @brief Constructor
-     * @param cmd QString associated with the worker
-     * @param util_worker implements the utility business logic for the given command
-     * @param err_emitter LogEmitter used to monitor the qDebug log levels
+     * @param cmd
+     *   QString associated with the worker
+     * @param util_worker
+     *   UtilWorker implements the utility business logic for the given command
+     * @param err_emitter
+     *   LogEmitter used to monitor the qDebug log levels
      */
-    UtilRunner(QString cmd, UtilWorkerInterface* util_worker, LogEmitter* err_emitter);
+    UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emitter);
 
     /**
      * @brief Accessor method for the command associated with this worker
@@ -50,9 +56,18 @@ public:
 
     /**
      * @brief Determine if the utility shall be hidden or shown based on current state
-     * @return bool True if the utilility shall be hidden, False otherwise
+     * @return bool
+     *   \c True if the utilility shall be hidden, \c False otherwise
      */
     bool is_hidden();
+
+public slots:
+
+    /**
+     * @brief request_cancel send a cancel request to the worker to exit early
+     */
+    void request_cancel();
+
 protected:
 
     /**
@@ -63,14 +78,16 @@ protected:
 signals:
     /**
      * @brief Notify when the worker execution has finished
-     * @param ret_val int Return value code
+     * @param ret_val
+     *   int Return value code
      */
     void result(int ret_val);
+
 protected:
     QString command_str;
-    UtilWorkerInterface* worker;
-    QSignalSpy err_flag;
-    QSignalSpy warn_flag;
+    UtilWorker* worker;
+    SignalCounter err_flag;
+    SignalCounter warn_flag;
 };
 
 #endif // UTIL_RUNNER_H

@@ -27,6 +27,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QDebug>
 #include <QThreadPool>
+#include "util_interface.h"
+#include "util_collection.h"
 #include "util_runner.h"
 #include "util_collection.h"
 #include "widgets/select_launcher.h"
@@ -41,13 +43,21 @@ public:
     void kill_job();
     void notify_block();
 
-protected:
-    void job_cleanup();
-
 signals:
     void end_job(QString cmd);
 
+    /**
+     * @brief Publish the worker result after the worker ends execution.
+     * @param result reported by the worker
+     */
+    void util_result(int result);
+
 public slots:
+    /**
+     * @brief Handler to load and execute the plugin specified by the given command
+     * @param cmd
+     *   Command specifying the plugin to run
+     */
     void selected(QString cmd);
 
 protected:
@@ -60,7 +70,8 @@ protected:
 protected slots:
        void exec_plugin(QString command);
        void cancel_handler();
-       void job_complete_handler();
+       void job_cleanup();
+       void job_complete_handler(int result);
 };
 
 #endif // HOST_CONTROLLER_H

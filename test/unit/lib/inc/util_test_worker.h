@@ -24,9 +24,9 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #define UTIL_TEST_WORKER_H
 
 #include <QObject>
-#include "util_worker_interface.h"
+#include "util_worker.h"
 
-class UtilTestWorker : public UtilWorkerInterface{
+class UtilTestWorker : public UtilWorker{
 public:
     void set_is_silent(bool is_silent){
         meta_hash["silent"] = is_silent ? "silent" : NULL;

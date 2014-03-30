@@ -23,6 +23,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "widgets/select_launcher.h"
 
 SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
+    is_running_bg = false;
+
     this->setWindowTitle("Launcher");
 
     this->create_actions();
@@ -133,10 +135,23 @@ bool SelectLauncher::load_job_widget(QWidget *job_ui_widget){
     return false;
 }
 
+bool SelectLauncher::set_is_running_bg(bool is_running){
+    return(is_running_bg = is_running);
+}
+
+bool SelectLauncher::get_is_pending_close(){ return is_pending_close;}
 
 void SelectLauncher::closeEvent(QCloseEvent *event){
-   emit close_sig();
-   event->accept();
+    if(is_running_bg){
+        qWarning() << tr("Close requested while worker is running. Close is delayed until worker completes.");
+        emit close_requested();
+        is_pending_close = true;
+        event->ignore();
+    }else{
+       emit close_sig();
+       event->accept();
+       is_pending_close = false;
+    }
 }
 
 

@@ -45,15 +45,29 @@ public:
     bool connect_logger(LogEmitter* log_emitter);
     void select_job(QString command);
     bool load_job_widget(QWidget* job_ui_widget);
+    bool set_is_running_bg(bool is_running);
+    bool get_is_pending_close();
+
+signals:
+    /**
+     * @brief close_requested broadcasts when a close event is
+     * requested but ignored because a bg worker is still runing.
+     */
+    void close_requested();
+
+    /**
+     * @brief close_sig broadcasts when a close event is requested
+     * and accepted.
+     */
+    void close_sig();
+    void selected(QString cmd);
 
 protected slots:
     void command_selected(QString cmd);
     void command_rejected(QString cmd);
     void command_pending();
-
-signals:
-    void close_sig();
-    void selected(QString cmd);
+    void save_log_text();
+    void save_err_warn_text();
 
 protected:
     //menubar
@@ -95,14 +109,21 @@ protected:
     QAction* aboutQtAct;
     QAction* aboutPluginsAct;
 
+    /**
+     * @brief is_running_bg True when a background worker is running
+     */
+    bool is_running_bg;
+
+    /**
+     * @brief pending_close indicates a close event has been sent but not yet accepted
+     */
+    bool is_pending_close;
+
 protected:
     void create_menus();
     void create_actions();
     void closeEvent(QCloseEvent *event);
 
-protected slots:
-    void save_log_text();
-    void save_err_warn_text();
 };
 
 #endif // SELECT_LAUNCHER_H

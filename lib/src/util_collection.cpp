@@ -30,9 +30,8 @@ UtilCollection::UtilCollection() : util_hash(){
     this->loadPlugins();
 }
 
-UtilCollection::~UtilCollection(){
-    delete &util_hash;
-}
+UtilCollection::~UtilCollection(){}
+
 
 QHashIterator<QString, QObject*> UtilCollection::plugins(){
     return (QHashIterator<QString, QObject*>(util_hash));
