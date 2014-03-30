@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('util__interface_8h_source.html','');})
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('util__interface_8h_source.html','');})
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;QtPlugin&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;util_worker_interface.h&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;util_worker.h&quot;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="classUtilInterface.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classUtilInterface.html">UtilInterface</a></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
@@ -146,7 +146,7 @@ $(document).ready(function(){initNavTree('util__interface_8h_source.html','');})
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> QString name() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> QString description() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> QString command() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classUtilWorkerInterface.html">UtilWorkerInterface</a>* newWorker() = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classUtilWorker.html">UtilWorker</a>* newWorker() = 0;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define UtilInterface_iid &quot;Receptacle.plugins.UtilInterface/0.0.1&quot;</span></div>
@@ -160,7 +160,7 @@ $(document).ready(function(){initNavTree('util__interface_8h_source.html','');})
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_f385b20f1be227df8e9432934ba4950e.html">interfaces</a></li><li class="navelem"><b>util_interface.h</b></li>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

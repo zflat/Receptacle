@@ -7,8 +7,9 @@ var hierarchy =
       [ "ClientConnection", "classClientConnection.html", null ],
       [ "HostController", "classHostController.html", null ],
       [ "LogEmitter", "classLogEmitter.html", null ],
+      [ "SignalCounter", "classSignalCounter.html", null ],
       [ "UtilRunner", "classUtilRunner.html", null ],
-      [ "UtilWorkerInterface", "classUtilWorkerInterface.html", null ]
+      [ "UtilWorker", "classUtilWorker.html", null ]
     ] ],
     [ "QPlainTextEdit", null, [
       [ "LogText", "classLogText.html", null ]

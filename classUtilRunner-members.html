@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classUtilRunner.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,17 +113,18 @@ $(document).ready(function(){initNavTree('classUtilRunner.html','');});
   <tr bgcolor="#f0f0f0"><td class="entry"><b>command_str</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>err_flag</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classUtilRunner.html#a41be1c035ea4bc05ba356a3c75b23bdf">is_hidden</a>()</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classUtilRunner.html#a8862812047387e6362998d18e50a1576">result</a>(int ret_val)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classUtilRunner.html#a64c2b4c66a819a57bd0d2f4d0c614727">run</a>()</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classUtilRunner.html#a19080083bf08189fa202d352bcd2b456">UtilRunner</a>(QString cmd, UtilWorkerInterface *util_worker, LogEmitter *err_emitter)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>warn_flag</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>worker</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classUtilRunner.html#aa03fe88738e33a9302e17f855e88c459">request_cancel</a>()</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classUtilRunner.html#a8862812047387e6362998d18e50a1576">result</a>(int ret_val)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classUtilRunner.html#a64c2b4c66a819a57bd0d2f4d0c614727">run</a>()</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classUtilRunner.html#a777d6872d4e042d680f4a45ffce89e3b">UtilRunner</a>(QString cmd, UtilWorker *util_worker, LogEmitter *err_emitter)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>warn_flag</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>worker</b> (defined in <a class="el" href="classUtilRunner.html">UtilRunner</a>)</td><td class="entry"><a class="el" href="classUtilRunner.html">UtilRunner</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

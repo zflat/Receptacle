@@ -76,6 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -98,7 +99,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,17 +110,41 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div><ul>
+<li>close_requested()
+: <a class="el" href="classSelectLauncher.html#aa5668073924e9e0d27a08628817e3bac">SelectLauncher</a>
+</li>
+<li>close_sig()
+: <a class="el" href="classSelectLauncher.html#a4bea85dac7ee0dbb15ee0df16cd01039">SelectLauncher</a>
+</li>
 <li>command()
 : <a class="el" href="classUtilRunner.html#aea706926c017872504963d78873ac57e">UtilRunner</a>
 </li>
+<li>count()
+: <a class="el" href="classSignalCounter.html#a4529e6a98a96f3bfb1330026ab2804f7">SignalCounter</a>
+</li>
+<li>exit_early()
+: <a class="el" href="classUtilWorker.html#a4c4a460f6e97cfbff59fed76cbf6eef9">UtilWorker</a>
+</li>
 <li>is_hidden()
 : <a class="el" href="classUtilRunner.html#a41be1c035ea4bc05ba356a3c75b23bdf">UtilRunner</a>
+</li>
+<li>is_pending_close
+: <a class="el" href="classSelectLauncher.html#a04a14f22dfcfe2a2d7ca103b315255f3">SelectLauncher</a>
+</li>
+<li>is_running_bg
+: <a class="el" href="classSelectLauncher.html#aa1f95e728ac4c93161882fad6cc1f728">SelectLauncher</a>
+</li>
+<li>is_terminate_requested
+: <a class="el" href="classUtilWorker.html#a5e0044c3ba7d9aae7d1b98c18003a5ad">UtilWorker</a>
 </li>
 <li>queue_busy()
 : <a class="el" href="classDispatcher.html#ab7a6ff9f7008454d3d75f524e77ec2aa">Dispatcher</a>
 </li>
 <li>queue_request()
 : <a class="el" href="classDispatcher.html#a8f35d4badbff0383de714bc7f024a50e">Dispatcher</a>
+</li>
+<li>request_cancel()
+: <a class="el" href="classUtilRunner.html#aa03fe88738e33a9302e17f855e88c459">UtilRunner</a>
 </li>
 <li>request_completed()
 : <a class="el" href="classDispatcher.html#aa63ab2c22fa0a85801c403d5fdd84749">Dispatcher</a>
@@ -130,11 +155,20 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>run()
 : <a class="el" href="classUtilRunner.html#a64c2b4c66a819a57bd0d2f4d0c614727">UtilRunner</a>
 </li>
+<li>selected()
+: <a class="el" href="classHostController.html#a1a31ecd847801e8d5884ac371420ddf0">HostController</a>
+</li>
+<li>SignalCounter()
+: <a class="el" href="classSignalCounter.html#acd732e658627abb0a8054b4d3bca295e">SignalCounter</a>
+</li>
 <li>startServer()
 : <a class="el" href="classDispatcher.html#a49384cbc6ddf36694f3bbbbae4937c31">Dispatcher</a>
 </li>
+<li>util_result()
+: <a class="el" href="classHostController.html#ad82f3ef8ccbc009c2a0aee9b6ee7e1d4">HostController</a>
+</li>
 <li>UtilRunner()
-: <a class="el" href="classUtilRunner.html#a19080083bf08189fa202d352bcd2b456">UtilRunner</a>
+: <a class="el" href="classUtilRunner.html#a777d6872d4e042d680f4a45ffce89e3b">UtilRunner</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -142,7 +176,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classUtilRunner.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('classUtilRunner.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -121,6 +122,13 @@ Inheritance diagram for UtilRunner:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:aa03fe88738e33a9302e17f855e88c459"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa03fe88738e33a9302e17f855e88c459"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#aa03fe88738e33a9302e17f855e88c459">request_cancel</a> ()</td></tr>
+<tr class="memdesc:aa03fe88738e33a9302e17f855e88c459"><td class="mdescLeft">&#160;</td><td class="mdescRight">request_cancel send a cancel request to the worker to exit early <br/></td></tr>
+<tr class="separator:aa03fe88738e33a9302e17f855e88c459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:a8862812047387e6362998d18e50a1576"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a8862812047387e6362998d18e50a1576">result</a> (int ret_val)</td></tr>
@@ -129,9 +137,9 @@ Signals</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a19080083bf08189fa202d352bcd2b456"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a19080083bf08189fa202d352bcd2b456">UtilRunner</a> (QString cmd, <a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *util_worker, <a class="el" href="classLogEmitter.html">LogEmitter</a> *err_emitter)</td></tr>
-<tr class="memdesc:a19080083bf08189fa202d352bcd2b456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a19080083bf08189fa202d352bcd2b456">More...</a><br/></td></tr>
-<tr class="separator:a19080083bf08189fa202d352bcd2b456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a777d6872d4e042d680f4a45ffce89e3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#a777d6872d4e042d680f4a45ffce89e3b">UtilRunner</a> (QString cmd, <a class="el" href="classUtilWorker.html">UtilWorker</a> *util_worker, <a class="el" href="classLogEmitter.html">LogEmitter</a> *err_emitter)</td></tr>
+<tr class="memdesc:a777d6872d4e042d680f4a45ffce89e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a777d6872d4e042d680f4a45ffce89e3b">More...</a><br/></td></tr>
+<tr class="separator:a777d6872d4e042d680f4a45ffce89e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea706926c017872504963d78873ac57e"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtilRunner.html#aea706926c017872504963d78873ac57e">command</a> ()</td></tr>
 <tr class="memdesc:aea706926c017872504963d78873ac57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor method for the command associated with this worker.  <a href="#aea706926c017872504963d78873ac57e">More...</a><br/></td></tr>
 <tr class="separator:aea706926c017872504963d78873ac57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,18 +159,18 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a3d5694eaccd49a7320e189644cdebe67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d5694eaccd49a7320e189644cdebe67"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>command_str</b></td></tr>
 <tr class="separator:a3d5694eaccd49a7320e189644cdebe67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae4d14b30b0373b546e93c607e4d3ed1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae4d14b30b0373b546e93c607e4d3ed1"></a>
-<a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>worker</b></td></tr>
-<tr class="separator:aae4d14b30b0373b546e93c607e4d3ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac950865d6bafcdf727c4e940d7ef53df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac950865d6bafcdf727c4e940d7ef53df"></a>
-QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>err_flag</b></td></tr>
-<tr class="separator:ac950865d6bafcdf727c4e940d7ef53df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21e92c11b29d43517575952da8462e8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21e92c11b29d43517575952da8462e8c"></a>
-QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></td></tr>
-<tr class="separator:a21e92c11b29d43517575952da8462e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f167fa7b87b7a5665a639fcc7b88cbb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f167fa7b87b7a5665a639fcc7b88cbb"></a>
+<a class="el" href="classUtilWorker.html">UtilWorker</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>worker</b></td></tr>
+<tr class="separator:a7f167fa7b87b7a5665a639fcc7b88cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2848a2fc641117c0bc446ee7559ca60f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2848a2fc641117c0bc446ee7559ca60f"></a>
+<a class="el" href="classSignalCounter.html">SignalCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>err_flag</b></td></tr>
+<tr class="separator:a2848a2fc641117c0bc446ee7559ca60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d24d19ab90a99036e055eb7ea453ccf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d24d19ab90a99036e055eb7ea453ccf"></a>
+<a class="el" href="classSignalCounter.html">SignalCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></td></tr>
+<tr class="separator:a1d24d19ab90a99036e055eb7ea453ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a19080083bf08189fa202d352bcd2b456"></a>
+<a class="anchor" id="a777d6872d4e042d680f4a45ffce89e3b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -175,7 +183,7 @@ QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classUtilWorkerInterface.html">UtilWorkerInterface</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classUtilWorker.html">UtilWorker</a> *&#160;</td>
           <td class="paramname"><em>util_worker</em>, </td>
         </tr>
         <tr>
@@ -196,7 +204,7 @@ QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>QString associated with the worker </td></tr>
-    <tr><td class="paramname">util_worker</td><td>implements the utility business logic for the given command </td></tr>
+    <tr><td class="paramname">util_worker</td><td><a class="el" href="classUtilWorker.html">UtilWorker</a> implements the utility business logic for the given command </td></tr>
     <tr><td class="paramname">err_emitter</td><td><a class="el" href="classLogEmitter.html">LogEmitter</a> used to monitor the qDebug log levels </td></tr>
   </table>
   </dd>
@@ -237,7 +245,7 @@ QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></
 </div><div class="memdoc">
 
 <p>Determine if the utility shall be hidden or shown based on current state. </p>
-<dl class="section return"><dt>Returns</dt><dd>bool True if the utilility shall be hidden, False otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bool <code>True</code> if the utilility shall be hidden, <code>False</code> otherwise </dd></dl>
 
 </div>
 </div>
@@ -283,7 +291,7 @@ QSignalSpy&#160;</td><td class="memItemRight" valign="bottom"><b>warn_flag</b></
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classUtilRunner.html">UtilRunner</a></li>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

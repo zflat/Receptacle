@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classHostController.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,7 +107,6 @@ $(document).ready(function(){initNavTree('classHostController.html','');});
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-slots">Protected Slots</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classHostController-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -125,8 +124,8 @@ Inheritance diagram for HostController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a1a31ecd847801e8d5884ac371420ddf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a31ecd847801e8d5884ac371420ddf0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>selected</b> (QString cmd)</td></tr>
+<tr class="memitem:a1a31ecd847801e8d5884ac371420ddf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHostController.html#a1a31ecd847801e8d5884ac371420ddf0">selected</a> (QString cmd)</td></tr>
+<tr class="memdesc:a1a31ecd847801e8d5884ac371420ddf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler to load and execute the plugin specified by the given command.  <a href="#a1a31ecd847801e8d5884ac371420ddf0">More...</a><br/></td></tr>
 <tr class="separator:a1a31ecd847801e8d5884ac371420ddf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
@@ -134,6 +133,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a4d4363eb6183182a91dc63f7e986f250"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d4363eb6183182a91dc63f7e986f250"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end_job</b> (QString cmd)</td></tr>
 <tr class="separator:a4d4363eb6183182a91dc63f7e986f250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82f3ef8ccbc009c2a0aee9b6ee7e1d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHostController.html#ad82f3ef8ccbc009c2a0aee9b6ee7e1d4">util_result</a> (int result)</td></tr>
+<tr class="memdesc:ad82f3ef8ccbc009c2a0aee9b6ee7e1d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish the worker result after the worker ends execution.  <a href="#ad82f3ef8ccbc009c2a0aee9b6ee7e1d4">More...</a><br/></td></tr>
+<tr class="separator:ad82f3ef8ccbc009c2a0aee9b6ee7e1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -158,15 +160,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_plugin</b> (QStr
 <tr class="memitem:a21acb90d36d327dd97d09547392ffb86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21acb90d36d327dd97d09547392ffb86"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>cancel_handler</b> ()</td></tr>
 <tr class="separator:a21acb90d36d327dd97d09547392ffb86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace92aab91b00c03ee1a34cd448e69232"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace92aab91b00c03ee1a34cd448e69232"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>job_complete_handler</b> ()</td></tr>
-<tr class="separator:ace92aab91b00c03ee1a34cd448e69232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
 <tr class="memitem:a62e5af07ddb18c212a82560f6c0567ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62e5af07ddb18c212a82560f6c0567ee"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>job_cleanup</b> ()</td></tr>
 <tr class="separator:a62e5af07ddb18c212a82560f6c0567ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d38ec27d1dde915fc5e93df9289d03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39d38ec27d1dde915fc5e93df9289d03"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>job_complete_handler</b> (int result)</td></tr>
+<tr class="separator:a39d38ec27d1dde915fc5e93df9289d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -186,6 +185,71 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="classUtilRunner.html">UtilRunner</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>bg_worker</b></td></tr>
 <tr class="separator:a0860a855e00342a95d7d9bdb80463a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1a31ecd847801e8d5884ac371420ddf0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HostController::selected </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>cmd</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handler to load and execute the plugin specified by the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Command specifying the plugin to run </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad82f3ef8ccbc009c2a0aee9b6ee7e1d4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HostController::util_result </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>result</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Publish the worker result after the worker ends execution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>reported by the worker </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/include/<a class="el" href="host__controller_8h_source.html">host_controller.h</a></li>
 <li>lib/src/host_controller.cpp</li>
@@ -196,7 +260,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classHostController.html">HostController</a></li>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

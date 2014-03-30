@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classSelectLauncher.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -124,8 +124,13 @@ Inheritance diagram for SelectLauncher:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
+<tr class="memitem:aa5668073924e9e0d27a08628817e3bac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5668073924e9e0d27a08628817e3bac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#aa5668073924e9e0d27a08628817e3bac">close_requested</a> ()</td></tr>
+<tr class="memdesc:aa5668073924e9e0d27a08628817e3bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">close_requested broadcasts when a close event is requested but ignored because a bg worker is still runing. <br/></td></tr>
+<tr class="separator:aa5668073924e9e0d27a08628817e3bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bea85dac7ee0dbb15ee0df16cd01039"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close_sig</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#a4bea85dac7ee0dbb15ee0df16cd01039">close_sig</a> ()</td></tr>
+<tr class="memdesc:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="mdescLeft">&#160;</td><td class="mdescRight">close_sig broadcasts when a close event is requested and accepted. <br/></td></tr>
 <tr class="separator:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ab8e901d6e1d40a5026de40e94bc48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68ab8e901d6e1d40a5026de40e94bc48"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>selected</b> (QString cmd)</td></tr>
@@ -148,6 +153,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>select_job</b> (QStri
 <tr class="memitem:ac37c000470de4d5c3a6ff682496dbf77"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac37c000470de4d5c3a6ff682496dbf77"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>load_job_widget</b> (QWidget *job_ui_widget)</td></tr>
 <tr class="separator:ac37c000470de4d5c3a6ff682496dbf77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a494a9446415e6e54e85af4ea1fb966c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a494a9446415e6e54e85af4ea1fb966c9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>set_is_running_bg</b> (bool is_running)</td></tr>
+<tr class="separator:a494a9446415e6e54e85af4ea1fb966c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12babf51cc250b68d95b91c5895af050"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12babf51cc250b68d95b91c5895af050"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>get_is_pending_close</b> ()</td></tr>
+<tr class="separator:a12babf51cc250b68d95b91c5895af050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-slots"></a>
 Protected Slots</h2></td></tr>
@@ -229,6 +240,14 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>aboutQtAct</b></
 <tr class="memitem:a311cd55fcb61a1eb411d0a8e04e5f717"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a311cd55fcb61a1eb411d0a8e04e5f717"></a>
 QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>aboutPluginsAct</b></td></tr>
 <tr class="separator:a311cd55fcb61a1eb411d0a8e04e5f717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f95e728ac4c93161882fad6cc1f728"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1f95e728ac4c93161882fad6cc1f728"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#aa1f95e728ac4c93161882fad6cc1f728">is_running_bg</a></td></tr>
+<tr class="memdesc:aa1f95e728ac4c93161882fad6cc1f728"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_running_bg True when a background worker is running <br/></td></tr>
+<tr class="separator:aa1f95e728ac4c93161882fad6cc1f728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a14f22dfcfe2a2d7ca103b315255f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04a14f22dfcfe2a2d7ca103b315255f3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#a04a14f22dfcfe2a2d7ca103b315255f3">is_pending_close</a></td></tr>
+<tr class="memdesc:a04a14f22dfcfe2a2d7ca103b315255f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">pending_close indicates a close event has been sent but not yet accepted <br/></td></tr>
+<tr class="separator:a04a14f22dfcfe2a2d7ca103b315255f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/include/widgets/<a class="el" href="select__launcher_8h_source.html">select_launcher.h</a></li>
@@ -240,7 +259,7 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>aboutPluginsAct<
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classSelectLauncher.html">SelectLauncher</a></li>
-    <li class="footer">Generated on Sat Mar 29 2014 08:54:23 for Receptacle by
+    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

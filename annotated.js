@@ -7,8 +7,9 @@ var annotated =
     [ "LogEmitter", "classLogEmitter.html", "classLogEmitter" ],
     [ "LogText", "classLogText.html", "classLogText" ],
     [ "SelectLauncher", "classSelectLauncher.html", "classSelectLauncher" ],
+    [ "SignalCounter", "classSignalCounter.html", "classSignalCounter" ],
     [ "UtilCollection", "classUtilCollection.html", "classUtilCollection" ],
     [ "UtilInterface", "classUtilInterface.html", "classUtilInterface" ],
     [ "UtilRunner", "classUtilRunner.html", "classUtilRunner" ],
-    [ "UtilWorkerInterface", "classUtilWorkerInterface.html", "classUtilWorkerInterface" ]
+    [ "UtilWorker", "classUtilWorker.html", "classUtilWorker" ]
 ];
