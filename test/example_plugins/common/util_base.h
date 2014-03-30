@@ -19,11 +19,24 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#ifndef UTIL_BASE_H
+#define UTIL_BASE_H
+#include <QObject>
+#include <QString>
 
-#include <QDebug>
-#include "util_echoworker.h"
+#include "util_interface.h"
+#include "util_worker_interface.h"
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
-}
+class UtilBase : public QObject, public UtilInterface
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_INTERFACES(UtilInterface)
+
+public:
+    virtual QString name() const;
+    virtual QString description() const;
+    virtual QString command() const;
+    UtilWorkerInterface* newWorker();
+};
+#endif // UTIL_BASE_H

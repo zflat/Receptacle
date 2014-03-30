@@ -34,8 +34,8 @@ QString UtilEcho::description() const{
 }
 
 QString UtilEcho::command() const{
-  return QObject::tr("echo01");
+  return QObject::tr("Print");
 }
-UtilWorkerInterface *UtilEcho::newWorker(){
+UtilWorker *UtilEcho::newWorker(){
     return new UtilEchoWorker();
 }

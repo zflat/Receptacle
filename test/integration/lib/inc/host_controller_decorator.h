@@ -20,10 +20,27 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <QDebug>
-#include "util_echoworker.h"
+#ifndef HOST_CONTROLLER_DECORATOR_H
+#define HOST_CONTROLLER_DECORATOR_H
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
-}
+#include <QString>
+#include <QtTest>
+
+
+#include "host_controller.h"
+
+/**
+ * @brief Subclass HostControllerDecorator to provide getters to protected members.
+ */
+class HostControllerDecorator : public HostController
+{
+public:
+    HostControllerDecorator(UtilCollection* u_collection, LogEmitter* log_emitter): \
+        HostController(u_collection, log_emitter){}
+    SelectLauncher* get_main_window(){return main_window;}
+    UtilInterface* get_current_util(){return current_util;}
+    UtilRunner* get_bg_worker(){return bg_worker;}
+};
+
+
+#endif // HOST_CONTROLLER_DECORATOR_H

@@ -19,24 +19,48 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#ifndef UTILECHO_H
-#define UTILECHO_H
+
+#ifndef UTIL_CRITICAL_PRINT_WORKER_H
+#define UTIL_CRITICAL_PRINT_WORKER_H
+
+#include <QRunnable>
+#include <QObject>
+#include <QDebug>
+#include "util_worker.h"
+
+class UtilCriticalPrintWorker : public UtilWorker
+{
+    Q_OBJECT
+public:
+    void start(){
+        qCritical() << "Run in plugin UtilWarnPrintWorker <---" ;
+        emit complete();
+    }
+};
+
+#endif
+
+
+#ifndef UTIL_CRITICAL_PRINT_H
+#define UTIL_CRITICAL_PRINT_H
 #include <QObject>
 #include <QString>
 
 #include "util_interface.h"
 #include "util_worker.h"
 
-class UtilEcho : public QObject, public UtilInterface
+class UtilWarnPrint : public QObject, public UtilInterface
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
     Q_INTERFACES(UtilInterface)
 
 public:
-    QString name() const;
-    QString description() const;
-    QString command() const;
-    UtilWorker* newWorker();
+    QString name() const {return QObject::tr("Util critical print");}
+    QString description() const {return QObject::tr("Example error critical in utility");}
+    QString command() const {return QObject::tr("CriticalPrint");}
+    UtilWorker* newWorker(){return new UtilCriticalPrintWorker();}
 };
 #endif
+
+

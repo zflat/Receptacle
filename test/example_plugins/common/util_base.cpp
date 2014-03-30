@@ -21,9 +21,22 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <QDebug>
-#include "util_echoworker.h"
+#include <QThread>
+#include "utile_base.h"
+#include "util_worker_base.h"
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
+QString UtilBase::name() const{
+  return QObject::tr("Util echo");
+}
+
+QString UtilBase::description() const{
+ return QObject::tr("Example printing text output");
+}
+
+QString UtilBase::command() const{
+  return QObject::tr("echo01");
+}
+
+UtilWorkerInterface *UtilEcho::newWorker(){
+    return new UtilEchoWorker();
 }

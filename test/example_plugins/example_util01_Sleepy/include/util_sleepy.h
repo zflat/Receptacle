@@ -19,11 +19,27 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#ifndef UTIL_SLEEPY_H
+#define UTIL_SLEEPY_H
 
-#include <QDebug>
-#include "util_echoworker.h"
+#include <QtPlugin>
+#include <QObject>
+#include <QString>
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
-}
+#include "util_interface.h"
+#include "util_worker.h"
+
+class UtilSleepy : public QObject, public UtilInterface
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_INTERFACES(UtilInterface)
+
+public:
+    virtual QString name() const;
+    virtual QString description() const;
+    virtual QString command() const;
+    UtilWorker* newWorker();
+};
+
+#endif // UTIL_SLEEPY_H

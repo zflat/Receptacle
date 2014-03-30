@@ -19,38 +19,33 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+
 #include <QString>
 #include <QtTest>
-#include <QCoreApplication>
 
-#include "test_launcher.h"
-#include "test_print.h"
-#include "test_utils_populated.h"
+#ifndef TEST_LAUNCHER_H
+#define TEST_LAUNCHER_H
 
-int main(int argc, char *argv[]){
-    // Construct application before running tests
-    // http://stackoverflow.com/a/16711202
-    QApplication app(argc, argv);
-    app.setQuitOnLastWindowClosed(false);
-
-    TestUtilsPopulated test1;
-    QTest::qExec(&test1, argc, argv);
-
-    TestLauncher test2;
-    QTest::qExec(&test2, argc, argv);
-
-    TestPrint test3;
-    QTest::qExec(&test3, argc, argv);
+#include "dispatcher.h"
+#include "util_collection.h"
+#include "host_controller_decorator.h"
+#include "log_emitter.h"
 
 
-    qApp->exit(0);
-    return 0;
-}
+class TestLauncher : public QObject
+{
+    Q_OBJECT
 
+public:
+    TestLauncher();
 
-#include "tst_integrationtest.moc"
+private Q_SLOTS:
+    void initTestCase();
+    void cleanupTestCase();
+    void testOpenCloseLauncher();
+private:
+    Dispatcher* server;
+    HostControllerDecorator* host;
+};
 
-
-
-// testrunner approach
-// see http://stackoverflow.com/questions/1524390/what-unit-testing-framework-should-i-use-for-qt
+#endif // TEST_LAUNCHER_H

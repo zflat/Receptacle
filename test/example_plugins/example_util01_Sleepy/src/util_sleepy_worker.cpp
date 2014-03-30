@@ -21,9 +21,18 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <QDebug>
-#include "util_echoworker.h"
+#include <QThread>
+#include "util_sleepy_worker.h"
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
+void UtilSleepyWorker::start(){
+  qDebug() << "Run in plugin UtilSleepyWorker <---" ;
+    for(int i=0; i<25; i++){
+        QThread::msleep(500);
+        qDebug()<<i<<endl;
+        if(is_terminate_requested){
+            return;
+        }
+    }
+    qDebug() << "Done Sleepy";
+    emit complete();
 }

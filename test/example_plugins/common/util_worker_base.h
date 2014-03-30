@@ -21,18 +21,24 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 // util_echoworker.h
 
-#ifndef UTIL_ECHOWORKER_H
-#define UTIL_ECHOWORKER_H
+#ifndef UTIL_WORKER_BASE_H
+#define UTIL_WORKER_BASE_H
 
 #include <QRunnable>
 #include <QObject>
-#include "util_worker.h"
+#include "util_worker_interface.h"
 
-class UtilEchoWorker : public UtilWorker
+class UtilWorkerBase : public UtilWorkerInterface
 {
     Q_OBJECT
 public:
+    void init();
     void start();
+
+signals:
+    // notify when we're done
+    void result(int ret_val);
+    void complete();
 };
 
-#endif // UTIL_ECHOWORKER_H
+#endif // UTIL_WORKER_BASE_H

@@ -20,10 +20,34 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <QDebug>
-#include "util_echoworker.h"
+#ifndef TEST_PRINT_H
+#define TEST_PRINT_H
 
-void UtilEchoWorker::start(){
-    qDebug() << "Run in plugin UtilEchoWorker <---" ;
-    emit complete(0);
-}
+#include <QString>
+#include <QtTest>
+
+
+#include "dispatcher.h"
+#include "util_collection.h"
+#include "host_controller_decorator.h"
+#include "log_emitter.h"
+
+
+class TestPrint : public QObject
+{
+    Q_OBJECT
+
+public:
+    TestPrint();
+
+private Q_SLOTS:
+    void initTestCase();
+    void cleanupTestCase();
+    void testCommandPrint();
+    void testCommandDelayedPrint();
+private:
+    Dispatcher* server;
+    HostControllerDecorator* host;
+};
+
+#endif // TEST_PRINT_H

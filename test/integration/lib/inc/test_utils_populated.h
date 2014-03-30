@@ -19,38 +19,31 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#ifndef TEST_UTILS_POPULATED_H
+#define TEST_UTILS_POPULATED_H
+
 #include <QString>
+#include <QPointer>
 #include <QtTest>
-#include <QCoreApplication>
-
-#include "test_launcher.h"
-#include "test_print.h"
-#include "test_utils_populated.h"
-
-int main(int argc, char *argv[]){
-    // Construct application before running tests
-    // http://stackoverflow.com/a/16711202
-    QApplication app(argc, argv);
-    app.setQuitOnLastWindowClosed(false);
-
-    TestUtilsPopulated test1;
-    QTest::qExec(&test1, argc, argv);
-
-    TestLauncher test2;
-    QTest::qExec(&test2, argc, argv);
-
-    TestPrint test3;
-    QTest::qExec(&test3, argc, argv);
 
 
-    qApp->exit(0);
-    return 0;
-}
+#include "util_collection.h"
 
 
-#include "tst_integrationtest.moc"
+class TestUtilsPopulated : public QObject
+{
+    Q_OBJECT
 
+public:
+    TestUtilsPopulated();
 
+private Q_SLOTS:
+    void initTestCase();
+    void cleanupTestCase();
+    void testPopulatedContains();
+private:
+    UtilCollection* utils;
+    void verify_command(QString cmd);
+};
 
-// testrunner approach
-// see http://stackoverflow.com/questions/1524390/what-unit-testing-framework-should-i-use-for-qt
+#endif // TEST_UTILS_POPULATED_H

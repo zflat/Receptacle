@@ -19,20 +19,20 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// util_echoworker.h
+// util_sleepy_worker.h
 
-#ifndef UTIL_ECHOWORKER_H
-#define UTIL_ECHOWORKER_H
+#ifndef UTIL_SLEEPY_WORKER_H
+#define UTIL_SLEEPY_WORKER_H
 
 #include <QRunnable>
 #include <QObject>
 #include "util_worker.h"
 
-class UtilEchoWorker : public UtilWorker
+class UtilSleepyWorker : public UtilWorker
 {
     Q_OBJECT
 public:
     void start();
 };
 
-#endif // UTIL_ECHOWORKER_H
+#endif // UTIL_SLEEPY_WORKER_H

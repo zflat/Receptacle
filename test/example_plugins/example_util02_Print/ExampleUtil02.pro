@@ -16,26 +16,24 @@
 # along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 
-QT       += widgets
-QT       += testlib
-QT       += network
-QT       += core
-QT       += gui
+TEMPLATE    = lib
+CONFIG      += plugin
+QT          += core gui
 
-TARGET = tst_integrationtest
-CONFIG   += console
-CONFIG   -= app_bundle
+TARGET      = $$qtLibraryTarget(exampleUtil02)
+DESTDIR     = $$PWD/../../integration/build/debug/plugins
 
-TEMPLATE = app
+
+SOURCES += \
+    $$PWD/src/utilecho.cpp \
+    $$PWD/src/util_echoworker.cpp \
+
+HEADERS += \
+    $$PWD/include/utilecho.h \
+    $$PWD/include/util_echoworker.h
+
 
 INCLUDEPATH += $$PWD/src \
-               $$PWD/inc \
+    $$PWD/"include" \
 
-HEADERS += $$PWD/inc/*.h
-
-SOURCES += tst_integrationtest.cpp \
-           $$PWD/src/*.cpp
-
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
-include($$PWD/../../../lib/Receptacle.pri)
+include($$PWD/../common/common.pri)
