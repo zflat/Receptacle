@@ -6,6 +6,7 @@ var classJobSelectionForm =
     [ "command_selected", "classJobSelectionForm.html#aa62d7524abf1a05f4a8dd0d7e1ddbe77", null ],
     [ "command_unrecognized", "classJobSelectionForm.html#aeb52ad507ea1fd2d9dab1cbc86bdd3b7", null ],
     [ "command_unspecified", "classJobSelectionForm.html#ac61987ad712e55cdf274c967b0aa1a3f", null ],
+    [ "indicate_msg_level", "classJobSelectionForm.html#ab3f4d38c7773a74c478fafa382c6a265", null ],
     [ "populate_command_options", "classJobSelectionForm.html#a804c2e366248729c257cce096ff95094", null ],
     [ "box", "classJobSelectionForm.html#ad4ea855cf47505aaf7fba42b54998760", null ],
     [ "btn", "classJobSelectionForm.html#a07bad98298b9f87b72b20cff539c701d", null ],

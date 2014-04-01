@@ -138,46 +138,52 @@ $(document).ready(function(){initNavTree('host__controller_8h_source.html','');}
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;util_collection.h&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;widgets/select_launcher.h&quot;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;log_emitter.h&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="classHostController.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHostController.html">HostController</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classHostController.html">HostController</a>(<a class="code" href="classUtilCollection.html">UtilCollection</a>* u_collection, <a class="code" href="classLogEmitter.html">LogEmitter</a>* log_emitter);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> run_job(QString command);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> kill_job();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> notify_block();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;signals:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> end_job(QString cmd);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#ad82f3ef8ccbc009c2a0aee9b6ee7e1d4" title="Publish the worker result after the worker ends execution. ">util_result</a>(<span class="keywordtype">int</span> result);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#a1a31ecd847801e8d5884ac371420ddf0" title="Handler to load and execute the plugin specified by the given command. ">selected</a>(QString cmd);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classUtilCollection.html">UtilCollection</a>* utils;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classLogEmitter.html">LogEmitter</a>* logger;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classSelectLauncher.html">SelectLauncher</a>* main_window;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classUtilInterface.html">UtilInterface</a>* current_util;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classUtilRunner.html">UtilRunner</a>* bg_worker;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">protected</span> slots:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;       <span class="keywordtype">void</span> exec_plugin(QString command);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;       <span class="keywordtype">void</span> cancel_handler();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;       <span class="keywordtype">void</span> job_cleanup();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;       <span class="keywordtype">void</span> job_complete_handler(<span class="keywordtype">int</span> result);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif // HOST_CONTROLLER_H</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;signal_counter.h&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classHostController.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHostController.html">HostController</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classHostController.html">HostController</a>(<a class="code" href="classUtilCollection.html">UtilCollection</a>* u_collection, <a class="code" href="classLogEmitter.html">LogEmitter</a>* log_emitter);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> run_job(QString command);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> kill_job();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> notify_block();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;signals:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#acf039af41bd9b8cd26e62301a5892575" title="Indicate that the post worker init setup steps performed by this HostController are done...">setup_complete</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#a4d4363eb6183182a91dc63f7e986f250" title="Indicate that the job is complete and HostController is cleaned up. ">end_job</a>(QString cmd);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#ad82f3ef8ccbc009c2a0aee9b6ee7e1d4" title="Publish the worker result after the worker ends execution. ">util_result</a>(<span class="keywordtype">int</span> result);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHostController.html#a1a31ecd847801e8d5884ac371420ddf0" title="Handler to load and execute the plugin specified by the given command. ">selected</a>(QString cmd);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classUtilCollection.html">UtilCollection</a>* utils;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classLogEmitter.html">LogEmitter</a>* logger;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classSelectLauncher.html">SelectLauncher</a>* main_window;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classUtilRunner.html">UtilRunner</a>* bg_worker;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classSignalCounter.html" title="The SignalCounter class is a simplified version of QSignalSpy. ">SignalCounter</a> err_flag;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="classSignalCounter.html" title="The SignalCounter class is a simplified version of QSignalSpy. ">SignalCounter</a> fatal_flag;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classSignalCounter.html" title="The SignalCounter class is a simplified version of QSignalSpy. ">SignalCounter</a> warn_flag;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">protected</span> slots:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;       <span class="keywordtype">void</span> exec_plugin(QString command);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;       <span class="keywordtype">void</span> cancel_handler();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;       <span class="keywordtype">void</span> job_cleanup();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;       <span class="keywordtype">void</span> job_complete_handler(<span class="keywordtype">int</span> result);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;       <span class="keywordtype">void</span> plugin_setup();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif // HOST_CONTROLLER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_5a30104352ef4255dc24354b02eb2d20.html">include</a></li><li class="navelem"><b>host_controller.h</b></li>
-    <li class="footer">Generated on Sun Mar 30 2014 02:50:15 for Receptacle by
+    <li class="footer">Generated on Mon Mar 31 2014 21:17:01 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

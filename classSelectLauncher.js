@@ -7,10 +7,13 @@ var classSelectLauncher =
     [ "command_pending", "classSelectLauncher.html#aa0f5bff143e7f3709c36ec2a9d46b71d", null ],
     [ "command_rejected", "classSelectLauncher.html#a97dc4cdc077375ba4aaefdec94e01c73", null ],
     [ "command_selected", "classSelectLauncher.html#ae438ee67d60c3b21f662c82604e4dce8", null ],
+    [ "connect_errwarn_flag", "classSelectLauncher.html#ae4d14fbc64828fa43b3e10ae06b5d0ad", null ],
     [ "connect_logger", "classSelectLauncher.html#aa89d4b1c490b0b4a68d65958780a90c7", null ],
     [ "create_actions", "classSelectLauncher.html#a90efb05b5989fc61c38842ec0c908b9d", null ],
     [ "create_menus", "classSelectLauncher.html#adfa09aafbeaafd984ea128e91bdf9abb", null ],
     [ "get_is_pending_close", "classSelectLauncher.html#a12babf51cc250b68d95b91c5895af050", null ],
+    [ "indicate_error", "classSelectLauncher.html#a5d8bac8672863a9d83ee77fbb543577c", null ],
+    [ "indicate_warning", "classSelectLauncher.html#ac16f3608e9681343af73152ec1f735a0", null ],
     [ "load_job_widget", "classSelectLauncher.html#ac37c000470de4d5c3a6ff682496dbf77", null ],
     [ "populate_command_options", "classSelectLauncher.html#ad9c5c4a44953f46721626ce298d99a03", null ],
     [ "save_err_warn_text", "classSelectLauncher.html#adf622d164c4a073e67e55ad7ff61e0a2", null ],
@@ -18,6 +21,7 @@ var classSelectLauncher =
     [ "select_job", "classSelectLauncher.html#a3f9f7a7c426429294047f05275e2d22f", null ],
     [ "selected", "classSelectLauncher.html#a68ab8e901d6e1d40a5026de40e94bc48", null ],
     [ "set_is_running_bg", "classSelectLauncher.html#a494a9446415e6e54e85af4ea1fb966c9", null ],
+    [ "show_msg_level", "classSelectLauncher.html#a4cb837e3abaa85b739d110352cbe30b5", null ],
     [ "aboutAct", "classSelectLauncher.html#a98e6fb820e2f94b4e6ab4db94ae58e18", null ],
     [ "aboutPluginsAct", "classSelectLauncher.html#a311cd55fcb61a1eb411d0a8e04e5f717", null ],
     [ "aboutQtAct", "classSelectLauncher.html#a811782a3bc62931e04cdf85ecd559120", null ],
@@ -35,5 +39,6 @@ var classSelectLauncher =
     [ "saveErrWarnText", "classSelectLauncher.html#a2c0eb55469c76003e9fe7fe8394a0905", null ],
     [ "saveLogText", "classSelectLauncher.html#a5eedc471cf57d7034fc7b20bca8b8443", null ],
     [ "select_form", "classSelectLauncher.html#a62bf76c5b696d6ec60e330fca879100b", null ],
-    [ "tabs_widget", "classSelectLauncher.html#acbcc12c857d4f2e155bde78532145165", null ]
+    [ "tabs_widget", "classSelectLauncher.html#acbcc12c857d4f2e155bde78532145165", null ],
+    [ "widgets", "classSelectLauncher.html#a7044a8f76fddccd9b586889f468dd947", null ]
 ];
