@@ -36,11 +36,8 @@ class JobSelectionFormDecorator : public JobSelectionForm
 public:
     JobSelectionFormDecorator(QWidget *parent) : JobSelectionForm(parent){}
 
-    void get_select_form_color(){
-        qDebug() << "Style sheet";
-        qDebug() << box->styleSheet().toStdString().c_str();
-        this->box;
-        return;
+    QString get_select_box_style(){
+        return box->styleSheet();
     }
 };
 

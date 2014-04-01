@@ -81,7 +81,7 @@ void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
                 break;
         }
         // set the status bar background color
-    }else{
+    }else if(select_form){
         // pass along to the top selection form
         select_form->indicate_msg_level(type);
     }
@@ -101,14 +101,28 @@ void SelectLauncher::create_actions(){
     exitAct->setShortcuts(QKeySequence::Quit);
     connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 
-
     saveLogText = new QAction(tr("Save Log"), this);
     connect(saveLogText, SIGNAL(triggered()), this, SLOT(save_log_text()));
     saveErrWarnText = new QAction(tr("Save errors & warnings log"), this);
     connect(saveErrWarnText, SIGNAL(triggered()), this, SLOT(save_err_warn_text()));
-
 }
 
+
+void SelectLauncher::indicate_error(){
+    show_msg_level(QtCriticalMsg, false);
+}
+
+void SelectLauncher::indicate_warning(){
+    show_msg_level(QtWarningMsg, false);
+}
+
+bool SelectLauncher::connect_errwarn_flag(SignalCounter* err_flag, \
+                                          SignalCounter* fatal_flag, SignalCounter* warn_flag){
+    connect(err_flag, SIGNAL(signal_received()), this, SLOT(indicate_error()));
+    connect(fatal_flag, SIGNAL(signal_received()), this, SLOT(indicate_error()));
+    connect(warn_flag, SIGNAL(signal_received()), this, SLOT(indicate_warning()));
+    return true;
+}
 
 bool SelectLauncher::connect_logger(LogEmitter* log_emitter){
     if(!log_emitter || !this->msg_log || !this->err_log)

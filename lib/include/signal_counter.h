@@ -23,7 +23,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 // signal_counter.h
 
 #ifndef SIGNAL_COUNTER_H
-#define SIGNAL_COUNTER_HER_H
+#define SIGNAL_COUNTER_H
 
 #include <QObject>
 
@@ -49,11 +49,16 @@ public:
      */
     int count(){return c;}
 
+    void reset_count(){c=0;}
+
+signals:
+    void signal_received();
+
 private slots:
     /**
      * @brief Connect the increment slot to a signal to track
      */
-    void increment(){c++;}
+    void increment(){c++; Q_EMIT signal_received();}
 
 protected:
    int c;

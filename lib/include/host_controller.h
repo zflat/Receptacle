@@ -33,6 +33,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "util_collection.h"
 #include "widgets/select_launcher.h"
 #include "log_emitter.h"
+#include "signal_counter.h"
 
 class HostController : public QObject
 {
@@ -44,6 +45,16 @@ public:
     void notify_block();
 
 signals:
+    /**
+     * @brief Indicate that the post worker init setup steps performed by this HostController are done.
+     */
+    void setup_complete();
+
+    /**
+     * @brief Indicate that the job is complete and HostController is cleaned up
+     * @param cmd
+     *   QString command associated with the job that just completed
+     */
     void end_job(QString cmd);
 
     /**
@@ -64,14 +75,17 @@ protected:
     UtilCollection* utils;
     LogEmitter* logger;
     SelectLauncher* main_window;
-    UtilInterface* current_util;
     UtilRunner* bg_worker;
+    SignalCounter err_flag;
+    SignalCounter fatal_flag;
+    SignalCounter warn_flag;
 
 protected slots:
        void exec_plugin(QString command);
        void cancel_handler();
        void job_cleanup();
        void job_complete_handler(int result);
+       void plugin_setup();
 };
 
 #endif // HOST_CONTROLLER_H

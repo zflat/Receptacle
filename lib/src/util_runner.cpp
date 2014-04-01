@@ -36,9 +36,10 @@ UtilRunner::UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emi
 void UtilRunner::run()
 {
     worker->init();
+    Q_EMIT init_complete();
     worker->start();
     qDebug("Worker is done running.");
-    emit result(0);
+    Q_EMIT result(0);
 }
 
 

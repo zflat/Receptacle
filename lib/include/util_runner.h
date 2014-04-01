@@ -76,6 +76,13 @@ protected:
     void run();
 
 signals:
+
+    /**
+     * @brief Publish that the worker has finished its initialization
+     */
+    void init_complete();
+
+
     /**
      * @brief Notify when the worker execution has finished
      * @param ret_val

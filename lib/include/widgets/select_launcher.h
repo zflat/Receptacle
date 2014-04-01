@@ -36,6 +36,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "job_selection_form.h"
 #include "log_text.h"
 #include "log_emitter.h"
+#include "signal_counter.h"
 
 class SelectLauncher : public QMainWindow{
     Q_OBJECT
@@ -44,6 +45,7 @@ public:
     SelectLauncher(QWidget *parent=0);
     bool populate_command_options(UtilCollection* utils);
     bool connect_logger(LogEmitter* log_emitter);
+    bool connect_errwarn_flag(SignalCounter* err_flag, SignalCounter* fatal_flag, SignalCounter* warn_flag);
     void select_job(QString command);
     bool load_job_widget(QWidget* job_ui_widget);
     bool set_is_running_bg(bool is_running);
@@ -82,7 +84,10 @@ protected slots:
     void command_rejected(QString cmd);
     void command_pending();
     void save_log_text();
-    void save_err_warn_text();    
+    void save_err_warn_text();
+
+    void indicate_error();
+    void indicate_warning();
 
 protected:
 

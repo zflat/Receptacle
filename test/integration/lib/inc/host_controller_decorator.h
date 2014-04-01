@@ -41,8 +41,7 @@ public:
     SelectLauncher* get_main_window_obj(){return main_window;}
     SelectLauncherDecorator* get_main_window(){
         return static_cast<SelectLauncherDecorator*>(main_window);
-    }
-    UtilInterface* get_current_util(){return current_util;}
+    }    
     UtilRunner* get_bg_worker(){return bg_worker;}
 };
 

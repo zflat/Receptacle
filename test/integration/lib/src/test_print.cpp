@@ -47,8 +47,8 @@ void TestPrint::cleanupTestCase()
 void TestPrint::init(){
     test_print_logger = new LogEmitter();
     qInstallMessageHandler(test_print_log_handler_forwarder);
-    utils = new UtilCollection();
 
+    utils = new UtilCollection();
     host = new HostControllerDecorator(utils, test_print_logger);
     // Create an instance of a server and then start it.
     server = new Dispatcher(host);
@@ -65,10 +65,10 @@ void TestPrint::cleanup(){
     delete ender;
     ender = NULL;
 
-
     delete utils;
     delete host;
     delete server;
+    delete test_print_logger;
     qInstallMessageHandler(0);
 }
 
@@ -90,28 +90,18 @@ void TestPrint::testWarnPrint(){
     cmd->send_command("WarnPrint");
 
     QTRY_VERIFY_WITH_TIMEOUT(spy.count() > 0, 1000);
-    QTest::qWait(50);
-
-    SelectLauncherDecorator* l = host->get_main_window();
-    qDebug() << "Stylesheet:";
-    qDebug() <<  l->styleSheet().toStdString().c_str();
+    QTest::qWait(10);
+    QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
+             JobSelectionForm::WARN_INDICATION_STYLE, "Selection box has WARN_INDICATION_STYLE");
 
     cmd->ready4close();
-
-    // Check for color change to yellow
-    /*
-    selection_form = static_cast<JobSelectionFormDecorator*>(launcher->get_job_select_form());
-    QVERIFY2(selection_form, "selection_form is retrieved.");
-
-    selection_form->get_select_form_color();
-    */
 }
 
 void TestPrint::testCriticalPrint(){
     QObject::connect(cmd, SIGNAL(ready4close()), ender, SLOT(end_curr_util()));
     cmd->send_command("CriticalPrint");
-
     // Check for color change to red
-
+    QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
+             JobSelectionForm::ERR_INDICATION_STYLE, "Selection box has ERR_INDICATION_STYLE");
     cmd->ready4close();
 }

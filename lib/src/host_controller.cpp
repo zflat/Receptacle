@@ -23,7 +23,11 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDateTime>
 
 HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emitter): \
-    utils(u_collection),logger(log_emitter), bg_worker(NULL){}
+    utils(u_collection),logger(log_emitter), main_window(NULL), bg_worker(NULL), \
+    err_flag(logger, SIGNAL(critical_message(QString))),\
+    fatal_flag(logger, SIGNAL(critical_message(QString))),\
+    warn_flag(logger, SIGNAL(warn_message(QString)))\
+    {}
 
 void HostController::run_job(QString command){
     if(this->main_window != NULL){
@@ -32,6 +36,7 @@ void HostController::run_job(QString command){
     this->main_window = new SelectLauncher();
     this->main_window->populate_command_options(utils);
     this->main_window->connect_logger(this->logger);
+    this->main_window->connect_errwarn_flag(&err_flag, &fatal_flag, &warn_flag);
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
     QObject::connect(this->main_window, SIGNAL(close_requested()), this, SLOT(cancel_handler()));
     QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(job_cleanup()));
@@ -88,13 +93,16 @@ void HostController::exec_plugin(QString command){
     }
 
     QObject* pluginObj = utils->util(command);
+    UtilInterface* pluginUtil = NULL;
+
     if(pluginObj != NULL){
         qDebug()<<"Plugin found for given command.";
+        pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
     }else{
-        qWarning()<<"Plugin unloaded....?";
+        qWarning()<<"Plugin not found for the given command. Plugin unloaded....?";
+        return;
     }
-    UtilInterface* pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
-    // UtilWorker* pluginUtil = qobject_cast<UtilWorker *>(pluginObj);
+
     qDebug()<<"Util constructed from given command.";
     if(!pluginUtil){return;}
     // plugin found
@@ -104,17 +112,35 @@ void HostController::exec_plugin(QString command){
     UtilWorker* worker = pluginUtil->newWorker();
     qDebug() << "Worker retrieval successful";
 
-
     bg_worker = new UtilRunner(command, worker, logger);
     bg_worker->setAutoDelete(false);
 
     //QObject::connect(worker, SIGNAL(complete()), this, SLOT(job_complete_handler()),Qt::QueuedConnection);
+    connect(bg_worker, SIGNAL(init_complete()), this, SLOT(plugin_setup()));
     connect(bg_worker, SIGNAL(result(int)), this, SLOT(job_complete_handler(int)));
+    err_flag.reset_count();
+    fatal_flag.reset_count();
+    warn_flag.reset_count();
+    //connect(err_flag, SIGNAL(signal_received())
+
     qDebug() << "Util Runner signal connect successful";
 
     // notify that the bg worker is running
     main_window->set_is_running_bg(true);
     QThreadPool::globalInstance()->start(bg_worker);
+}
+
+
+void HostController::plugin_setup(){
+    // Hide window if necessary
+    if(bg_worker->is_hidden()){
+        //main_window->hide();
+        main_window->showMinimized();
+    }
+
+    // Add plugin widget to GUI if necessary
+
+    Q_EMIT setup_complete();
 }
 
 void HostController::cancel_handler(){
@@ -123,6 +149,34 @@ void HostController::cancel_handler(){
         bg_worker->request_cancel();
     }else if(NULL != main_window){
         main_window->close();
+    }
+}
+
+
+void HostController::job_complete_handler(int result){
+    // notify that the job is not running
+    main_window->set_is_running_bg(false);
+    Q_EMIT util_result(result);
+
+    qDebug() << "job complete!(notified in signal handler)";
+
+    /* Decide to close the main window or not
+     *
+     * Close the main window when UtilRunner indicates the utility
+     * is hidden & the windows is minimized
+     *
+     * Close the main window when close has been requested.
+     */
+    bool should_close_window = main_window->get_is_pending_close() ||
+            (bg_worker->is_hidden() && main_window->isMinimized());
+
+    if(should_close_window){
+        main_window->close();
+    }else{
+        /*
+         * Decide to notify error, warnings or success
+         */
+
     }
 }
 
@@ -144,24 +198,4 @@ void HostController::job_cleanup(){
     qDebug() << "HostController cleanup complete";
 }
 
-void HostController::job_complete_handler(int result){
-    // notify that the job is not running
-    main_window->set_is_running_bg(false);
-    Q_EMIT util_result(result);
 
-    qDebug() << "job complete!(notified in signal handler)";
-
-    /* Decide to close the main window or not
-     *
-     * Close the main window when UtilRunner indicates the utility
-     * is hidden & the windows is minimized
-     *
-     * Close the main window when close has been requested.
-     */
-    bool should_close_window = main_window->get_is_pending_close() ||
-            (bg_worker->is_hidden() && main_window->isMinimized());
-
-    if(should_close_window){
-        main_window->close();
-    }
-}

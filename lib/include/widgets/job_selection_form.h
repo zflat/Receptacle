@@ -40,6 +40,9 @@ public:
     JobSelectionForm(QWidget *parent=0);
     bool populate_command_options(UtilCollection* utils);
 
+    static const char WARN_INDICATION_STYLE[];
+    static const char ERR_INDICATION_STYLE[];
+
 signals:
     void command_selected(QString commmand);
     void command_unrecognized(QString command);

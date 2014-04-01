@@ -80,7 +80,6 @@ void UtilCollection::loadPlugins(){
     QObject *plugin = loader.instance();
     if (plugin) {
       // Add plugin to the list based on fileName
-      qDebug() << "Plugin found: " << fileName.toStdString().c_str();
       populateUtil(plugin);
     }
   }
@@ -92,6 +91,7 @@ void UtilCollection::populateUtil(QObject *plugin){
   UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
   if(iUtil && this->insert_util(plugin)){
     // the plugin implements UtilInterface
-    qDebug() << "Added util: " << iUtil->name().toStdString().c_str();
+  }else{
+    qWarning() << "Unable to add plugin.";
   }
 }

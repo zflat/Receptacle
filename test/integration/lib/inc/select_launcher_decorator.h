@@ -27,6 +27,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtTest>
 
 #include "widgets/select_launcher.h"
+#include "job_selection_form_decorator.h"
 
 /**
  * @brief Subclass HostControllerDecorator to provide getters to protected members.
@@ -36,8 +37,8 @@ class SelectLauncherDecorator : public SelectLauncher
 public:
     SelectLauncherDecorator(QWidget *parent) : SelectLauncher(parent){}
 
-    QWidget* get_job_select_form(){
-        return this->select_form;
+    JobSelectionFormDecorator* get_job_select_form(){
+        return static_cast<JobSelectionFormDecorator*>(select_form);
     }
 };
 

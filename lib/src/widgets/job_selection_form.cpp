@@ -83,13 +83,18 @@ void JobSelectionForm::indicate_msg_level(QtMsgType type){
         case QtDebugMsg:
             break;
         case QtWarningMsg:
-            style_markup = "QComboBox {border: 2px solid yellow}";
+            style_markup = QString(WARN_INDICATION_STYLE);
             break;
         case QtCriticalMsg:
         case QtFatalMsg:
-            style_markup = "QComboBox {border: 2px solid red}";
+            style_markup = QString(ERR_INDICATION_STYLE);
             break;
     }
-    this->box->setStyleSheet(style_markup);
-    qDebug() << box->styleSheet();
+    if(box){
+        box->setStyleSheet(style_markup);
+    }
+
 }
+
+const char JobSelectionForm::WARN_INDICATION_STYLE[] = "QComboBox {border: 2px solid yellow}";
+const char JobSelectionForm::ERR_INDICATION_STYLE[] = "QComboBox {border: 2px solid red}";
