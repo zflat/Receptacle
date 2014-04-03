@@ -62,7 +62,7 @@ void UtilRunner::request_cancel(){
 
 
 QWidget* UtilRunner::worker_widget(){
-    return worker->get_widget();
+    return (QWidget*)(worker->get_widget());
 }
 
 bool UtilRunner::has_widget(){

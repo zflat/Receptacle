@@ -37,7 +37,6 @@ http://stackoverflow.com/questions/9070817/qobject-factory-in-qt-pluginnon-creat
 #include <QObject>
 #include <QHash>
 #include <QString>
-#include <QWidget>
 
 class UtilWorker : public QObject
 {
@@ -51,7 +50,7 @@ class UtilWorker : public QObject
     virtual QString meta_lookup(const QString &key){
         return (meta_hash.contains(key)) ? meta_hash.value(key, NULL) : NULL;
     }
-    virtual QWidget* get_widget(){return NULL;}
+    virtual QObject* get_widget(){return NULL;}
 public slots:
     /**
      * @brief exit_early indicates that a cancel request has been made.
@@ -62,7 +61,6 @@ public slots:
     void complete(int result=0);
   protected:
     QHash<QString, QString> meta_hash;
-    QWidget* widget;
 
     /**
      * @brief is_terminate_requested flags the worker that early exit has been requested when set to True
