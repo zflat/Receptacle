@@ -26,6 +26,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "test_launcher.h"
 #include "test_print.h"
 #include "test_utils_populated.h"
+#include "test_widgets.h"
 
 int main(int argc, char *argv[]){
 
@@ -44,6 +45,11 @@ int main(int argc, char *argv[]){
     TestPrint* test3=new TestPrint();
     QTest::qExec(test3, argc, argv);
     delete test3;
+
+
+    TestWidgets* test4 = new TestWidgets();
+    QTest::qExec(test4, argc, argv);
+    delete test4;
 
     qApp->exit(0);
     return 0;

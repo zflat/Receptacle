@@ -35,11 +35,17 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 class SelectLauncherDecorator : public SelectLauncher
 {
 public:
-    SelectLauncherDecorator(QWidget *parent) : SelectLauncher(parent){}
+    SelectLauncherDecorator(QWidget *parent) : SelectLauncher(parent){
+    }
 
     JobSelectionFormDecorator* get_job_select_form(){
         return static_cast<JobSelectionFormDecorator*>(select_form);
     }
+
+    QWidget* get_plugin_widget(){
+        return NULL;
+    }
+
 };
 
 

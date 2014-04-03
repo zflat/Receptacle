@@ -75,14 +75,22 @@ void TestPrint::cleanup(){
 void TestPrint::testCommandPrint()
 {
     QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
-    cmd->send_command("Print");
+    for(int i=0; i<5; i++){
+        QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
+        cmd->send_command("Print");
+        QTest::qWait(50);
+        QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
+    }
 }
 
 void TestPrint::testCommandDelayedPrint()
 {
+    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
     QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
     cmd->send_command("DelayedPrint");
+    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }
+
 
 void TestPrint::testWarnPrint(){
     QObject::connect(cmd, SIGNAL(ready4close()), ender, SLOT(end_curr_util()));
@@ -94,7 +102,9 @@ void TestPrint::testWarnPrint(){
     QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
              JobSelectionForm::WARN_INDICATION_STYLE, "Selection box has WARN_INDICATION_STYLE");
 
+    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
     cmd->ready4close();
+    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }
 
 void TestPrint::testCriticalPrint(){
@@ -103,5 +113,33 @@ void TestPrint::testCriticalPrint(){
     // Check for color change to red
     QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
              JobSelectionForm::ERR_INDICATION_STYLE, "Selection box has ERR_INDICATION_STYLE");
+
+    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
     cmd->ready4close();
+    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
+}
+
+
+
+void TestPrint::testWarnCriticalSequence(){
+    QObject::connect(cmd, SIGNAL(ready4close()), ender, SLOT(end_curr_util()));
+    cmd->send_command("Print");
+
+    QVERIFY2(host->get_main_window()->\
+             get_job_select_form()->get_select_box_style().isEmpty(), "Selection box has no style");
+    qWarning("Sending warning 1");
+    QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
+             JobSelectionForm::WARN_INDICATION_STYLE, "Selection box has WARN_INDICATION_STYLE");
+
+    qCritical("Sending critical message 1");
+    QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
+             JobSelectionForm::ERR_INDICATION_STYLE, "Selection box has ERR_INDICATION_STYLE");
+
+    qWarning("Sending warning message 2");
+    QVERIFY2(host->get_main_window()->get_job_select_form()->get_select_box_style() == \
+             JobSelectionForm::ERR_INDICATION_STYLE, "Selection box has ERR_INDICATION_STYLE");
+
+    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
+    cmd->ready4close();
+    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }

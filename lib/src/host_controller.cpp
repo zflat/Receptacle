@@ -73,7 +73,7 @@ void HostController::notify_block(){
 }
 
 void HostController::selected(QString cmd){
-    qWarning() << "selected..";
+    qDebug() << "Selected" << cmd;
     exec_plugin(cmd);
 }
 
@@ -139,6 +139,15 @@ void HostController::plugin_setup(){
     }
 
     // Add plugin widget to GUI if necessary
+    if(bg_worker->has_widget()){
+        if(bg_worker->has_widget_type("simple")){
+
+        }else if(bg_worker->has_widget_type("complex")){
+
+        }else{
+            qCritical("Plugin widget indicated, but could not determine plugin widget type.");
+        }
+    }
 
     Q_EMIT setup_complete();
 }
@@ -156,6 +165,8 @@ void HostController::cancel_handler(){
 void HostController::job_complete_handler(int result){
     // notify that the job is not running
     main_window->set_is_running_bg(false);
+
+    // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)
     Q_EMIT util_result(result);
 
     qDebug() << "job complete!(notified in signal handler)";
@@ -171,6 +182,13 @@ void HostController::job_complete_handler(int result){
             (bg_worker->is_hidden() && main_window->isMinimized());
 
     if(should_close_window){
+        qDebug("Should close window.");
+        if(main_window->get_is_pending_close()){
+            qDebug("Main window is pending close");
+        }
+        if((bg_worker->is_hidden() && main_window->isMinimized())){
+            qDebug("Hidden worker is minimzed");
+        }
         main_window->close();
     }else{
         /*

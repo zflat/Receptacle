@@ -42,6 +42,8 @@ void CmdRunner::send_command(QString cmd){
     Q_EMIT command_completed();
 }
 
+/*
 void CmdRunner::end_curr_util(){
     Q_EMIT ready4close();
 }
+*/

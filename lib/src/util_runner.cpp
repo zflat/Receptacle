@@ -59,3 +59,18 @@ bool UtilRunner::is_hidden(){
 void UtilRunner::request_cancel(){
     worker->exit_early();
 }
+
+
+QWidget* UtilRunner::worker_widget(){
+    return worker->get_widget();
+}
+
+bool UtilRunner::has_widget(){
+    return (worker->meta_lookup("widget_type")!= NULL) && \
+            worker->get_widget() != NULL;
+}
+
+bool UtilRunner::has_widget_type(QString type){
+    return worker->meta_lookup("widget_type") == type;
+}
+

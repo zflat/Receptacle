@@ -20,8 +20,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#ifndef TEST_PRINT_H
-#define TEST_PRINT_H
+#ifndef TEST_WIDGETS_H
+#define TEST_WIDGETS_H
 
 #include <QString>
 #include <QtTest>
@@ -36,23 +36,19 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "cmd_runner.h"
 #include "hostwin_closer.h"
 
-class TestPrint : public QObject
+class TestWidgets : public QObject
 {
     Q_OBJECT
 
 public:
-    TestPrint(){}
+    TestWidgets(){}
 
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void init();
     void cleanup();
-    void testCommandPrint();
-    void testWarnPrint();
-    void testCriticalPrint();
-    void testWarnCriticalSequence();
-    void testCommandDelayedPrint();
+    void testNoWidget();
 private:
     QPointer<LogEmitter> logger;
     Dispatcher* server;
@@ -63,6 +59,9 @@ private:
     QHash<QString, QWidget*>  host_widgets;
     CmdRunner* cmd;
     HostwinCloser* ender;
+
+    void send_print_command(QString cmd);
+    void end_print_util();
 };
 
-#endif // TEST_PRINT_H
+#endif // TEST_WIDGETS_H

@@ -61,6 +61,10 @@ public:
      */
     bool is_hidden();
 
+    QWidget* worker_widget();
+    bool has_widget();
+    bool has_widget_type(QString type);
+
 public slots:
 
     /**

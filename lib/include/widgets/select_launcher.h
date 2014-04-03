@@ -91,8 +91,6 @@ protected slots:
 
 protected:
 
-    QHash< QString, QWidget* > widgets;
-
     //menubar
     QMenuBar* menubar;
     //menufile
@@ -141,6 +139,10 @@ protected:
      * @brief pending_close indicates a close event has been sent but not yet accepted
      */
     bool is_pending_close;
+
+    SignalCounter* err_flag;
+    SignalCounter* warn_flag;
+    SignalCounter* fatal_flag;
 
 protected:
     void create_menus();

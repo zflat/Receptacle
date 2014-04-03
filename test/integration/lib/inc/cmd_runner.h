@@ -50,7 +50,6 @@ signals:
    void ready4close();
 
 public Q_SLOTS:
-   void end_curr_util();
 
 private:
    HostControllerDecorator* host;

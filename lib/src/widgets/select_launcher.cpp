@@ -52,8 +52,6 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     //JobSelectionForm* sel_frm_ptr = new JobSelectionForm(this->central_widget);
     this->select_form = new JobSelectionForm(this->central_widget);
 
-    widgets.insert("TEST", this->select_form);
-
     QObject::connect(this->select_form, SIGNAL(command_selected(QString)), this, SLOT(command_selected(QString)));
     QObject::connect(this->select_form, SIGNAL(command_unrecognized(QString)), this, SLOT(command_rejected(QString)));
     QObject::connect(this->select_form, SIGNAL(command_unspecified()), this, SLOT(command_pending()));
@@ -64,13 +62,18 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
 
     this->central_widget->setLayout(central_layout);
     this->setCentralWidget(this->central_widget);
+
+    is_pending_close = false;
 }
 
 void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
+
+
     if(is_notification){
         QString style_markup;
         switch(type){
             case QtDebugMsg:
+            style_markup = "";
                 break;
             case QtWarningMsg:
                 style_markup = "";
@@ -81,7 +84,9 @@ void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
                 break;
         }
         // set the status bar background color
-    }else if(select_form){
+    }
+
+    if(select_form){
         // pass along to the top selection form
         select_form->indicate_msg_level(type);
     }
@@ -113,11 +118,18 @@ void SelectLauncher::indicate_error(){
 }
 
 void SelectLauncher::indicate_warning(){
+    if(err_flag->count() > 0 || fatal_flag->count() > 0){
+        return;
+    }
     show_msg_level(QtWarningMsg, false);
 }
 
-bool SelectLauncher::connect_errwarn_flag(SignalCounter* err_flag, \
-                                          SignalCounter* fatal_flag, SignalCounter* warn_flag){
+bool SelectLauncher::connect_errwarn_flag(SignalCounter* err_flag_arg, \
+                                          SignalCounter* fatal_flag_arg, SignalCounter* warn_flag_arg){
+    this->err_flag = err_flag_arg;
+    this->fatal_flag = fatal_flag_arg;
+    this->warn_flag = warn_flag_arg;
+
     connect(err_flag, SIGNAL(signal_received()), this, SLOT(indicate_error()));
     connect(fatal_flag, SIGNAL(signal_received()), this, SLOT(indicate_error()));
     connect(warn_flag, SIGNAL(signal_received()), this, SLOT(indicate_warning()));
@@ -186,9 +198,9 @@ void SelectLauncher::closeEvent(QCloseEvent *event){
         is_pending_close = true;
         event->ignore();
     }else{
+       is_pending_close = false;
        emit close_sig();
        event->accept();
-       is_pending_close = false;
     }
 }
 

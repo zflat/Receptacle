@@ -39,7 +39,6 @@ http://stackoverflow.com/questions/9070817/qobject-factory-in-qt-pluginnon-creat
 #include <QString>
 #include <QWidget>
 
-
 class UtilWorker : public QObject
 {
     Q_OBJECT
