@@ -26,8 +26,10 @@ var classSelectLauncher =
     [ "aboutPluginsAct", "classSelectLauncher.html#a311cd55fcb61a1eb411d0a8e04e5f717", null ],
     [ "aboutQtAct", "classSelectLauncher.html#a811782a3bc62931e04cdf85ecd559120", null ],
     [ "central_widget", "classSelectLauncher.html#a0b336b18285b2361fe5cc5a590fbb031", null ],
+    [ "err_flag", "classSelectLauncher.html#a8a87a3cbb2be3ddae4cb2ae0e071126b", null ],
     [ "err_log", "classSelectLauncher.html#aaf3f47246ed3eac6b10e29ea68265aba", null ],
     [ "exitAct", "classSelectLauncher.html#a72a3791a6376adb35141bb965f3f9456", null ],
+    [ "fatal_flag", "classSelectLauncher.html#a69602846e67b7af7a8c31cbdda4db622", null ],
     [ "is_pending_close", "classSelectLauncher.html#a04a14f22dfcfe2a2d7ca103b315255f3", null ],
     [ "is_running_bg", "classSelectLauncher.html#aa1f95e728ac4c93161882fad6cc1f728", null ],
     [ "job_ui", "classSelectLauncher.html#a758b523714d9f7c824fa2aaecfe8850f", null ],
@@ -40,5 +42,5 @@ var classSelectLauncher =
     [ "saveLogText", "classSelectLauncher.html#a5eedc471cf57d7034fc7b20bca8b8443", null ],
     [ "select_form", "classSelectLauncher.html#a62bf76c5b696d6ec60e330fca879100b", null ],
     [ "tabs_widget", "classSelectLauncher.html#acbcc12c857d4f2e155bde78532145165", null ],
-    [ "widgets", "classSelectLauncher.html#a7044a8f76fddccd9b586889f468dd947", null ]
+    [ "warn_flag", "classSelectLauncher.html#a7c16419090adf2860245c0be6371a297", null ]
 ];
