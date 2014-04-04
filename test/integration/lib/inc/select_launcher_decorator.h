@@ -43,6 +43,15 @@ public:
     }
 
     QWidget* get_plugin_widget(){
+        QLayoutItem * item;
+        if(job_ui_layout_simple && ( item = job_ui_layout_simple->takeAt(0))){
+            if(item->widget())
+                return item->widget();
+        }
+        if(job_ui_layout_complex && ( item = job_ui_layout_complex->takeAt(0))){
+            if(item->widget())
+                return item->widget();
+        }
         return NULL;
     }
 

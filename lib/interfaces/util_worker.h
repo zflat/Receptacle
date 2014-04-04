@@ -48,7 +48,7 @@ class UtilWorker : public QObject
     virtual void init(){}
     virtual void start(){emit complete(0);}
     virtual QString meta_lookup(const QString &key){
-        return (meta_hash.contains(key)) ? meta_hash.value(key, NULL) : NULL;
+        return (meta_hash.contains(key)) ? meta_hash.value(key, QString()) : QString();
     }
     virtual QObject* get_widget(){return NULL;}
 public slots:

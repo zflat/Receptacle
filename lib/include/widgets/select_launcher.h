@@ -46,6 +46,18 @@ public:
     bool populate_command_options(UtilCollection* utils);
     bool connect_logger(LogEmitter* log_emitter);
     bool connect_errwarn_flag(SignalCounter* err_flag, SignalCounter* fatal_flag, SignalCounter* warn_flag);
+
+    /**
+     * @brief attach_widget adds the given widget to the host GUI
+     * @param w
+     *   QWidget parent widget for the plugin UI
+     * @param type
+     *   QString either "simple" or "complex"
+     * @return
+     *   True on success, False otherwise
+     */
+    bool attach_widget(QWidget* w, const QString &type);
+
     void select_job(QString command);
     bool load_job_widget(QWidget* job_ui_widget);
     bool set_is_running_bg(bool is_running);
@@ -108,9 +120,14 @@ protected:
     //job selection form
     JobSelectionForm* select_form;
 
-    QWidget* job_ui;
-    //job ui layout
-    //QVBoxLayout* job_ui_layout;
+    /// Placeholder for plugin UI
+    QWidget* job_ui_simple;
+    QVBoxLayout* job_ui_layout_simple;
+    QWidget* job_ui_complex;
+    QVBoxLayout* job_ui_layout_complex;
+
+    // Plugin UI widget
+    QWidget* plugin_widget;
 
     //tabs
     QTabWidget* tabs_widget;

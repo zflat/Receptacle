@@ -140,12 +140,8 @@ void HostController::plugin_setup(){
 
     // Add plugin widget to GUI if necessary
     if(bg_worker->has_widget()){
-        if(bg_worker->has_widget_type("simple")){
-
-        }else if(bg_worker->has_widget_type("complex")){
-
-        }else{
-            qCritical("Plugin widget indicated, but could not determine plugin widget type.");
+        if(!main_window->attach_widget(bg_worker->worker_widget(), bg_worker->worker_widget_type())){
+            qCritical("Plugin widget indicated, but could not attach to the host UI.");
         }
     }
 

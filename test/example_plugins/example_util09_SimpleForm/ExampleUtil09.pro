@@ -25,8 +25,15 @@ QT          += gui
 TARGET      = $$qtLibraryTarget(exampleUtil09)
 DESTDIR     = $$PWD/../../integration/build/debug/plugins
 
-HEADERS += $$PWD/util_simple_form.h
+HEADERS += $$PWD/util_simple_form.h \
+           $$PWD/simple_form_widget.h
 
 INCLUDEPATH += $$PWD/
 
 include($$PWD/../common/common.pri)
+
+FORMS += \
+         $$PWD/simple_form_widget.ui
+
+SOURCES += \
+         $$PWD/simple_form_widget.cpp

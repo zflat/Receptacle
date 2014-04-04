@@ -83,3 +83,19 @@ void TestWidgets::testNoWidget(){
     ender->end_curr_util();
     QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }
+
+
+
+void TestWidgets::testGetSimpleWidget(){
+    cmd->send_command("SimpleForm");
+
+    QVERIFY2(host->get_bg_worker()->has_widget(), \
+             "Util Runner confirms that SimpleForm has a widget.");
+
+    QVERIFY2(NULL != host->get_main_window()->get_plugin_widget(), \
+             "Widget found for plugin with a simple widget.");
+
+    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
+    ender->end_curr_util();
+    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
+}

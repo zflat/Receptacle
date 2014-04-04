@@ -66,11 +66,11 @@ QWidget* UtilRunner::worker_widget(){
 }
 
 bool UtilRunner::has_widget(){
-    return (worker->meta_lookup("widget_type")!= NULL) && \
+    return (!worker_widget_type().isEmpty()) && \
             worker->get_widget() != NULL;
 }
 
-bool UtilRunner::has_widget_type(QString type){
-    return worker->meta_lookup("widget_type") == type;
+QString UtilRunner::worker_widget_type(){
+    return worker->meta_lookup("widget_type");
 }
 

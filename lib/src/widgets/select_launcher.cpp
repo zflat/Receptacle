@@ -25,13 +25,14 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     is_running_bg = false;
 
+    this->plugin_widget = NULL;
+
     this->setWindowTitle("Launcher");
 
     this->create_actions();
     this->create_menus();
 
     qDebug() << tr("Setup launcher started");
-    QVBoxLayout* job_ui_layout = new QVBoxLayout();
     this->central_widget = new QWidget(this);
     this->tabs_widget = new QTabWidget(this->central_widget);
 
@@ -44,8 +45,13 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->tabs_widget->addTab(this->err_log,tr("Error/Warn"));
     this->err_log->showMaximized();
 
-    this->job_ui = new QWidget(this->central_widget);
-    this->job_ui->setLayout(job_ui_layout);
+    this->job_ui_layout_simple = new QVBoxLayout();
+    this->job_ui_simple = new QWidget(this->central_widget);
+    this->job_ui_simple->setLayout(job_ui_layout_simple);
+
+    this->job_ui_layout_complex = new QVBoxLayout();
+    this->job_ui_complex = new QWidget();
+    this->job_ui_complex->setLayout(job_ui_layout_complex);
 
     QVBoxLayout* central_layout= new QVBoxLayout;
 
@@ -231,4 +237,25 @@ void SelectLauncher::save_err_warn_text(){
         return;
 
     this->err_log->save_to_file(saveFileName);
+}
+
+bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
+    if(NULL == w){
+        return false;
+    }
+
+    if(NULL == type || type.isEmpty() || type.isNull()){
+        return false;
+    }
+
+    if(type.compare("simple") == 0){
+        job_ui_layout_simple->addWidget(w);
+    }else if(type.compare("complex") == 0){
+        job_ui_layout_complex->addWidget(w);
+    }else{
+        return false;
+    }
+
+    this->plugin_widget = w;
+    return true;
 }

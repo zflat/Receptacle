@@ -63,7 +63,13 @@ public:
 
     QWidget* worker_widget();
     bool has_widget();
-    bool has_widget_type(QString type);
+
+    /**
+     * @brief worker_widget_type gets the type of widget from the plugin
+     * @return
+     *   QString type of widget the plugin uses
+     */
+    QString worker_widget_type();
 
 public slots:
 
