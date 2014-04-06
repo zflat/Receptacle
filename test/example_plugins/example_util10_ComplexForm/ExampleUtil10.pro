@@ -18,13 +18,20 @@
 
 TEMPLATE    = lib
 CONFIG      += plugin
-QT          += core gui
+QT          += core gui widgets
 
 TARGET      = $$qtLibraryTarget(exampleUtil10)
 DESTDIR     = $$PWD/../../integration/build/debug/plugins
 
-HEADERS += $$PWD/util_complex_form.h
+HEADERS += $$PWD/util_complex_form.h \
+    complex_form_widget.h
 
 INCLUDEPATH += $$PWD/
 
 include($$PWD/../common/common.pri)
+
+FORMS += \
+    complex_form_widget.ui
+
+SOURCES += \
+    complex_form_widget.cpp

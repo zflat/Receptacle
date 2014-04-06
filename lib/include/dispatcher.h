@@ -71,7 +71,7 @@ public slots:
      * @brief Handler to cleanup after a job finishes and prepares for the next job to run.
      * @param QString command of the job that just finished
      */
-    void request_completed(QString command);
+    void request_completed(const QString &command);
 
 };
 

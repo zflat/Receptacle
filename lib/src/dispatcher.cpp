@@ -26,7 +26,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
     : QTcpServer(parent), controller(h_controller), request_mutex(1){
-    QObject::connect(controller, SIGNAL(end_job(QString)), this, SLOT(request_completed(QString)));
+    QObject::connect(controller, SIGNAL(end_job(const QString &)), this, SLOT(request_completed(const QString &)));
 }
 
 Dispatcher::~Dispatcher(){
@@ -74,7 +74,7 @@ bool Dispatcher::queue_busy(){
    return this->request_mutex.available()<1;
 }
 
-void Dispatcher::request_completed(QString command){
+void Dispatcher::request_completed(const QString &command){
     qDebug() << "Request " \
              << command.toStdString().c_str() <<" ended.";
     this->request_mutex.release(1);

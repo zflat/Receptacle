@@ -26,6 +26,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QRunnable>
 #include <QObject>
 #include <QDebug>
+#include <QLabel>
 #include "util_worker.h"
 #include "simple_form_widget.h"
 
@@ -42,12 +43,14 @@ public:
     }
 
     virtual void start(){
-        qWarning() << "Run in plugin UtilSimpleFormWorker <---" ;
+        qDebug() << "Run in plugin UtilSimpleFormWorker <---" ;
         emit complete();
     }
 
-    virtual QObject* get_widget(){
-        return (QObject *)this->widget;
+    virtual QObject* get_widget(){        
+        QLabel* l = new QLabel("Simple widget");
+        return (QObject *)l;
+        //return (QObject *)this->widget;
     }
 
 private:

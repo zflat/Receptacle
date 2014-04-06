@@ -27,15 +27,31 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QDebug>
 #include "util_worker.h"
+#include "complex_form_widget.h"
 
 class UtilComplexFormWorker : public UtilWorker
 {
     Q_OBJECT
 public:
+    UtilComplexFormWorker( QObject* parent=0) : UtilWorker( parent ){
+        widget = new ComplexFormWidget();
+        meta_hash.insert("widget_type", "complex");
+    }
+    ~UtilComplexFormWorker(){
+        delete widget;
+    }
+
     void start(){
-        qWarning() << "Run in plugin UtilComplexFormWorker <---" ;
+        qDebug() << "Run in plugin UtilComplexFormWorker <---" ;
         emit complete();
     }
+
+    virtual QObject* get_widget(){
+        return (QObject *)this->widget;
+    }
+
+private:
+    ComplexFormWidget* widget;
 };
 
 #endif

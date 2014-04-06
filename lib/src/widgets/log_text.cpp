@@ -24,8 +24,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 LogText::LogText(QWidget *parent) : QPlainTextEdit(parent){
     this->setReadOnly(true);
     this->setCursorWidth(8);
-    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    this->resize(200, 200);
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);;
 }
 
 QPlainTextEdit* LogText::text_area(){

@@ -208,8 +208,8 @@ void HostController::job_cleanup(){
     }else{
         current_cmd = "";
     }
-    Q_EMIT end_job(current_cmd);
     qDebug() << "HostController cleanup complete";
+    Q_EMIT end_job(current_cmd);
 }
 
 

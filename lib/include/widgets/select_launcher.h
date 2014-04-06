@@ -116,6 +116,7 @@ protected:
 
     //central widget and layout
     QWidget* central_widget;
+    QVBoxLayout* central_layout;
 
     //job selection form
     JobSelectionForm* select_form;

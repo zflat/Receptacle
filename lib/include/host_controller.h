@@ -55,7 +55,7 @@ signals:
      * @param cmd
      *   QString command associated with the job that just completed
      */
-    void end_job(QString cmd);
+    void end_job(const QString &cmd);
 
     /**
      * @brief Publish the worker result after the worker ends execution.

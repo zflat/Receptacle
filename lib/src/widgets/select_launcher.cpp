@@ -23,6 +23,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "widgets/select_launcher.h"
 
 SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
+
+
     is_running_bg = false;
 
     this->plugin_widget = NULL;
@@ -33,12 +35,11 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->create_menus();
 
     qDebug() << tr("Setup launcher started");
-    this->central_widget = new QWidget(this);
+    this->central_widget = new QWidget();
     this->tabs_widget = new QTabWidget(this->central_widget);
 
-
     this->msg_log = new LogText(this->tabs_widget);
-    this->tabs_widget->addTab(this->msg_log,tr("Main"));
+    this->tabs_widget->addTab(this->msg_log,tr("Messages"));
     this->msg_log->showMaximized();
 
     this->err_log = new LogText(this->tabs_widget);
@@ -46,14 +47,15 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->err_log->showMaximized();
 
     this->job_ui_layout_simple = new QVBoxLayout();
-    this->job_ui_simple = new QWidget(this->central_widget);
+    this->job_ui_simple = new QWidget();
     this->job_ui_simple->setLayout(job_ui_layout_simple);
+    job_ui_simple->setStyleSheet("QWidget {border: 1px solid blue;}");
 
     this->job_ui_layout_complex = new QVBoxLayout();
     this->job_ui_complex = new QWidget();
     this->job_ui_complex->setLayout(job_ui_layout_complex);
 
-    QVBoxLayout* central_layout= new QVBoxLayout;
+    this->central_layout= new QVBoxLayout;
 
     //JobSelectionForm* sel_frm_ptr = new JobSelectionForm(this->central_widget);
     this->select_form = new JobSelectionForm(this->central_widget);
@@ -63,13 +65,17 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     QObject::connect(this->select_form, SIGNAL(command_unspecified()), this, SLOT(command_pending()));
 
     central_layout->addWidget(this->select_form);
-    //central_layout->addWidget(this->job_ui);
+    //central_layout->addWidget(this->job_ui_simple);
     central_layout->addWidget(this->tabs_widget);
 
     this->central_widget->setLayout(central_layout);
+
     this->setCentralWidget(this->central_widget);
 
     is_pending_close = false;
+
+   this->resize(600, 400);
+
 }
 
 void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
@@ -239,6 +245,9 @@ void SelectLauncher::save_err_warn_text(){
     this->err_log->save_to_file(saveFileName);
 }
 
+
+#include <QLabel>
+
 bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
     if(NULL == w){
         return false;
@@ -250,8 +259,21 @@ bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
 
     if(type.compare("simple") == 0){
         job_ui_layout_simple->addWidget(w);
+        QLayoutItem* at_1 = central_layout->takeAt(1);
+        central_layout->addWidget(this->job_ui_simple);
+        central_layout->addItem(at_1);
+        qDebug() << "Attached simple widget";
+        job_ui_simple->show();
+        job_ui_simple->repaint();
     }else if(type.compare("complex") == 0){
-        job_ui_layout_complex->addWidget(w);
+        tabs_widget->removeTab(0);
+        tabs_widget->removeTab(0);
+        int ind = tabs_widget->addTab(w, tr("Messages"));
+        tabs_widget->addTab(msg_log, tr("Log"));
+        tabs_widget->addTab(err_log, tr("Err/Warn"));
+        // job_ui_layout_complex->addWidget(w);
+        w->show();
+        tabs_widget->repaint();
     }else{
         return false;
     }
