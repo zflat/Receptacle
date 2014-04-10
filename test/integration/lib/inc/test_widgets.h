@@ -50,6 +50,7 @@ private Q_SLOTS:
     void cleanup();
     void testNoWidget();
     void testGetSimpleWidget();
+    void testGetComplexWidget();
 private:
     QPointer<LogEmitter> logger;
     Dispatcher* server;

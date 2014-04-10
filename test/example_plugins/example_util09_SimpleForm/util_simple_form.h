@@ -47,10 +47,12 @@ public:
         emit complete();
     }
 
-    virtual QObject* get_widget(){        
-        QLabel* l = new QLabel("Simple widget");
-        return (QObject *)l;
-        //return (QObject *)this->widget;
+    virtual QObject* get_widget(){
+        if(false){
+            QLabel* l = new QLabel("Simple widget");
+            return (QObject *)l;
+        }
+        return (QObject *)this->widget;
     }
 
 private:

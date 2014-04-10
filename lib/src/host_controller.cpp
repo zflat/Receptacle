@@ -46,6 +46,7 @@ void HostController::run_job(QString command){
 
     // Log username
     // http://bytes.com/topic/c/answers/691168-username-caller
+
     // Log Date and time
     qDebug()<< QDateTime::currentDateTime().toString().toStdString().c_str();
 

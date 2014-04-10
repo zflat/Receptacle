@@ -23,8 +23,6 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "widgets/select_launcher.h"
 
 SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
-
-
     is_running_bg = false;
 
     this->plugin_widget = NULL;
@@ -46,15 +44,6 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->tabs_widget->addTab(this->err_log,tr("Error/Warn"));
     this->err_log->showMaximized();
 
-    this->job_ui_layout_simple = new QVBoxLayout();
-    this->job_ui_simple = new QWidget();
-    this->job_ui_simple->setLayout(job_ui_layout_simple);
-    job_ui_simple->setStyleSheet("QWidget {border: 1px solid blue;}");
-
-    this->job_ui_layout_complex = new QVBoxLayout();
-    this->job_ui_complex = new QWidget();
-    this->job_ui_complex->setLayout(job_ui_layout_complex);
-
     this->central_layout= new QVBoxLayout;
 
     //JobSelectionForm* sel_frm_ptr = new JobSelectionForm(this->central_widget);
@@ -65,7 +54,6 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     QObject::connect(this->select_form, SIGNAL(command_unspecified()), this, SLOT(command_pending()));
 
     central_layout->addWidget(this->select_form);
-    //central_layout->addWidget(this->job_ui_simple);
     central_layout->addWidget(this->tabs_widget);
 
     this->central_widget->setLayout(central_layout);
@@ -258,20 +246,19 @@ bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
     }
 
     if(type.compare("simple") == 0){
-        job_ui_layout_simple->addWidget(w);
-        QLayoutItem* at_1 = central_layout->takeAt(1);
-        central_layout->addWidget(this->job_ui_simple);
-        central_layout->addItem(at_1);
-        qDebug() << "Attached simple widget";
-        job_ui_simple->show();
-        job_ui_simple->repaint();
+        QLayoutItem* tabs = central_layout->takeAt(1);
+
+        central_layout->addWidget(w);
+        central_layout->addItem(tabs);
+
+        w->show();
+        central_widget->repaint();
     }else if(type.compare("complex") == 0){
         tabs_widget->removeTab(0);
         tabs_widget->removeTab(0);
-        int ind = tabs_widget->addTab(w, tr("Messages"));
-        tabs_widget->addTab(msg_log, tr("Log"));
+        tabs_widget->addTab(w, tr("App"));
+        tabs_widget->addTab(msg_log, tr("Messages"));
         tabs_widget->addTab(err_log, tr("Err/Warn"));
-        // job_ui_layout_complex->addWidget(w);
         w->show();
         tabs_widget->repaint();
     }else{

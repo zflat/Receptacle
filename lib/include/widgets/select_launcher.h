@@ -121,12 +121,6 @@ protected:
     //job selection form
     JobSelectionForm* select_form;
 
-    /// Placeholder for plugin UI
-    QWidget* job_ui_simple;
-    QVBoxLayout* job_ui_layout_simple;
-    QWidget* job_ui_complex;
-    QVBoxLayout* job_ui_layout_complex;
-
     // Plugin UI widget
     QWidget* plugin_widget;
 
