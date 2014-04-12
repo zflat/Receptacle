@@ -46,7 +46,6 @@ int main(int argc, char *argv[]){
     QTest::qExec(test3, argc, argv);
     delete test3;
 
-
     TestWidgets* test4 = new TestWidgets();
     QTest::qExec(test4, argc, argv);
     delete test4;

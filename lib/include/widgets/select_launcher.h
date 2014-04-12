@@ -42,7 +42,7 @@ class SelectLauncher : public QMainWindow{
     Q_OBJECT
 
 public:
-    SelectLauncher(QWidget *parent=0);
+    SelectLauncher();
     bool populate_command_options(UtilCollection* utils);
     bool connect_logger(LogEmitter* log_emitter);
     bool connect_errwarn_flag(SignalCounter* err_flag, SignalCounter* fatal_flag, SignalCounter* warn_flag);
@@ -70,11 +70,6 @@ signals:
      */
     void close_requested();
 
-    /**
-     * @brief close_sig broadcasts when a close event is requested
-     * and accepted.
-     */
-    void close_sig();
     void selected(QString cmd);
 
 public slots:

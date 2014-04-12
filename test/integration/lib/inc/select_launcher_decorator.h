@@ -35,7 +35,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 class SelectLauncherDecorator : public SelectLauncher
 {
 public:
-    SelectLauncherDecorator(QWidget *parent) : SelectLauncher(parent){
+    SelectLauncherDecorator() : SelectLauncher(){
     }
 
     JobSelectionFormDecorator* get_job_select_form(){
@@ -44,6 +44,14 @@ public:
 
     QWidget* get_plugin_widget(){
         return this->plugin_widget;
+    }
+
+    QAction* getExitMenuAction(){
+        return this->exitAct;
+    }
+
+    QWidget* get_menu_file(){
+        return this->menu_file;
     }
 
 };

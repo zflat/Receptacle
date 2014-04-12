@@ -79,4 +79,5 @@ void Dispatcher::request_completed(const QString &command){
              << command.toStdString().c_str() <<" ended.";
     this->request_mutex.release(1);
     qDebug() << "request_mutex released";
+    ;
 }

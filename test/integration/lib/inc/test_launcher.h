@@ -44,6 +44,8 @@ private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testOpenCloseLauncher();
+    void testKeyboardQuitLauncher();
+    void testMenuQuitLauncher();
 private:
     Dispatcher* server;
     HostControllerDecorator* host;

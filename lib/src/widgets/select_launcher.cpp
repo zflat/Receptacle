@@ -22,7 +22,11 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "widgets/select_launcher.h"
 
-SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
+SelectLauncher::SelectLauncher(){
+    qDebug() << tr("Setup launcher started");
+
+    this->setAttribute(Qt::WA_DeleteOnClose, true);
+
     is_running_bg = false;
 
     this->plugin_widget = NULL;
@@ -32,7 +36,6 @@ SelectLauncher::SelectLauncher(QWidget *parent) : QMainWindow(parent){
     this->create_actions();
     this->create_menus();
 
-    qDebug() << tr("Setup launcher started");
     this->central_widget = new QWidget();
     this->tabs_widget = new QTabWidget(this->central_widget);
 
@@ -199,7 +202,6 @@ void SelectLauncher::closeEvent(QCloseEvent *event){
         event->ignore();
     }else{
        is_pending_close = false;
-       emit close_sig();
        event->accept();
     }
 }

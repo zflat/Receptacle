@@ -30,19 +30,20 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
     {}
 
 void HostController::run_job(QString command){
+    qDebug() << "Run job";
     if(this->main_window != NULL){
         qWarning() << "Main window already allocated.";
     }
     this->main_window = new SelectLauncher();
+    qDebug() << "Select launcher initialized";
     this->main_window->populate_command_options(utils);
     this->main_window->connect_logger(this->logger);
     this->main_window->connect_errwarn_flag(&err_flag, &fatal_flag, &warn_flag);
+
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
     QObject::connect(this->main_window, SIGNAL(close_requested()), this, SLOT(cancel_handler()));
-    QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(job_cleanup()));
-
-    this->main_window->select_job(command);
-    // open the main window
+    //QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(job_cleanup()));
+    QObject::connect(this->main_window, SIGNAL(destroyed()), this, SLOT(job_cleanup()));
 
     // Log username
     // http://bytes.com/topic/c/answers/691168-username-caller
@@ -50,7 +51,12 @@ void HostController::run_job(QString command){
     // Log Date and time
     qDebug()<< QDateTime::currentDateTime().toString().toStdString().c_str();
 
+    // Select the job (start running if command given)
+    this->main_window->select_job(command);
+
+    // open the main window
     this->main_window->showNormal();
+    qDebug() << "Window shown";
 } // run_job
 
 
@@ -198,7 +204,7 @@ void HostController::job_complete_handler(int result){
 void HostController::job_cleanup(){
     qDebug() << "closed window";
     if(NULL != main_window){
-        delete main_window;
+       // delete main_window;
         main_window = NULL;
     }
     QString current_cmd;
