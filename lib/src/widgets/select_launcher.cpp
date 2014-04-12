@@ -197,8 +197,8 @@ bool SelectLauncher::get_is_pending_close(){ return is_pending_close;}
 void SelectLauncher::closeEvent(QCloseEvent *event){
     if(is_running_bg){
         qWarning() << tr("Close requested while worker is running. Close is delayed until worker completes.");
-        emit close_requested();
         is_pending_close = true;
+        emit close_requested();
         event->ignore();
     }else{
        is_pending_close = false;

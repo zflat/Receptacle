@@ -182,8 +182,17 @@ void HostController::job_complete_handler(int result){
      *
      * Close the main window when close has been requested.
      */
-    bool should_close_window = main_window->get_is_pending_close() ||
-            (bg_worker->is_hidden() && main_window->isMinimized());
+    bool should_close_window = false;
+
+    if(main_window->get_is_pending_close()){
+        qDebug() << "Window is pending close";
+        should_close_window = true;
+    }else if(bg_worker->is_hidden() && main_window->isMinimized()){
+        qDebug() << "Silent utilty has not been shown by user";
+        should_close_window = true;
+    }else{
+        qDebug() << "No reason found to close the window";
+    }
 
     if(should_close_window){
         qDebug("Should close window.");

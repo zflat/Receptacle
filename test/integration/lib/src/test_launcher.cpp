@@ -76,6 +76,9 @@ void TestLauncher::testOpenCloseLauncher()
 
 void TestLauncher::testKeyboardQuitLauncher()
 {
+#if defined(Q_OS_WIN)
+    return;
+#endif
     for(int i=0; i<3; i++){
         server->queue_request("Print");
         SelectLauncherDecorator* launcher = host->get_main_window();
@@ -100,6 +103,9 @@ void TestLauncher::testKeyboardQuitLauncher()
 
 void TestLauncher::testMenuQuitLauncher()
 {
+#if defined(Q_OS_WIN)
+    return;
+#endif
     for(int i=0; i<15; i++){
         QVERIFY2(NULL == host->get_main_window(), "No window before sending request.");
         server->queue_request("Print");

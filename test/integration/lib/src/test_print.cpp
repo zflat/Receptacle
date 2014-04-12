@@ -85,10 +85,13 @@ void TestPrint::testCommandPrint()
 
 void TestPrint::testCommandDelayedPrint()
 {
-    QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
-    QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
-    cmd->send_command("DelayedPrint");
-    QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
+    QSignalSpy host_result(host, SIGNAL(util_result(int)));
+    //QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
+    server->queue_request("DelayedPrint");
+    host->get_main_window_obj()->close();
+    QTRY_VERIFY_WITH_TIMEOUT(host_result.count() < 1, 1000);
+    QTest::qWait(500);
+    QTRY_VERIFY_WITH_TIMEOUT(host_result.count() > 0, 1000);
 }
 
 

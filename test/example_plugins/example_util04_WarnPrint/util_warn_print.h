@@ -35,7 +35,7 @@ class UtilWarnPrintWorker : public UtilWorker
 public:
     void start(){
         qWarning() << "Warning in plugin UtilWarnPrintWorker <---" ;
-        emit complete();
+        Q_EMIT complete();
     }
 };
 

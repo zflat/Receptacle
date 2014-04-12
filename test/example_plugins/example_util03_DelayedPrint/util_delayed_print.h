@@ -34,10 +34,13 @@ class UtilDelayedPrintWorker : public UtilWorker
     Q_OBJECT
 public:
     void start(){
-        // wait for a bit
-        QThread::sleep(5000);
         qDebug() << "Run in plugin UtilDelayedPrintWorker <---" ;
-        emit complete();
+        for(int i=0; i<1; i++){
+            // wait for a bit
+            QThread::sleep(1);
+            qDebug() << ".";
+        }
+        Q_EMIT complete();
     }
 };
 
