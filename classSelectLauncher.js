@@ -42,6 +42,7 @@ var classSelectLauncher =
     [ "saveErrWarnText", "classSelectLauncher.html#a2c0eb55469c76003e9fe7fe8394a0905", null ],
     [ "saveLogText", "classSelectLauncher.html#a5eedc471cf57d7034fc7b20bca8b8443", null ],
     [ "select_form", "classSelectLauncher.html#a62bf76c5b696d6ec60e330fca879100b", null ],
+    [ "statusbar", "classSelectLauncher.html#a716bed4f4c6edb6c832cfa2845cf9ca9", null ],
     [ "tabs_widget", "classSelectLauncher.html#acbcc12c857d4f2e155bde78532145165", null ],
     [ "warn_flag", "classSelectLauncher.html#a7c16419090adf2860245c0be6371a297", null ]
 ];
