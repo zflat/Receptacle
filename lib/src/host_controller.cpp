@@ -166,11 +166,12 @@ void HostController::cancel_handler(){
 
 
 void HostController::job_complete_handler(int result){
+    if(NULL == main_window){
+        qCritical() << "Main window already closed before job completion processed.";
+    }
     // notify that the job is not running
     main_window->set_is_running_bg(false);
 
-    // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)
-    Q_EMIT util_result(result);
 
     qDebug() << "job complete!(notified in signal handler)";
 
@@ -199,6 +200,9 @@ void HostController::job_complete_handler(int result){
          */
 
     }
+
+    // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)
+    Q_EMIT util_result(result);
 }
 
 void HostController::job_cleanup(){

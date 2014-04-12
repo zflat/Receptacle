@@ -34,10 +34,11 @@ class UtilThatNeverEndsWorker : public UtilWorker
     Q_OBJECT
 public:
     void start(){
-	while(!is_terminate_requested){
+        while(!is_terminate_requested){
           QThread::sleep(10);
         }
-        emit complete();
+        qDebug() << "Termination granted.";
+        Q_EMIT complete();
     }
 };
 
