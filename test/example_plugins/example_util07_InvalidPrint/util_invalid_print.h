@@ -32,6 +32,7 @@ class UtilInvalidPrintWorker : public UtilWorker
 {
     Q_OBJECT
 public:
+    bool is_valid(){return false;}
     void start(){
         qWarning() << "Run in plugin UtilInvalidPrintWorker <---" ;
         emit complete();

@@ -36,10 +36,15 @@ UtilRunner::UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emi
 void UtilRunner::run()
 {
     worker->init();
-    Q_EMIT init_complete();
-    worker->start();
-    qDebug("Worker is done running.");
-    Q_EMIT result(0);
+    if(worker->is_valid()){
+        Q_EMIT init_complete();
+        worker->start();
+        qDebug("Worker is done running.");
+        Q_EMIT result(0);
+    }else{
+        qWarning() << "Invalid preconditions.";
+        Q_EMIT result(1);
+    }
 }
 
 

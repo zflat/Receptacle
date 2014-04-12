@@ -146,3 +146,17 @@ void TestPrint::testWarnCriticalSequence(){
     cmd->ready4close();
     QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }
+
+
+
+void TestPrint::testInvalidPrint(){
+    QObject::connect(cmd, SIGNAL(command_completed()), ender, SLOT(end_curr_util()));
+    for(int i=0; i<5; i++){
+        QSignalSpy spy_plugin_setup(host, SIGNAL(setup_complete()));
+        QSignalSpy spy_win_closed(ender, SIGNAL(win_closed()));
+        cmd->send_command("InvalidPrint");
+        QTest::qWait(50);
+        QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(spy_plugin_setup.count() < 1, 1000);
+    }
+}

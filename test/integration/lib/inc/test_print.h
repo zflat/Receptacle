@@ -53,6 +53,7 @@ private Q_SLOTS:
     void testCriticalPrint();
     void testWarnCriticalSequence();
     void testCommandDelayedPrint();
+    void testInvalidPrint();
 private:
     QPointer<LogEmitter> logger;
     Dispatcher* server;
