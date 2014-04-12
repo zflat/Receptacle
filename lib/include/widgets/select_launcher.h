@@ -47,6 +47,10 @@ public:
     bool connect_logger(LogEmitter* log_emitter);
     bool connect_errwarn_flag(SignalCounter* err_flag, SignalCounter* fatal_flag, SignalCounter* warn_flag);
 
+    static const char WARN_NOTIFY_STYLE[];
+    static const char ERR_NOTIFY_STYLE[];
+    static const char SUCCESS_NOTIFY_STYLE[];
+
     /**
      * @brief attach_widget adds the given widget to the host GUI
      * @param w
@@ -108,6 +112,7 @@ protected:
     //menu actions
 
     //status bar
+    QStatusBar* statusbar;
 
     //central widget and layout
     QWidget* central_widget;

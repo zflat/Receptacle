@@ -190,8 +190,6 @@ void HostController::job_complete_handler(int result){
     }else if(bg_worker->is_hidden() && main_window->isMinimized()){
         qDebug() << "Silent utilty has not been shown by user";
         should_close_window = true;
-    }else{
-        qDebug() << "No reason found to close the window";
     }
 
     if(should_close_window){
@@ -207,7 +205,13 @@ void HostController::job_complete_handler(int result){
         /*
          * Decide to notify error, warnings or success
          */
-
+        if(fatal_flag.count()>0 || err_flag.count()>0){
+            main_window->show_msg_level(QtCriticalMsg, true);
+        }else if(warn_flag.count() > 0){
+            main_window->show_msg_level(QtWarningMsg, true);
+        }else{
+            main_window->show_msg_level(QtDebugMsg, true);
+        }
     }
 
     // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)

@@ -36,6 +36,8 @@ SelectLauncher::SelectLauncher(){
     this->create_actions();
     this->create_menus();
 
+    this->statusbar = this->statusBar();
+
     this->central_widget = new QWidget();
     this->tabs_widget = new QTabWidget(this->central_widget);
 
@@ -76,17 +78,20 @@ void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
         QString style_markup;
         switch(type){
             case QtDebugMsg:
-            style_markup = "";
+            style_markup = SUCCESS_NOTIFY_STYLE;
                 break;
             case QtWarningMsg:
-                style_markup = "";
+                style_markup = WARN_NOTIFY_STYLE;
                 break;
             case QtCriticalMsg:
             case QtFatalMsg:
-                style_markup = "";
+                style_markup = ERR_NOTIFY_STYLE;
                 break;
+            default:
+                style_markup = SUCCESS_NOTIFY_STYLE;
         }
-        // set the status bar background color
+        // set the notify style
+        ((QWidget*)statusbar)->setStyleSheet(style_markup);
     }
 
     if(select_form){
@@ -96,12 +101,15 @@ void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
 }
 
 void SelectLauncher::create_menus(){
+    menubar = new QMenuBar(this);
 
-    menu_file = menuBar()->addMenu(tr("&File"));
+    menu_file = menubar->addMenu(tr("&File"));
     menu_file->addAction(exitAct);
 
     menu_file->addAction(saveLogText);
     menu_file->addAction(saveErrWarnText);
+
+    this->setMenuBar(menubar);
 }
 
 void SelectLauncher::create_actions(){
@@ -111,7 +119,7 @@ void SelectLauncher::create_actions(){
 
     saveLogText = new QAction(tr("Save Log"), this);
     connect(saveLogText, SIGNAL(triggered()), this, SLOT(save_log_text()));
-    saveErrWarnText = new QAction(tr("Save errors & warnings log"), this);
+    saveErrWarnText = new QAction(tr("Save errors && warnings log"), this);
     connect(saveErrWarnText, SIGNAL(triggered()), this, SLOT(save_err_warn_text()));
 }
 
@@ -270,3 +278,7 @@ bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
     this->plugin_widget = w;
     return true;
 }
+
+const char SelectLauncher::WARN_NOTIFY_STYLE[] = "QStatusBar {background: yellow}";
+const char SelectLauncher::ERR_NOTIFY_STYLE[] = "QStatusBar {background: red}";
+const char SelectLauncher::SUCCESS_NOTIFY_STYLE[] = "QStatusBar {background: green}";

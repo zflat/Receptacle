@@ -23,8 +23,13 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
     this->btn = new QPushButton(tr("Run"));
+    btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
     this->label = new QLabel(tr("Job"));
+    label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
     this->box = new QComboBox(this);
+    box->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     this->layout = new QHBoxLayout();
     this->layout->addWidget(this->label);
