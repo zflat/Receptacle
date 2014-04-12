@@ -53,6 +53,7 @@ SelectLauncher::SelectLauncher(){
 
     //JobSelectionForm* sel_frm_ptr = new JobSelectionForm(this->central_widget);
     this->select_form = new JobSelectionForm(this->central_widget);
+    select_form->setFocusPolicy(Qt::StrongFocus);
 
     QObject::connect(this->select_form, SIGNAL(command_selected(QString)), this, SLOT(command_selected(QString)));
     QObject::connect(this->select_form, SIGNAL(command_unrecognized(QString)), this, SLOT(command_rejected(QString)));

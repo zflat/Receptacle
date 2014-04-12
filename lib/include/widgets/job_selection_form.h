@@ -31,6 +31,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QPushButton>
 #include <QComboBox>
 #include <QString>
+#include "widgets/label_for.h"
 #include "util_collection.h"
 
 class JobSelectionForm: public QWidget{
@@ -60,7 +61,7 @@ public slots:
     void indicate_msg_level(QtMsgType type);
 
 protected:
-    QLabel* label;
+    LabelFor* label;
     QHBoxLayout* layout;
     QPushButton* btn;
     QComboBox* box;

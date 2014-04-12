@@ -19,23 +19,38 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#include <QShortcut>
 #include "widgets/job_selection_form.h"
 
 JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
-    this->btn = new QPushButton(tr("Run"));
-    btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    this->box = new QComboBox(this);
+    box->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);    
 
-    this->label = new QLabel(tr("Job"));
+    this->label = new LabelFor(tr("Job"), box, this);
+    label->setProperty("flat", true);
     label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    this->box = new QComboBox(this);
-    box->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    this->btn = new QPushButton(tr("Run"));
+    btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     this->layout = new QHBoxLayout();
     this->layout->addWidget(this->label);
     this->layout->addWidget(this->box);
     this->layout->addWidget(this->btn);
     this->setLayout(this->layout);
+
+    box->setFocusPolicy(Qt::StrongFocus);
+    btn->setFocusPolicy(Qt::StrongFocus);
+
+    this->setTabOrder(label, box);
+    this->setTabOrder(box, btn);
+
+    QObject::connect(label, SIGNAL(clicked()), box, SLOT(setFocus()));
+    QObject::connect(box, SIGNAL(activated(int)), btn, SLOT(setFocus()));
+
+
+    QShortcut *returnShortcut = new QShortcut(QKeySequence("Return"), this);
+    QObject::connect(returnShortcut, SIGNAL(activated()), btn, SIGNAL(pressed()));
 
     QObject::connect(this->btn, SIGNAL(pressed()), this, SLOT(btn_pressed_handler()));
 }
