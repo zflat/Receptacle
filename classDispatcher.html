@@ -126,9 +126,9 @@ Public Slots</h2></td></tr>
 <tr class="memitem:a8f35d4badbff0383de714bc7f024a50e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcher.html#a8f35d4badbff0383de714bc7f024a50e">queue_request</a> (QString command)</td></tr>
 <tr class="memdesc:a8f35d4badbff0383de714bc7f024a50e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronous request for a job to run.  <a href="#a8f35d4badbff0383de714bc7f024a50e">More...</a><br/></td></tr>
 <tr class="separator:a8f35d4badbff0383de714bc7f024a50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa63ab2c22fa0a85801c403d5fdd84749"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcher.html#aa63ab2c22fa0a85801c403d5fdd84749">request_completed</a> (QString command)</td></tr>
-<tr class="memdesc:aa63ab2c22fa0a85801c403d5fdd84749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler to cleanup after a job finishes and prepares for the next job to run.  <a href="#aa63ab2c22fa0a85801c403d5fdd84749">More...</a><br/></td></tr>
-<tr class="separator:aa63ab2c22fa0a85801c403d5fdd84749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8640c18f42fb6265e089f8fcf62dc399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDispatcher.html#a8640c18f42fb6265e089f8fcf62dc399">request_completed</a> (const QString &amp;command)</td></tr>
+<tr class="memdesc:a8640c18f42fb6265e089f8fcf62dc399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler to cleanup after a job finishes and prepares for the next job to run.  <a href="#a8640c18f42fb6265e089f8fcf62dc399">More...</a><br/></td></tr>
+<tr class="separator:a8640c18f42fb6265e089f8fcf62dc399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -209,7 +209,7 @@ QSemaphore&#160;</td><td class="memItemRight" valign="bottom"><b>request_mutex</
 
 </div>
 </div>
-<a class="anchor" id="aa63ab2c22fa0a85801c403d5fdd84749"></a>
+<a class="anchor" id="a8640c18f42fb6265e089f8fcf62dc399"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -219,7 +219,7 @@ QSemaphore&#160;</td><td class="memItemRight" valign="bottom"><b>request_mutex</
         <tr>
           <td class="memname">void Dispatcher::request_completed </td>
           <td>(</td>
-          <td class="paramtype">QString&#160;</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
           <td class="paramname"><em>command</em>)</td><td></td>
           <td></td>
         </tr>
@@ -251,7 +251,7 @@ QSemaphore&#160;</td><td class="memItemRight" valign="bottom"><b>request_mutex</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classDispatcher.html">Dispatcher</a></li>
-    <li class="footer">Generated on Wed Apr 2 2014 22:51:03 for Receptacle by
+    <li class="footer">Generated on Fri Apr 11 2014 21:16:22 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

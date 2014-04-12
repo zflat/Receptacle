@@ -135,19 +135,12 @@ Signals</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#aa5668073924e9e0d27a08628817e3bac">close_requested</a> ()</td></tr>
 <tr class="memdesc:aa5668073924e9e0d27a08628817e3bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">close_requested broadcasts when a close event is requested but ignored because a bg worker is still runing. <br/></td></tr>
 <tr class="separator:aa5668073924e9e0d27a08628817e3bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bea85dac7ee0dbb15ee0df16cd01039"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#a4bea85dac7ee0dbb15ee0df16cd01039">close_sig</a> ()</td></tr>
-<tr class="memdesc:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="mdescLeft">&#160;</td><td class="mdescRight">close_sig broadcasts when a close event is requested and accepted. <br/></td></tr>
-<tr class="separator:a4bea85dac7ee0dbb15ee0df16cd01039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ab8e901d6e1d40a5026de40e94bc48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68ab8e901d6e1d40a5026de40e94bc48"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>selected</b> (QString cmd)</td></tr>
 <tr class="separator:a68ab8e901d6e1d40a5026de40e94bc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2c3169af838dffb1212c631fa29b9b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2c3169af838dffb1212c631fa29b9b7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SelectLauncher</b> (QWidget *parent=0)</td></tr>
-<tr class="separator:ae2c3169af838dffb1212c631fa29b9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9c5c4a44953f46721626ce298d99a03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9c5c4a44953f46721626ce298d99a03"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>populate_command_options</b> (<a class="el" href="classUtilCollection.html">UtilCollection</a> *utils)</td></tr>
 <tr class="separator:ad9c5c4a44953f46721626ce298d99a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +150,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect_logger</b> (<
 <tr class="memitem:ae4d14fbc64828fa43b3e10ae06b5d0ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d14fbc64828fa43b3e10ae06b5d0ad"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect_errwarn_flag</b> (<a class="el" href="classSignalCounter.html">SignalCounter</a> *err_flag, <a class="el" href="classSignalCounter.html">SignalCounter</a> *fatal_flag, <a class="el" href="classSignalCounter.html">SignalCounter</a> *warn_flag)</td></tr>
 <tr class="separator:ae4d14fbc64828fa43b3e10ae06b5d0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe318b4d2a4eaf1d2007c60741a2b218"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSelectLauncher.html#abe318b4d2a4eaf1d2007c60741a2b218">attach_widget</a> (QWidget *w, const QString &amp;type)</td></tr>
+<tr class="memdesc:abe318b4d2a4eaf1d2007c60741a2b218"><td class="mdescLeft">&#160;</td><td class="mdescRight">attach_widget adds the given widget to the host GUI  <a href="#abe318b4d2a4eaf1d2007c60741a2b218">More...</a><br/></td></tr>
+<tr class="separator:abe318b4d2a4eaf1d2007c60741a2b218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f9f7a7c426429294047f05275e2d22f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f9f7a7c426429294047f05275e2d22f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>select_job</b> (QString command)</td></tr>
 <tr class="separator:a3f9f7a7c426429294047f05275e2d22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,12 +216,15 @@ QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>menu_help</b></td>
 <tr class="memitem:a0b336b18285b2361fe5cc5a590fbb031"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b336b18285b2361fe5cc5a590fbb031"></a>
 QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>central_widget</b></td></tr>
 <tr class="separator:a0b336b18285b2361fe5cc5a590fbb031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66b55c89945a27778985b7c46799043c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66b55c89945a27778985b7c46799043c"></a>
+QVBoxLayout *&#160;</td><td class="memItemRight" valign="bottom"><b>central_layout</b></td></tr>
+<tr class="separator:a66b55c89945a27778985b7c46799043c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62bf76c5b696d6ec60e330fca879100b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62bf76c5b696d6ec60e330fca879100b"></a>
 <a class="el" href="classJobSelectionForm.html">JobSelectionForm</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>select_form</b></td></tr>
 <tr class="separator:a62bf76c5b696d6ec60e330fca879100b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a758b523714d9f7c824fa2aaecfe8850f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a758b523714d9f7c824fa2aaecfe8850f"></a>
-QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>job_ui</b></td></tr>
-<tr class="separator:a758b523714d9f7c824fa2aaecfe8850f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230cce9f53aed2b4cba7d1f08312ddda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a230cce9f53aed2b4cba7d1f08312ddda"></a>
+QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>plugin_widget</b></td></tr>
+<tr class="separator:a230cce9f53aed2b4cba7d1f08312ddda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbcc12c857d4f2e155bde78532145165"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbcc12c857d4f2e155bde78532145165"></a>
 QTabWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>tabs_widget</b></td></tr>
 <tr class="separator:acbcc12c857d4f2e155bde78532145165"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,6 +274,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a69602846e67b7af7a8c31cbdda4db622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abe318b4d2a4eaf1d2007c60741a2b218"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SelectLauncher::attach_widget </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>attach_widget adds the given widget to the host GUI </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>QWidget parent widget for the plugin UI </td></tr>
+    <tr><td class="paramname">type</td><td>QString either "simple" or "complex" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True on success, False otherwise </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a4cb837e3abaa85b739d110352cbe30b5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +363,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classSelectLauncher.html">SelectLauncher</a></li>
-    <li class="footer">Generated on Wed Apr 2 2014 22:51:03 for Receptacle by
+    <li class="footer">Generated on Fri Apr 11 2014 21:16:22 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
