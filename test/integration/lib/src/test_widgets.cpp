@@ -52,7 +52,7 @@ void TestWidgets::init(){
     host = new HostControllerDecorator(utils, test_widgets_logger);
     // Create an instance of a server and then start it.
     server = new Dispatcher(host);
-    server->startServer();
+    server->startServer(3333);
 
 
     cmd = new CmdRunner(host, server);
