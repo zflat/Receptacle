@@ -27,3 +27,6 @@ http://blogs.msdn.com/b/gpalem/archive/2009/03/09/how-to-make-qt-sdk-work-with-v
 
 http://qt-project.org/doc/qt-5/windows-deployment.html
 
+How to hide console:
+http://qt-project.org/forums/viewthread/20168
+
