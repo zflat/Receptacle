@@ -81,6 +81,7 @@ void UtilCollection::loadPlugins(){
     if (plugin) {
       // Add plugin to the list based on fileName
       populateUtil(plugin);
+      qDebug() << "Added plugin: " << fileName.toStdString().c_str();
     }
   }
 

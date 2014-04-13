@@ -26,8 +26,15 @@ TEMPLATE = app
 
 VERSION  = 0.0.1
 TARGET   = Receptacle
-CONFIG   += console gui
+CONFIG   += gui
 CONFIG   -= app_bundle
+
+CONFIG(debug, debug|release) {
+    CONFIG += console
+}
+else {
+    CONFIG -= console
+}
 
 SOURCES += \
     $$PWD/src/main.cpp \
