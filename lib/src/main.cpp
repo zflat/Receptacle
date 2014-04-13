@@ -22,8 +22,12 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDir>
 #include <iostream>
 #include <QApplication>
+#include <QCommandLineParser>
 #include "dispatcher.h"
 #include "log_emitter.h"
+
+
+QCommandLineParser cmd_args;
 
 /*
  * Console output with GUI in windows
@@ -53,22 +57,53 @@ void log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, co
         logger->publish_message(type, context, msg);
     }
     //printf("%s %s %s\n", context.file, context.function, context.line);
-    printf("%s\n", msg.toStdString().c_str());
+    if(cmd_args.isSet("console")){
+        printf("%s\n", msg.toStdString().c_str());
+    }
 }
 
 int main(int argc, char *argv[])
 {
-    Console();
+    QApplication app(argc, argv);
+    QApplication::setApplicationName("Receptacle");
+    QApplication::setApplicationVersion(APP_VERSION);
+    app.setQuitOnLastWindowClosed(false);
+
+
+    cmd_args.addHelpOption();
+    cmd_args.addVersionOption();
+    QCommandLineOption consoleOut(QStringList() << "c" << "console", "Print stdout to console");
+    cmd_args.addOption(consoleOut);
+    QCommandLineOption listenPort(QStringList() << "p" << "port", \
+                                  QApplication::translate("main", "Dispatcher listens on <port>"), \
+                                  QApplication::translate("main", "port"));
+    cmd_args.addOption(listenPort);
+    cmd_args.process(app);
+
+    if(cmd_args.isSet("console")){
+        Console();
+    }
     logger  = new LogEmitter();
     qInstallMessageHandler(log_handler_forwarder);
 
-    QApplication app(argc, argv);
-    app.setQuitOnLastWindowClosed(false);
+
+    qDebug() << qApp->applicationVersion();
+
+
     UtilCollection* utils = new UtilCollection();
     HostController* controller = new HostController(utils, logger);
 
     // Create an instance of a server and then start it.
     Dispatcher server(controller);
-    server.startServer();
-    return app.exec();
+
+    bool port_parsed;
+    int dec_port = cmd_args.value("port").toInt(&port_parsed);
+
+    if(port_parsed){
+        server.startServer(dec_port);
+        return app.exec();
+    }else{
+        return(0);
+    }
+
 }

@@ -45,7 +45,7 @@ public:
     /**
      * @brief Call startServer to listen for client connections. Server does not process requests until this is called.
      */
-    void startServer();
+    void startServer(int port);
 
     /**
      * @brief A 'busy signal' check.

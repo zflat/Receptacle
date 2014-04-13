@@ -22,13 +22,19 @@ QT       += gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Receptacle
+TEMPLATE = app
+
+VERSION  = 0.0.1
+TARGET   = Receptacle
 CONFIG   += console gui
 CONFIG   -= app_bundle
-
-TEMPLATE = app
 
 SOURCES += \
     $$PWD/src/main.cpp \
 
 include($$PWD/Receptacle.pri)
+
+
+
+# Define the preprocessor macro to get the application version in our application.
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"

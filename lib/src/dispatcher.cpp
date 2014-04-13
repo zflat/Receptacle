@@ -35,13 +35,13 @@ Dispatcher::~Dispatcher(){
     qDebug()<<"Server closed";
 }
 
-void Dispatcher::startServer()
+void Dispatcher::startServer(int port)
 {
-  if(listen(QHostAddress::Any, 3333)){
-    qDebug() << tr("Server: started");
+  if(listen(QHostAddress::Any, port)){
+    qDebug() << tr("Dispatcher: listening on port").toStdString().c_str() << port;
   }
   else{
-    qDebug() << tr("Server: not started!");
+    qDebug() << tr("Dispatcher: not started!");
   }
 }
 
