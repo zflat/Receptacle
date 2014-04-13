@@ -4,6 +4,7 @@ var annotated =
     [ "Dispatcher", "classDispatcher.html", "classDispatcher" ],
     [ "HostController", "classHostController.html", "classHostController" ],
     [ "JobSelectionForm", "classJobSelectionForm.html", "classJobSelectionForm" ],
+    [ "LabelFor", "classLabelFor.html", "classLabelFor" ],
     [ "LogEmitter", "classLogEmitter.html", "classLogEmitter" ],
     [ "LogText", "classLogText.html", "classLogText" ],
     [ "SelectLauncher", "classSelectLauncher.html", "classSelectLauncher" ],

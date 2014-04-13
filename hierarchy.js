@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "QLabel", null, [
+      [ "LabelFor", "classLabelFor.html", null ]
+    ] ],
     [ "QMainWindow", null, [
       [ "SelectLauncher", "classSelectLauncher.html", null ]
     ] ],

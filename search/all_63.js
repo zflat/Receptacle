@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['click_5fbuddy',['click_buddy',['../classLabelFor.html#a5ce14c57dc1cd7b2887c8937c1fc376f',1,'LabelFor']]],
   ['clientconnection',['ClientConnection',['../classClientConnection.html',1,'']]],
   ['close_5frequested',['close_requested',['../classSelectLauncher.html#aa5668073924e9e0d27a08628817e3bac',1,'SelectLauncher']]],
   ['command',['command',['../classUtilRunner.html#aea706926c017872504963d78873ac57e',1,'UtilRunner']]],
