@@ -59,6 +59,7 @@ void Dispatcher::incomingConnection(qintptr socketDescriptor)
 
 
 void Dispatcher::queue_request(QString command){
+    command = command.trimmed();
     if(this->request_mutex.tryAcquire(1, 100)){
         qDebug() << "Requested command queued: " << command.toStdString().c_str();
         controller->run_job(command);
