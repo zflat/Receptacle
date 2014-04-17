@@ -19,32 +19,23 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#include "widgets/about_dialog.h"
 
+AboutDialog::AboutDialog(const QString &plugins_path, \
+                         const QStringList &plugin_fileNames, QWidget *parent) :
+    QDialog(parent),
+    label(new QLabel),
+    okButton(new QPushButton(tr("OK")))
+{
+    okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    okButton->setDefault(true);
+    connect(okButton, SIGNAL(clicked()), this, SLOT(close()));
 
-#ifndef ABOUT_DIALOG_H
-#define ABOUT_DIALOG_H
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(label);
+    mainLayout->addWidget(okButton);
 
+    label->setText(tr("Receptacle version %1\n").arg(APP_VERSION));
 
-#include <QDialog>
-#include <QIcon>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QPushButton>
-
-
-class QLabel;
-class QPushButton;
-
-class AboutDialog : public QDialog{
-    Q_OBJECT
-
-public:
-    AboutDialog(const QString &plugins_path, const QStringList &plugin_fileNames,
-                QWidget *parent = 0);
-
-private:
-    QLabel *label;
-    QPushButton *okButton;
-};
-
-#endif // ABOUT_DIALOG_H
+    setLayout(mainLayout);
+}

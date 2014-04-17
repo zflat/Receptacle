@@ -37,6 +37,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "log_text.h"
 #include "log_emitter.h"
 #include "signal_counter.h"
+#include "widgets/about_dialog.h"
 
 class SelectLauncher : public QMainWindow{
     Q_OBJECT
@@ -100,6 +101,8 @@ protected slots:
     void indicate_error();
     void indicate_warning();
 
+    void about();
+
 protected:
 
     //menubar
@@ -134,6 +137,11 @@ protected:
     LogText* err_log;
 
     LogEmitter* logger;
+
+
+
+    QStringList pluginFileNames;
+    QDir pluginsDir;
 
     QAction* exitAct;
     QAction* saveLogText;

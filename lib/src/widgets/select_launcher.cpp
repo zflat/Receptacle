@@ -99,6 +99,12 @@ void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
         // pass along to the top selection form
         select_form->indicate_msg_level(type);
     }
+} // SelectLauncher::show_msg_level
+
+
+void SelectLauncher::about(){
+    AboutDialog dialog(pluginsDir.path(), pluginFileNames, this);
+    dialog.exec();
 }
 
 void SelectLauncher::create_menus(){
@@ -109,6 +115,10 @@ void SelectLauncher::create_menus(){
 
     menu_file->addAction(saveLogText);
     menu_file->addAction(saveErrWarnText);
+
+    menu_help = menubar->addMenu(("&Help"));
+    menu_help->addAction(aboutAct);
+    menu_help->addAction(aboutQtAct);
 
     this->setMenuBar(menubar);
 }
@@ -122,6 +132,12 @@ void SelectLauncher::create_actions(){
     connect(saveLogText, SIGNAL(triggered()), this, SLOT(save_log_text()));
     saveErrWarnText = new QAction(tr("Save errors && warnings log"), this);
     connect(saveErrWarnText, SIGNAL(triggered()), this, SLOT(save_err_warn_text()));
+
+    aboutAct = new QAction(tr("&About"), this);
+    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+
+    aboutQtAct = new QAction(tr("About &Qt"), this);
+    connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 
 
