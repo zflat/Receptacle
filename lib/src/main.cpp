@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
     cmd_args.addOption(listenPort);
     cmd_args.process(app);
 
+
     if(cmd_args.isSet("console")){
         Console();
     }
@@ -88,6 +89,7 @@ int main(int argc, char *argv[])
 
 
     qDebug() << qApp->applicationVersion();
+    qDebug() << qApp->applicationDirPath();
 
 
     UtilCollection* utils = new UtilCollection();
@@ -96,11 +98,38 @@ int main(int argc, char *argv[])
     // Create an instance of a server and then start it.
     Dispatcher server(controller);
 
+
+    QSettings settings(qApp->applicationDirPath() + QDir::separator() + "settings.ini", QSettings::IniFormat);
+    bool port_setting_read;
+    int port_setting = settings.value("port").toInt(&port_setting_read);
+
+    QFile settingsFile(qApp->applicationDirPath() + QDir::separator() + "settings.json");
+
+    if (!settingsFile.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open application settings JSON file.");
+        exit(-1);
+    }
+
+    QByteArray settingsData = settingsFile.readAll();
+    QJsonDocument settingsDoc(QJsonDocument::fromJson(settingsData));
+
+    QVariantMap settignsMap = qvariant_cast<QVariantMap>(settingsDoc.toVariant());
+    qDebug() << settignsMap.value("port").toInt();
+    QStringList plugins_ordered_list = \
+            qvariant_cast<QVariant>(settignsMap.value("plugin_order")).toStringList();
+    foreach(QString plugin_cmd, plugins_ordered_list){
+        qDebug() << plugin_cmd;
+    }
+
+
     bool port_parsed;
     int dec_port = cmd_args.value("port").toInt(&port_parsed);
 
     if(port_parsed){
         server.startServer(dec_port);
+        return app.exec();
+    }else if(port_setting_read){
+        server.startServer(port_setting);
         return app.exec();
     }else{
         return(0);
