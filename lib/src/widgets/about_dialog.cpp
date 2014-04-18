@@ -35,7 +35,7 @@ AboutDialog::AboutDialog(const QString &plugins_path, \
     mainLayout->addWidget(label);
     mainLayout->addWidget(okButton);
 
-    label->setText(tr("Receptacle version %1\n").arg(APP_VERSION));
+    label->setText(tr("Receptacle version %1\n").arg(qApp->applicationVersion()));
 
     setLayout(mainLayout);
 }

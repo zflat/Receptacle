@@ -24,7 +24,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ABOUT_DIALOG_H
 #define ABOUT_DIALOG_H
 
-
+#include <QApplication>
 #include <QDialog>
 #include <QIcon>
 #include <QVBoxLayout>
