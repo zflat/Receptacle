@@ -1,6 +1,7 @@
 var classSelectLauncher =
 [
     [ "SelectLauncher", "classSelectLauncher.html#a48f1f36d21ecf5cdcb23e3a53ae6d481", null ],
+    [ "about", "classSelectLauncher.html#a87b7595aa57bf02be40b6302944353b0", null ],
     [ "attach_widget", "classSelectLauncher.html#abe318b4d2a4eaf1d2007c60741a2b218", null ],
     [ "close_requested", "classSelectLauncher.html#aa5668073924e9e0d27a08628817e3bac", null ],
     [ "closeEvent", "classSelectLauncher.html#acaccfeee6ee7d3fbff608dc9233b3a66", null ],
@@ -39,6 +40,8 @@ var classSelectLauncher =
     [ "menubar", "classSelectLauncher.html#ab7a6a135f55381a2da5db3caa30fd957", null ],
     [ "msg_log", "classSelectLauncher.html#ac4c9d25e9d948c5dad8a8979430831f3", null ],
     [ "plugin_widget", "classSelectLauncher.html#a230cce9f53aed2b4cba7d1f08312ddda", null ],
+    [ "pluginFileNames", "classSelectLauncher.html#af47ab53fcb6d01d7535955a0dfcd2165", null ],
+    [ "pluginsDir", "classSelectLauncher.html#a0245d9cafb9cca21370cbc86faa64514", null ],
     [ "saveErrWarnText", "classSelectLauncher.html#a2c0eb55469c76003e9fe7fe8394a0905", null ],
     [ "saveLogText", "classSelectLauncher.html#a5eedc471cf57d7034fc7b20bca8b8443", null ],
     [ "select_form", "classSelectLauncher.html#a62bf76c5b696d6ec60e330fca879100b", null ],

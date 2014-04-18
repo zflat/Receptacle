@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "QDialog", null, [
+      [ "AboutDialog", "classAboutDialog.html", null ]
+    ] ],
     [ "QLabel", null, [
       [ "LabelFor", "classLabelFor.html", null ]
     ] ],

@@ -1,5 +1,6 @@
 var annotated =
 [
+    [ "AboutDialog", "classAboutDialog.html", "classAboutDialog" ],
     [ "ClientConnection", "classClientConnection.html", "classClientConnection" ],
     [ "Dispatcher", "classDispatcher.html", "classDispatcher" ],
     [ "HostController", "classHostController.html", "classHostController" ],
