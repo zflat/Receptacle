@@ -30,3 +30,6 @@ http://qt-project.org/doc/qt-5/windows-deployment.html
 How to hide console:
 http://qt-project.org/forums/viewthread/20168
 
+#### Configuration ####
+
+See /build/config.json.sample for the basic structure for configuring the application. Place a file name config.json in the application directory to provide default configuration.

@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
     bool port_setting_read;
     int port_setting = settings.value("port").toInt(&port_setting_read);
 
-    QFile settingsFile(qApp->applicationDirPath() + QDir::separator() + "settings.json");
+    QFile settingsFile(qApp->applicationDirPath() + QDir::separator() + "config.json");
 
     if (!settingsFile.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open application settings JSON file.");

@@ -1,0 +1,8 @@
+{
+ "port": 1234,
+ "plugin_order":[
+    "First",
+    "Second", 
+    "Third",
+  ]
+}
