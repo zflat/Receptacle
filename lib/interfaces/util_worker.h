@@ -42,7 +42,7 @@ class UtilWorker : public QObject
 {
     Q_OBJECT
  public:
-    UtilWorker( QObject* parent=0) : QObject( parent ), meta_hash(), \
+    UtilWorker(int argc=0, char *argv[]=NULL, QObject* parent=0) : QObject( parent ), meta_hash(), \
         is_terminate_requested(false){}
     virtual ~UtilWorker(){}
     virtual void init(){}

@@ -52,13 +52,14 @@ public:
 class UtilWarnPrint : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     QString name() const {return QObject::tr("Util critical print");}
     QString description() const {return QObject::tr("Example error critical in utility");}
     QString command() const {return QObject::tr("CriticalPrint");}
+    virtual QString version() const{return QString("0.1.0");}
     UtilWorker* newWorker(){return new UtilCriticalPrintWorker();}
 };
 #endif

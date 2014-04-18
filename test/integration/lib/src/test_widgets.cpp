@@ -60,10 +60,15 @@ void TestWidgets::init(){
 }
 
 void TestWidgets::cleanup(){
-    delete cmd;
-    cmd = NULL;
-    delete ender;
-    ender = NULL;
+    if(cmd){
+        delete cmd;
+        cmd = NULL;
+    }
+    if(ender){
+        delete ender;
+        ender = NULL;
+    }
+
 
     delete utils;
     delete host;
@@ -76,6 +81,7 @@ void TestWidgets::cleanup(){
 void TestWidgets::testNoWidget(){
     cmd->send_command("Print");
 
+    QVERIFY(NULL != host->get_main_window());
     QVERIFY2(NULL == host->get_main_window()->get_plugin_widget(), \
              "No widget for plugin without a widget.");
 
@@ -89,9 +95,11 @@ void TestWidgets::testNoWidget(){
 void TestWidgets::testGetSimpleWidget(){
     cmd->send_command("SimpleForm");
 
+    QVERIFY(NULL != host->get_bg_worker());
     QVERIFY2(host->get_bg_worker()->has_widget(), \
              "Util Runner confirms that SimpleForm has a widget.");
 
+    QVERIFY(NULL != host->get_main_window());
     QVERIFY2(NULL != host->get_main_window()->get_plugin_widget(), \
              "Widget found for plugin with a simple widget.");
 
@@ -103,9 +111,11 @@ void TestWidgets::testGetSimpleWidget(){
 void TestWidgets::testGetComplexWidget(){
     cmd->send_command("ComplexForm");
 
+    QVERIFY(NULL != host->get_bg_worker());
     QVERIFY2(host->get_bg_worker()->has_widget(), \
              "Util Runner confirms that ComplexeForm has a widget.");
 
+    QVERIFY(NULL != host->get_main_window());
     QVERIFY2(NULL != host->get_main_window()->get_plugin_widget(), \
              "Widget found for plugin with a complex widget.");
 

@@ -39,3 +39,5 @@ QString UtilSleepy::command() const{
 UtilWorker *UtilSleepy::newWorker(){
     return new UtilSleepyWorker();
 }
+
+QString UtilSleepy::version() const{ return QString("0.1.0"); }

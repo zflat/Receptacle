@@ -34,7 +34,7 @@ class UtilSimpleFormWorker : public UtilWorker
 {
     Q_OBJECT
 public:
-    UtilSimpleFormWorker( QObject* parent=0) : UtilWorker( parent ){
+    UtilSimpleFormWorker(int argc=0, char *argv[]=NULL, QObject* parent=0) : UtilWorker( argc, argv, parent ){
         widget = new SimpleFormWidget();
         meta_hash.insert("widget_type", "simple");
     }
@@ -73,13 +73,14 @@ private:
 class UtilWarnPrint : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     QString name() const {return QObject::tr("Util simple form");}
     QString description() const {return QObject::tr("Example with a simple widget form");}
     QString command() const {return QObject::tr("SimpleForm");}
+    virtual QString version() const{return QString("0.1.0");}
     UtilWorker* newWorker(){return new UtilSimpleFormWorker();}
 };
 #endif

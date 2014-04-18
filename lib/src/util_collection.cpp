@@ -76,23 +76,21 @@ void UtilCollection::loadPlugins(){
 
   pluginsDir.cd("plugins");
   foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+    fileName = fileName.trimmed();
     QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
     QObject *plugin = loader.instance();
-    if (plugin) {
-      // Add plugin to the list based on fileName
-      populateUtil(plugin);
+    if (plugin && populateUtil(plugin)) {
+      // Add plugin to the list based on fileName      
       qDebug() << "Added plugin: " << fileName.toStdString().c_str();
+    }else{
+        qWarning() << "Unable to add plugin:" << fileName.toStdString().c_str();
     }
   }
 
 }
 
 
-void UtilCollection::populateUtil(QObject *plugin){
+bool UtilCollection::populateUtil(QObject *plugin){
   UtilInterface *iUtil = qobject_cast<UtilInterface *>(plugin);
-  if(iUtil && this->insert_util(plugin)){
-    // the plugin implements UtilInterface
-  }else{
-    qWarning() << "Unable to add plugin.";
-  }
+  return iUtil && this->insert_util(plugin);
 }

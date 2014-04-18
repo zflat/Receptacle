@@ -41,10 +41,11 @@ class UtilInterface
     virtual QString name() const = 0;
     virtual QString description() const = 0;
     virtual QString command() const = 0;
+    virtual QString version() const = 0;
     virtual UtilWorker* newWorker() = 0;
 };
 
-#define UtilInterface_iid "Receptacle.plugins.UtilInterface/0.0.1"
+#define UtilInterface_iid "Receptacle.plugins.UtilInterface/0.1.0"
 
 Q_DECLARE_INTERFACE(UtilInterface, UtilInterface_iid)
 

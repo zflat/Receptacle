@@ -56,13 +56,14 @@ public:
 class UtilWarnPrint : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     QString name() const {return QObject::tr("Util that never ends");}
     QString description() const {return QObject::tr("Example that runs (until terminated).");}
     QString command() const {return QObject::tr("ThatNeverEnds");}
+    virtual QString version() const{return QString("0.1.0");}
     UtilWorker* newWorker(){return new UtilThatNeverEndsWorker();}
 };
 #endif

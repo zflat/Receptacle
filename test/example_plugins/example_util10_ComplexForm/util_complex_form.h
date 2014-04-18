@@ -33,7 +33,7 @@ class UtilComplexFormWorker : public UtilWorker
 {
     Q_OBJECT
 public:
-    UtilComplexFormWorker( QObject* parent=0) : UtilWorker( parent ){
+    UtilComplexFormWorker(int argc=0, char *argv[]=NULL, QObject* parent=0) : UtilWorker( argc, argv, parent ){
         widget = new ComplexFormWidget();
         meta_hash.insert("widget_type", "complex");
     }
@@ -68,13 +68,14 @@ private:
 class UtilWarnPrint : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     QString name() const {return QObject::tr("Util complex form");}
     QString description() const {return QObject::tr("Example with a complex (large) form");}
     QString command() const {return QObject::tr("ComplexForm");}
+    virtual QString version() const{return QString("0.1.0");}
     UtilWorker* newWorker(){return new UtilComplexFormWorker();}
 };
 #endif

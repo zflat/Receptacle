@@ -32,13 +32,15 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 class UtilSleepy : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     virtual QString name() const;
     virtual QString description() const;
-    virtual QString command() const;
+    virtual QString command() const;    
+    virtual QString version() const;
+
     UtilWorker* newWorker();
 };
 

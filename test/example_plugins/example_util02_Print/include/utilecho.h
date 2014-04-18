@@ -30,13 +30,14 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 class UtilEcho : public QObject, public UtilInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface-v0.0.1")
+    Q_PLUGIN_METADATA(IID "Receptacle.plugins.UtilInterface/0.1.0")
     Q_INTERFACES(UtilInterface)
 
 public:
     QString name() const;
     QString description() const;
     QString command() const;
+    virtual QString version() const;
     UtilWorker* newWorker();
 };
 #endif

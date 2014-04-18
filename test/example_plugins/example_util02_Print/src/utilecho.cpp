@@ -39,3 +39,5 @@ QString UtilEcho::command() const{
 UtilWorker *UtilEcho::newWorker(){
     return new UtilEchoWorker();
 }
+
+QString UtilEcho::version() const{ return QString("0.1.0"); }

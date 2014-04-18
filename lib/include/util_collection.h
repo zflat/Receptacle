@@ -64,7 +64,7 @@ public:
 protected:
     QDir pluginsDir;
     void loadPlugins();
-    void populateUtil(QObject *plugin);
+    bool populateUtil(QObject *plugin);
 
     QHash<QString, QObject*> util_hash;
 };
