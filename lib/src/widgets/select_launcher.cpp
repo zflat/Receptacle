@@ -69,7 +69,16 @@ SelectLauncher::SelectLauncher(){
     is_pending_close = false;
 
    this->resize(600, 400);
+   // this->setWindowFlags(Qt::Popup);
 
+}
+
+void SelectLauncher::show_me(){
+    this->showNormal();
+    this->setWindowState( (windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    this->raise();  // for MacOS
+    this->activateWindow(); // for Windows
+    qDebug() << "Window shown";
 }
 
 void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){

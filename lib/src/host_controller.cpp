@@ -55,8 +55,7 @@ void HostController::run_job(QString command){
     this->main_window->select_job(command);
 
     // open the main window
-    this->main_window->showNormal();
-    qDebug() << "Window shown";
+    this->main_window->show_me();
 } // run_job
 
 

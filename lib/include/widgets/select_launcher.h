@@ -88,6 +88,15 @@ public slots:
      */
     void show_msg_level(QtMsgType type, bool is_notification);
 
+    /**
+     * @brief show_me is a wrapper around showNormal that also raises the window into the forground.
+     *
+     * Resources:
+     * http://qt-project.org/forums/viewthread/1971
+     * http://stackoverflow.com/questions/6087887/bring-window-to-front-raise-show-activatewindow-dont-work
+     */
+    void show_me();
+
    // void show_warning(QString str);
    // void show_err(QString str);
 
