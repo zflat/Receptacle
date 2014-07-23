@@ -235,6 +235,11 @@ void HostController::job_complete_handler(int result){
 
     // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)
     Q_EMIT util_result(result);
+
+    //
+    // Program control waiting for window to close (if not closed above)
+    //
+
 }// job_complete_handler
 
 void HostController::job_cleanup(){

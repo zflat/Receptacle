@@ -29,24 +29,28 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 UtilRunner::UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emitter): \
     command_str(cmd),  worker(util_worker), \
     err_flag(err_emitter, SIGNAL(critical_message(QString))),\
-    warn_flag(err_emitter, SIGNAL(warn_message(QString)))\
+    warn_flag(err_emitter, SIGNAL(warn_message(QString))), result_code(-1)\
     {
 }
 
 void UtilRunner::run()
 {
-    worker->init();
-    if(worker->is_valid()){
-        Q_EMIT init_complete();
-        worker->start();
+    if(result_code < 0){
+        worker->init();
+        if(worker->is_valid()){
+            Q_EMIT init_complete();
+            worker->start();
 
-        if( qApp->property("optn.verbose").toBool()){
-            qDebug("Worker is done running.");
+            if( qApp->property("optn.verbose").toBool()){
+                qDebug("Worker is done running.");
+            }
+            result_code=0;
+        }else{
+            qWarning() << "Invalid preconditions.";
+            result_code=1;
         }
-        Q_EMIT result(0);
-    }else{
-        qWarning() << "Invalid preconditions.";
-        Q_EMIT result(1);
+        worker->cleanup();
+        Q_EMIT result(result_code);
     }
 }
 

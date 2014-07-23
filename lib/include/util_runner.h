@@ -105,6 +105,7 @@ protected:
     UtilWorker* worker;
     SignalCounter err_flag;
     SignalCounter warn_flag;
+    int result_code;
 };
 
 #endif // UTIL_RUNNER_H

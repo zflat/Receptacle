@@ -48,6 +48,7 @@ class UtilWorker : public QObject
     virtual void init(){}
     virtual bool is_valid(){return true;}
     virtual void start(){emit complete(0);}
+    virtual void cleanup(){}
     virtual QString meta_lookup(const QString &key){
         return (meta_hash.contains(key)) ? meta_hash.value(key, QString()) : QString();
     }
