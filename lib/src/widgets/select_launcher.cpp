@@ -293,6 +293,7 @@ bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
 
         w->show();
         central_widget->repaint();
+        qDebug() << w->parent()->metaObject()->className();
     }else if(type.compare("complex") == 0){
         tabs_widget->removeTab(0);
         tabs_widget->removeTab(0);

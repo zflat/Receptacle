@@ -23,19 +23,68 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef UTIL_HELLO_BYE_PRINT_WORKER_H
 #define UTIL_HELLO_BYE_PRINT_WORKER_H
 
+#include <cstdlib>
+
+#include <QTime>
 #include <QRunnable>
 #include <QObject>
 #include <QDebug>
+#include <QLabel>
+#include <QtWidgets/QMainWindow>
+
 #include "util_worker.h"
 
 class UtilHelloByePrintWorker : public UtilWorker
 {
     Q_OBJECT
 public:
+    UtilHelloByePrintWorker(int argc=0, char *argv[]=NULL, QObject* parent=0) : UtilWorker( argc, argv, parent ){
+        widget = new QLabel("Hello, Goodbye form :)");
+        meta_hash.insert("widget_type", "simple");
+    }
+
     void start(){
-        qWarning() << "Run in plugin UtilHelloByePrintWorker <---" ;
+
+        QTime time = QTime::currentTime();
+        qsrand((uint)time.msec());
+
+        int max_wait = 1;
+        int hello_delay = max_wait * qrand()/RAND_MAX;
+        int bye_delay = max_wait * qrand()/RAND_MAX;
+
+        qDebug() << ((hello_delay < bye_delay) ? "Hello" : "Bye");
+
+        QMainWindow* launcher = (QMainWindow*)top_widget();
+        if(! widget->window()->close()){
+            qWarning() <<  launcher->windowTitle().toStdString().c_str()<<  " window not closed";
+        }else{
+            qDebug() << launcher->windowTitle().toStdString().c_str()<<  " window closed";
+        }
+
         emit complete();
     }
+
+    QObject* get_widget(){
+        return widget;
+    }
+
+private:
+    QObject* top_widget(){
+        QObject* p=widget;
+        qDebug() << p->metaObject()->className();
+
+        QObject* p_next;
+        while(p_next = p->parent()){
+            p=p_next;
+            qDebug() << p->objectName().toStdString().c_str();
+        }
+        return p;
+        /*
+        for(p=widget; p_next=p->parent(); p=p_next);
+        return p;
+        */
+    }
+    QLabel* widget;
 };
 
 #endif

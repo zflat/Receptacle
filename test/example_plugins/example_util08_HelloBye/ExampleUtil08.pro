@@ -18,7 +18,7 @@
 
 TEMPLATE    = lib
 CONFIG      += plugin
-QT          += core gui
+QT          += core gui widgets
 
 TARGET      = $$qtLibraryTarget(exampleUtil08)
 DESTDIR     = $$PWD/../../integration/build/debug/plugins
