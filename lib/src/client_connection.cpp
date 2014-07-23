@@ -22,6 +22,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 // client_connection.cpp
 
+#include <QApplication>
 #include "client_connection.h"
 
 ClientConnection::ClientConnection(QObject *parent) :
@@ -67,11 +68,13 @@ void ClientConnection::disconnected()
 
 void ClientConnection::readyRead()
 {
-    qDebug() << tr("ClientConnection::readyRead()");
-    //qDebug() << socket->readAll();
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << tr("ClientConnection::readyRead()");
+        //qDebug() << socket->readAll();
+    }
     QString command = socket->readLine();
     emit command_sent(command);
-
 }
 
 // After a task performed a time consuming task,

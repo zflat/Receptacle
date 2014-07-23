@@ -30,6 +30,14 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <QCoreApplication>
 
+// Includes for reading user name
+#if defined(Q_OS_WIN)
+#include <stdlib.h>
+#else //LINUX
+#include <pwd.h>
+#include <unistd.h>
+#endif
+
 class LogEmitter : public QObject
 {
     Q_OBJECT
@@ -37,6 +45,12 @@ public:
     LogEmitter();
     ~LogEmitter();
     void publish_message(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+
+    /**
+     * @brief username
+     * @return QString representing the current user running the application
+     */
+    static QString username();
 
 signals:
     void info_message(const QString &msg);

@@ -20,10 +20,13 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+#include <QLabel>
 #include "widgets/select_launcher.h"
 
 SelectLauncher::SelectLauncher(){
-    qDebug() << tr("Setup launcher started");
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << tr("Setup launcher started");
+    }
 
     this->setAttribute(Qt::WA_DeleteOnClose, true);
 
@@ -78,7 +81,10 @@ void SelectLauncher::show_me(){
     this->setWindowState( (windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
     this->raise();  // for MacOS
     this->activateWindow(); // for Windows
-    qDebug() << "Window shown";
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Select Launcher window shown";
+    }
 }
 
 void SelectLauncher::show_msg_level(QtMsgType type, bool is_notification){
@@ -269,8 +275,6 @@ void SelectLauncher::save_err_warn_text(){
     this->err_log->save_to_file(saveFileName);
 }
 
-
-#include <QLabel>
 
 bool SelectLauncher::attach_widget(QWidget *w, const QString &type){
     if(NULL == w){

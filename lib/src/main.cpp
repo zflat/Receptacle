@@ -27,7 +27,6 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include "log_emitter.h"
 
 
-QCommandLineParser cmd_args;
 
 /*
  * Console output with GUI in windows
@@ -57,7 +56,8 @@ void log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, co
         logger->publish_message(type, context, msg);
     }
     //printf("%s %s %s\n", context.file, context.function, context.line);
-    if(cmd_args.isSet("console")){
+
+    if( qApp->property("optn.console").toBool()){
         printf("%s\n", msg.toStdString().c_str());
     }
 }
@@ -69,27 +69,37 @@ int main(int argc, char *argv[])
     QApplication::setApplicationVersion(APP_VERSION);
     app.setQuitOnLastWindowClosed(false);
 
-
+    QCommandLineParser cmd_args;
     cmd_args.addHelpOption();
     cmd_args.addVersionOption();
-    QCommandLineOption consoleOut(QStringList() << "c" << "console", "Print stdout to console");
+    QCommandLineOption consoleOut(QStringList() << "c" << "console", \
+                                  QApplication::translate("main", "Print stdout to console"));
     cmd_args.addOption(consoleOut);
     QCommandLineOption listenPort(QStringList() << "p" << "port", \
                                   QApplication::translate("main", "Dispatcher listens on <port>"), \
                                   QApplication::translate("main", "port"));
     cmd_args.addOption(listenPort);
+    QCommandLineOption verboseLogging(QStringList() << "verbose", \
+                                  QApplication::translate("main", "Verbose logging"));
+    cmd_args.addOption(verboseLogging);
     cmd_args.process(app);
 
+    if(cmd_args.isSet("verbose")){
+        app.setProperty("optn.verbose", QVariant(true));
+    }
 
     if(cmd_args.isSet("console")){
+        app.setProperty("optn.console", QVariant(true));
         Console();
     }
     logger  = new LogEmitter();
     qInstallMessageHandler(log_handler_forwarder);
 
 
-    qDebug() << qApp->applicationVersion();
-    qDebug() << qApp->applicationDirPath();
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << qApp->applicationVersion();
+        qDebug() << qApp->applicationDirPath();
+    }
 
 
     UtilCollection* utils = new UtilCollection();
@@ -113,15 +123,19 @@ int main(int argc, char *argv[])
     QStringList plugins_ordered_list = \
             qvariant_cast<QVariant>(settignsMap.value("plugin_order")).toStringList();
     foreach(QString plugin_cmd, plugins_ordered_list){
-        qDebug() << plugin_cmd;
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug() << plugin_cmd;
+        }
     }
 
 
     bool port_parsed;
     int dec_port = cmd_args.value("port").toInt(&port_parsed);
 
-    if(port_parsed){
-        qDebug() << dec_port;
+    if(port_parsed){        
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug() << dec_port;
+        }
         server.startServer(dec_port);
         return app.exec();
     }else if(port_setting_read){

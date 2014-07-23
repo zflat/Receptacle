@@ -53,3 +53,24 @@ const QString LogEmitter::detailed_msg(const QMessageLogContext &context, const 
     }
     return str_context.append(str);
 }
+
+
+QString LogEmitter::username(){
+    //
+    // http://bytes.com/topic/c/answers/691168-username-caller
+
+    QString str_uname("");
+
+    #if defined(Q_OS_WIN)
+    const char* getenvStr = ::getenv("Username");
+    if (getenvStr != 0)
+    {
+        str_uname = QString(getenvStr);
+    }
+    #else //LINUX
+    struct passwd *userinfo;
+    userinfo = getpwuid(getuid() );
+    str_uname = QString(userinfo->pw_name);
+    #endif
+    return str_uname;
+}

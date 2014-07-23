@@ -19,8 +19,10 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "host_controller.h"
 #include <QDateTime>
+#include <QApplication>
+
+#include "host_controller.h"
 
 HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emitter): \
     utils(u_collection),logger(log_emitter), main_window(NULL), bg_worker(NULL), \
@@ -30,26 +32,30 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
     {}
 
 void HostController::run_job(QString command){
-    qDebug() << "Run job";
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Run job";
+    }
     if(this->main_window != NULL){
         qWarning() << "Main window already allocated.";
     }
     this->main_window = new SelectLauncher();
-    qDebug() << "Select launcher initialized";
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Select launcher initialized";
+    }
     this->main_window->populate_command_options(utils);
     this->main_window->connect_logger(this->logger);
     this->main_window->connect_errwarn_flag(&err_flag, &fatal_flag, &warn_flag);
 
     QObject::connect(this->main_window, SIGNAL(selected(QString)), this, SLOT(selected(QString)));
     QObject::connect(this->main_window, SIGNAL(close_requested()), this, SLOT(cancel_handler()));
-    //QObject::connect(this->main_window, SIGNAL(close_sig()), this, SLOT(job_cleanup()));
     QObject::connect(this->main_window, SIGNAL(destroyed()), this, SLOT(job_cleanup()));
 
-    // Log username
+    // Log username and Date & Time
     // http://bytes.com/topic/c/answers/691168-username-caller
-
-    // Log Date and time
-    qDebug()<< QDateTime::currentDateTime().toString().toStdString().c_str();
+    qDebug() <<  LogEmitter::username().toStdString().c_str() \
+             << QDateTime::currentDateTime().toString().toStdString().c_str();
 
     // Select the job (start running if command given)
     this->main_window->select_job(command);
@@ -102,21 +108,27 @@ void HostController::exec_plugin(QString command){
     UtilInterface* pluginUtil = NULL;
 
     if(pluginObj != NULL){
-        qDebug()<<"Plugin found for given command.";
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug()<<"Plugin found for given command.";
+        }
         pluginUtil = qobject_cast<UtilInterface *>(pluginObj);
     }else{
         qWarning()<<"Plugin not found for the given command. Plugin unloaded....?";
         return;
     }
 
-    qDebug()<<"Util constructed from given command.";
     if(!pluginUtil){return;}
     // plugin found
 
-    qDebug() << pluginUtil->name().toStdString().c_str();
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug()<<"Util constructed from given command.";
+        qDebug() << pluginUtil->name().toStdString().c_str();
+    }
 
     UtilWorker* worker = pluginUtil->newWorker();
-    qDebug() << "Worker retrieval successful";
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Worker retrieval successful";
+    }
 
     bg_worker = new UtilRunner(command, worker, logger);
     bg_worker->setAutoDelete(false);
@@ -129,7 +141,10 @@ void HostController::exec_plugin(QString command){
     warn_flag.reset_count();
     //connect(err_flag, SIGNAL(signal_received())
 
-    qDebug() << "Util Runner signal connect successful";
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Util Runner signal connect successful";
+    }
 
     // notify that the bg worker is running
     main_window->set_is_running_bg(true);
@@ -172,7 +187,9 @@ void HostController::job_complete_handler(int result){
     main_window->set_is_running_bg(false);
 
 
-    qDebug() << "job complete!(notified in signal handler)";
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "job complete!(notified in ::job_complete_handler)";
+    }
 
     /* Decide to close the main window or not
      *
@@ -192,7 +209,10 @@ void HostController::job_complete_handler(int result){
     }
 
     if(should_close_window){
-        qDebug("Should close window.");
+
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug("Should close window.");
+        }
         if(main_window->get_is_pending_close()){
             qDebug("Main window is pending close");
         }
@@ -215,10 +235,12 @@ void HostController::job_complete_handler(int result){
 
     // TODO: Notify result after cleanup (so dispatcher does not release the mutex too early)
     Q_EMIT util_result(result);
-}
+}// job_complete_handler
 
 void HostController::job_cleanup(){
-    qDebug() << "closed window";
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "closed window";
+    }
     if(NULL != main_window){
        // delete main_window;
         main_window = NULL;
@@ -231,7 +253,9 @@ void HostController::job_cleanup(){
     }else{
         current_cmd = "";
     }
-    qDebug() << "HostController cleanup complete";
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "HostController cleanup complete";
+    }
     Q_EMIT end_job(current_cmd);
 }
 

@@ -80,14 +80,16 @@ void UtilCollection::loadPlugins(){
     QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
     QObject *plugin = loader.instance();
     if (plugin && populateUtil(plugin)) {
-      // Add plugin to the list based on fileName      
-      qDebug() << "Added plugin: " << fileName.toStdString().c_str();
+        // Add plugin to the list based on fileName
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug() << "Added plugin: " << fileName.toStdString().c_str();
+        }
     }else{
-        qWarning() << "Unable to add plugin:" << fileName.toStdString().c_str();
+      qWarning() << "Unable to add plugin:" << fileName.toStdString().c_str();
     }
   }
 
-}
+} // loadPlugins()
 
 
 bool UtilCollection::populateUtil(QObject *plugin){

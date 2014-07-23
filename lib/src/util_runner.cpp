@@ -39,7 +39,10 @@ void UtilRunner::run()
     if(worker->is_valid()){
         Q_EMIT init_complete();
         worker->start();
-        qDebug("Worker is done running.");
+
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug("Worker is done running.");
+        }
         Q_EMIT result(0);
     }else{
         qWarning() << "Invalid preconditions.";

@@ -21,6 +21,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 // dispatcher.cpp
 
+#include <QApplication>
+
 #include "dispatcher.h"
 #include "util_interface.h"
 
@@ -32,16 +34,21 @@ Dispatcher::Dispatcher(HostController* h_controller, QObject *parent)\
 Dispatcher::~Dispatcher(){
     this->close();
     request_mutex.release(request_mutex.available());
-    qDebug()<<"Server closed";
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug()<<"Server closed";
+    }
 }
 
 void Dispatcher::startServer(int port)
 {
-  if(listen(QHostAddress::Any, port)){
+  bool is_listening = listen(QHostAddress::Any, port);
+
+  if(is_listening){
     qDebug() << tr("Dispatcher: listening on port").toStdString().c_str() << port;
   }
   else{
-    qDebug() << tr("Dispatcher: not started!");
+    qWarning() << tr("Dispatcher: not started!");
   }
 }
 
@@ -70,15 +77,19 @@ void Dispatcher::queue_request(QString command){
     return;
 }
 
-bool Dispatcher::queue_busy(){
-   qDebug() << "check for busy server";
+bool Dispatcher::queue_busy(){    
+   if( qApp->property("optn.verbose").toBool()){
+    qDebug() << "check for busy server";
+   }
    return this->request_mutex.available()<1;
 }
 
 void Dispatcher::request_completed(const QString &command){
-    qDebug() << "Request " \
-             << command.toStdString().c_str() <<" ended.";
     this->request_mutex.release(1);
-    qDebug() << "request_mutex released";
-    ;
+
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << "Request " \
+                 << command.toStdString().c_str() <<" ended.";
+        qDebug() << "request_mutex released";
+    }
 }
