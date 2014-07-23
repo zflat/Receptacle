@@ -22,6 +22,7 @@ var classSelectLauncher =
     [ "select_job", "classSelectLauncher.html#a3f9f7a7c426429294047f05275e2d22f", null ],
     [ "selected", "classSelectLauncher.html#a68ab8e901d6e1d40a5026de40e94bc48", null ],
     [ "set_is_running_bg", "classSelectLauncher.html#a494a9446415e6e54e85af4ea1fb966c9", null ],
+    [ "show_me", "classSelectLauncher.html#abb17a98f10b1488a7a6a279b4e10848d", null ],
     [ "show_msg_level", "classSelectLauncher.html#a4cb837e3abaa85b739d110352cbe30b5", null ],
     [ "aboutAct", "classSelectLauncher.html#a98e6fb820e2f94b4e6ab4db94ae58e18", null ],
     [ "aboutPluginsAct", "classSelectLauncher.html#a311cd55fcb61a1eb411d0a8e04e5f717", null ],

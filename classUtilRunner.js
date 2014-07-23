@@ -12,6 +12,7 @@ var classUtilRunner =
     [ "worker_widget_type", "classUtilRunner.html#a9056bd4d6060796ff397a814a68dc43c", null ],
     [ "command_str", "classUtilRunner.html#a3d5694eaccd49a7320e189644cdebe67", null ],
     [ "err_flag", "classUtilRunner.html#a2848a2fc641117c0bc446ee7559ca60f", null ],
+    [ "result_code", "classUtilRunner.html#ae6a414c4883361883d439041f2e0fdda", null ],
     [ "warn_flag", "classUtilRunner.html#a1d24d19ab90a99036e055eb7ea453ccf", null ],
     [ "worker", "classUtilRunner.html#a7f167fa7b87b7a5665a639fcc7b88cbb", null ]
 ];

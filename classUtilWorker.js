@@ -2,6 +2,7 @@ var classUtilWorker =
 [
     [ "UtilWorker", "classUtilWorker.html#a081032df0faa00525d94f7f46e5d5253", null ],
     [ "~UtilWorker", "classUtilWorker.html#a3379a579235a108d34aa0a9df072b1bb", null ],
+    [ "cleanup", "classUtilWorker.html#a67b8ce22cce5ea53c5a3869439e84b84", null ],
     [ "complete", "classUtilWorker.html#a63ac6409d284c381afb18fdb4579ab0c", null ],
     [ "exit_early", "classUtilWorker.html#a4c4a460f6e97cfbff59fed76cbf6eef9", null ],
     [ "get_widget", "classUtilWorker.html#ad31abb1c5bf7c487579ddbff9250f3f6", null ],
