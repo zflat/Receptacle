@@ -36,15 +36,15 @@ void ClientConnection::setSocket(qintptr descriptor)
     // make a new socket
     socket = new QTcpSocket(this);
 
-    qDebug() << tr("A new socket created!");
-
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 
     socket->setSocketDescriptor(descriptor);
 
-    qDebug() << tr(" Client connected at ") << descriptor;
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << tr(" Client connected at ") << descriptor;
+    }
 }
 
 
@@ -57,7 +57,9 @@ void ClientConnection::connected()
 // asynchronous
 void ClientConnection::disconnected()
 {
-    qDebug() << tr("Client disconnected");
+    if( qApp->property("optn.verbose").toBool()){
+        qDebug() << tr("Client disconnected");
+    }
     delete this;
 }
 

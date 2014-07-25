@@ -31,16 +31,16 @@ LogEmitter::~LogEmitter(){
 void LogEmitter::publish_message(QtMsgType type, const QMessageLogContext &context, const QString &msg){
     switch(type){
         case QtDebugMsg:
-            Q_EMIT info_message(msg);
+            Q_EMIT info_message("[INFO] "+msg);
             break;
         case QtWarningMsg:
-            Q_EMIT warn_message(detailed_msg(context, msg));
+            Q_EMIT warn_message("[WARN] "+detailed_msg(context, msg));
             break;
         case QtCriticalMsg:
-            Q_EMIT critical_message(detailed_msg(context, msg));
+            Q_EMIT critical_message("[ERROR] "+detailed_msg(context, msg));
             break;
         case QtFatalMsg:
-            Q_EMIT fatal_message(detailed_msg(context, msg));
+            Q_EMIT fatal_message("[FATAL] "+detailed_msg(context, msg));
             break;
     }
 }
