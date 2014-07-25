@@ -123,3 +123,8 @@ void TestWidgets::testGetComplexWidget(){
     ender->end_curr_util();
     QTRY_VERIFY_WITH_TIMEOUT(spy_win_closed.count() > 0, 1000);
 }
+
+void TestWidgets::testCloseMainWindow(){
+
+
+}
