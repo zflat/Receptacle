@@ -63,7 +63,9 @@ void log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, co
 }
 
 int main(int argc, char *argv[])
-{
+{    
+    qsrand(QTime::currentTime().msec());
+
     QApplication app(argc, argv);
     QApplication::setApplicationName("Receptacle");
     QApplication::setApplicationVersion(APP_VERSION);
