@@ -114,6 +114,8 @@ protected slots:
 
 protected:
 
+    QIcon * window_icon;
+
     //menubar
     QMenuBar* menubar;
     //menufile

@@ -74,6 +74,8 @@ SelectLauncher::SelectLauncher(){
    this->resize(600, 400);
    // this->setWindowFlags(Qt::Popup);
 
+    window_icon = new QIcon(":/icon/logo");
+    this->setWindowIcon(*window_icon);
 }
 
 void SelectLauncher::show_me(){
@@ -139,6 +141,7 @@ void SelectLauncher::create_menus(){
 }
 
 void SelectLauncher::create_actions(){
+
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
