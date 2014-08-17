@@ -32,6 +32,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFileDialog>
 #include <QDir>
 #include <QHash>
+#include <QSystemTrayIcon>
 #include "util_collection.h"
 #include "job_selection_form.h"
 #include "log_text.h"
@@ -67,6 +68,9 @@ public:
     bool load_job_widget(QWidget* job_ui_widget);
     bool set_is_running_bg(bool is_running);
     bool get_is_pending_close();
+
+
+    void setVisible(bool visible);
 
 signals:
     /**
@@ -114,8 +118,6 @@ protected slots:
 
 protected:
 
-    QIcon * window_icon;
-
     //menubar
     QMenuBar* menubar;
     //menufile
@@ -154,12 +156,19 @@ protected:
     QStringList pluginFileNames;
     QDir pluginsDir;
 
+    /// Menu Actions
     QAction* exitAct;
     QAction* saveLogText;
     QAction* saveErrWarnText;
     QAction* aboutAct;
     QAction* aboutQtAct;
     QAction* aboutPluginsAct;
+
+    /// Tray actions
+    QAction *minimizeAction;
+    QAction *maximizeAction;
+    QAction *restoreAction;
+    QAction *quitAction;
 
     /**
      * @brief is_running_bg True when a background worker is running
@@ -175,8 +184,12 @@ protected:
     SignalCounter* warn_flag;
     SignalCounter* fatal_flag;
 
+    QSystemTrayIcon *tray_icon;
+    QMenu * tray_icon_menu;
+
 protected:
     void create_menus();
+    void create_tray_icon();
     void create_actions();
     void closeEvent(QCloseEvent *event);
 
