@@ -159,16 +159,15 @@ void SelectLauncher::create_actions(){
     aboutQtAct = new QAction(tr("About &Qt"), this);
     connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
-/*
     minimizeAction = new QAction(tr("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
     maximizeAction = new QAction(tr("Ma&ximize"), this);
     connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
     restoreAction = new QAction(tr("&Restore"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-    */
+
+    //quitAction = new QAction(tr("&Quit"), this);
+    //connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 /**
@@ -179,12 +178,12 @@ void SelectLauncher::create_actions(){
  */
 void SelectLauncher::create_tray_icon(){
     tray_icon_menu = new QMenu(this);
-    /*
+
     tray_icon_menu->addAction(minimizeAction);
     tray_icon_menu->addAction(maximizeAction);
     tray_icon_menu->addAction(restoreAction);
     tray_icon_menu->addSeparator();
-    tray_icon_menu->addAction(quitAction);*/
+    tray_icon_menu->addAction(exitAct);
 
     tray_icon = new QSystemTrayIcon(this);
     tray_icon->setContextMenu(tray_icon_menu);
