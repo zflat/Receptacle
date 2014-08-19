@@ -33,6 +33,7 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
 
         create_tray_actions();
         create_tray_icon();
+        update_tray_menu();
         tray_icon->show();
         if(! tray_icon->isVisible()){
             qWarning() << "Application tray icon is not shown";
@@ -83,6 +84,10 @@ void HostController::run_job(QString command){
     this->main_window->show_me();
 } // run_job
 
+
+void HostController::prompt_job_selection(){
+    this->run_job("");
+}
 
 void HostController::kill_job(){
     cancel_handler();
@@ -269,6 +274,9 @@ void HostController::job_cleanup(){
        // delete main_window;
         main_window = NULL;
     }
+
+    update_tray_menu();
+
     QString current_cmd;
     if(NULL != bg_worker){
         current_cmd = bg_worker->command();
@@ -292,8 +300,12 @@ void HostController::create_tray_actions(){
     restoreAction = new QAction(tr("&Restore"), this);
     closeAction = new QAction(tr("&Close"), this);
 
+
+    selectJobAction = new QAction(tr("Se&lect..."), this);
+    QObject::connect(selectJobAction, SIGNAL(triggered()), this, SLOT(prompt_job_selection()));
+
     quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void HostController::connect_tray_actions(SelectLauncher *window){
@@ -301,6 +313,24 @@ void HostController::connect_tray_actions(SelectLauncher *window){
     connect(maximizeAction, SIGNAL(triggered()), window, SLOT(showMaximized()));
     connect(restoreAction, SIGNAL(triggered()), window, SLOT(showNormal()));
     connect(closeAction, SIGNAL(triggered()), window, SLOT(close()));
+
+    update_tray_menu();
+}
+
+void HostController::update_tray_menu(){
+    if(NULL != main_window){
+        minimizeAction->setEnabled(true);
+        maximizeAction->setEnabled(true);
+        restoreAction->setEnabled(true);
+        closeAction->setEnabled(true);
+        selectJobAction->setEnabled(false);
+    }else{
+        minimizeAction->setEnabled(false);
+        maximizeAction->setEnabled(false);
+        restoreAction->setEnabled(false);
+        closeAction->setEnabled(false);
+        selectJobAction->setEnabled(true);
+    }
 }
 
 /**
@@ -325,8 +355,12 @@ void HostController::create_tray_icon(){
     tray_icon_menu->addAction(closeAction);
 
     tray_icon_menu->addSeparator();
+    tray_icon_menu->addAction(selectJobAction);
     tray_icon_menu->addAction(quitAction);
     tray_icon->setContextMenu(tray_icon_menu);
+
+    QObject::connect(tray_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), \
+                     this, SLOT(icon_activated(QSystemTrayIcon::ActivationReason)));
 
     if( qApp->property("optn.verbose").toBool() && !QSystemTrayIcon::isSystemTrayAvailable()){
         qDebug() << "System tray is not available";
@@ -341,3 +375,19 @@ void HostController::create_tray_icon(){
     }
 }
 
+void HostController::icon_activated(QSystemTrayIcon::ActivationReason reason)
+ {
+     switch (reason) {
+     case QSystemTrayIcon::Trigger:
+     case QSystemTrayIcon::DoubleClick:
+         //restoreAction->trigger();
+         if(NULL != main_window){
+             main_window->show_me();
+         }
+         break;
+     case QSystemTrayIcon::MiddleClick:
+         break;
+     default:
+         ;
+     }
+ }

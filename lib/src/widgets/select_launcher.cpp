@@ -73,8 +73,6 @@ SelectLauncher::SelectLauncher(){
     is_pending_close = false;
 
    this->resize(600, 400);
-   // this->setWindowFlags(Qt::Popup);
-
 
 }
 

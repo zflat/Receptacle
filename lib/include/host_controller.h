@@ -27,6 +27,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QDebug>
 #include <QThreadPool>
+#include <QSystemTrayIcon>
 #include "util_interface.h"
 #include "util_collection.h"
 #include "util_runner.h"
@@ -72,6 +73,8 @@ public slots:
      */
     void selected(QString cmd);
 
+    void prompt_job_selection();
+
 protected:
     UtilCollection* utils;
     LogEmitter* logger;
@@ -88,6 +91,7 @@ protected:
     QAction *restoreAction;
     QAction *quitAction;
     QAction *closeAction;
+    QAction *selectJobAction;
 
     QSystemTrayIcon *tray_icon;
     QMenu * tray_icon_menu;
@@ -96,6 +100,7 @@ protected:
     void create_tray_icon();
     void create_tray_actions();
     void connect_tray_actions(SelectLauncher* window);
+    void update_tray_menu();
 
 
 protected slots:
@@ -104,6 +109,8 @@ protected slots:
        void job_cleanup();
        void job_complete_handler(int result);
        void plugin_setup();
+
+       void icon_activated(QSystemTrayIcon::ActivationReason reason);
 };
 
 #endif // HOST_CONTROLLER_H
