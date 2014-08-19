@@ -29,7 +29,25 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
     err_flag(logger, SIGNAL(critical_message(QString))),\
     fatal_flag(logger, SIGNAL(critical_message(QString))),\
     warn_flag(logger, SIGNAL(warn_message(QString)))\
-    {}
+    {
+
+        create_tray_icon();
+        tray_icon->show();
+        if(! tray_icon->isVisible()){
+            qWarning() << "Application tray icon is not shown";
+        }
+    }
+
+HostController::~HostController(){
+    if(NULL != tray_icon){
+        // tray_icon->deleteLater();
+        delete tray_icon;
+        tray_icon = NULL;
+    }
+
+    if(NULL != tray_icon_menu)
+        tray_icon_menu->deleteLater();
+}
 
 void HostController::run_job(QString command){
 
@@ -264,4 +282,46 @@ void HostController::job_cleanup(){
     Q_EMIT end_job(current_cmd);
 }
 
+
+
+
+
+/**
+ * @brief SelectLauncher::create_tray_icon
+ *
+ * Example at:
+ * http://qt.developpez.com/doc/5.0-snapshot/desktop-systray-window-cpp/
+ */
+void HostController::create_tray_icon(){
+
+    tray_icon = new QSystemTrayIcon();
+
+    tray_icon->setIcon(QIcon(":/icon/logo"));
+    tray_icon->setToolTip(tr("Active utility launcher"));
+
+
+    /*
+    tray_icon_menu = new QMenu();
+    tray_icon_menu->addAction(minimizeAction);
+    tray_icon_menu->addAction(maximizeAction);
+    tray_icon_menu->addAction(restoreAction);
+    tray_icon_menu->addAction(closeAction);
+    tray_icon_menu->addSeparator();
+    tray_icon_menu->addAction(quitAction);
+    tray_icon->setContextMenu(tray_icon_menu);
+    */
+
+
+    if( qApp->property("optn.verbose").toBool() && !QSystemTrayIcon::isSystemTrayAvailable()){
+        qDebug() << "System tray is not available";
+    }
+
+    tray_icon->setVisible(true);
+
+    if (tray_icon->isVisible()){
+        if( qApp->property("optn.verbose").toBool()){
+            qDebug() << "Tray Icon initialization routine completed.";
+        }
+    }
+}
 

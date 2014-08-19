@@ -39,7 +39,6 @@ SelectLauncher::SelectLauncher(){
 
     this->create_actions();
     this->create_menus();
-    this->create_tray_icon();
 
     this->statusbar = this->statusBar();
 
@@ -76,7 +75,6 @@ SelectLauncher::SelectLauncher(){
    this->resize(600, 400);
    // this->setWindowFlags(Qt::Popup);
 
-    tray_icon->show();
 
 }
 
@@ -159,46 +157,17 @@ void SelectLauncher::create_actions(){
     aboutQtAct = new QAction(tr("About &Qt"), this);
     connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
+    /*
     minimizeAction = new QAction(tr("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
     maximizeAction = new QAction(tr("Ma&ximize"), this);
     connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
     restoreAction = new QAction(tr("&Restore"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    */
 
     //quitAction = new QAction(tr("&Quit"), this);
     //connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-}
-
-/**
- * @brief SelectLauncher::create_tray_icon
- *
- * Example at:
- * http://qt.developpez.com/doc/5.0-snapshot/desktop-systray-window-cpp/
- */
-void SelectLauncher::create_tray_icon(){
-    tray_icon_menu = new QMenu(this);
-
-    tray_icon_menu->addAction(minimizeAction);
-    tray_icon_menu->addAction(maximizeAction);
-    tray_icon_menu->addAction(restoreAction);
-    tray_icon_menu->addSeparator();
-    tray_icon_menu->addAction(exitAct);
-
-    tray_icon = new QSystemTrayIcon(this);
-    tray_icon->setContextMenu(tray_icon_menu);
-    tray_icon->setIcon(QIcon(":/icon/logo"));
-    tray_icon->setToolTip(tr("Active utility launcher"));
-    tray_icon->setVisible(true);
-
-    if( qApp->property("optn.verbose").toBool() && !QSystemTrayIcon::isSystemTrayAvailable()){
-        qDebug() << "System tray is not available";
-    }
-
-
-    if( qApp->property("optn.verbose").toBool()){
-        qDebug() << "Tray Icon initialized.";
-    }
 }
 
 void SelectLauncher::setVisible(bool visible){

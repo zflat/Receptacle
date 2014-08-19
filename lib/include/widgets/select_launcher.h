@@ -164,11 +164,6 @@ protected:
     QAction* aboutQtAct;
     QAction* aboutPluginsAct;
 
-    /// Tray actions
-    QAction *minimizeAction;
-    QAction *maximizeAction;
-    QAction *restoreAction;
-    QAction *quitAction;
 
     /**
      * @brief is_running_bg True when a background worker is running
@@ -184,12 +179,9 @@ protected:
     SignalCounter* warn_flag;
     SignalCounter* fatal_flag;
 
-    QSystemTrayIcon *tray_icon;
-    QMenu * tray_icon_menu;
 
 protected:
     void create_menus();
-    void create_tray_icon();
     void create_actions();
     void closeEvent(QCloseEvent *event);
 

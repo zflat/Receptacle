@@ -64,6 +64,8 @@ void log_handler_forwarder(QtMsgType type, const QMessageLogContext &context, co
 
 int main(int argc, char *argv[])
 {    
+    int exit_status = -1;
+
     qsrand(QTime::currentTime().msec());
 
     QApplication app(argc, argv);
@@ -104,17 +106,26 @@ int main(int argc, char *argv[])
     }
 
 
-    UtilCollection* utils = new UtilCollection();
-    HostController* controller = new HostController(utils, logger);
+    if(!QSystemTrayIcon::isSystemTrayAvailable()){
+        if( qApp->property("optn.verbose").toBool()){
+            qWarning() << "System tray is not available";
+        }
+        exit(-1);
+    }
 
-    // Create an instance of a server and then start it.
-    Dispatcher server(controller);
 
     QFile settingsFile(qApp->applicationDirPath() + QDir::separator() + "config.json");
     if (!settingsFile.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open application settings JSON file.");
         exit(-1);
     }
+
+
+    UtilCollection* utils = new UtilCollection();
+    HostController* controller = new HostController(utils, logger);
+
+    // Create an instance of a server and then start it.
+    Dispatcher server(controller);
 
     QByteArray settingsData = settingsFile.readAll();
     QJsonDocument settingsDoc(QJsonDocument::fromJson(settingsData));
@@ -139,12 +150,16 @@ int main(int argc, char *argv[])
             qDebug() << dec_port;
         }
         server.startServer(dec_port);
-        return app.exec();
+        exit_status =  app.exec();
     }else if(port_setting_read){
         server.startServer(port_setting);
-        return app.exec();
+        exit_status =  app.exec();
     }else{
-        return(0);
+        exit_status = 0;
     }
 
+    delete controller;
+    delete utils;
+
+    return exit_status;
 }

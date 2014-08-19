@@ -40,6 +40,7 @@ class HostController : public QObject
     Q_OBJECT
 public:
     HostController(UtilCollection* u_collection, LogEmitter* log_emitter);
+    ~HostController();
     void run_job(QString command);
     void kill_job();
     void notify_block();
@@ -79,6 +80,21 @@ protected:
     SignalCounter err_flag;
     SignalCounter fatal_flag;
     SignalCounter warn_flag;
+
+
+    /// Tray actions
+    QAction *minimizeAction;
+    QAction *maximizeAction;
+    QAction *restoreAction;
+    QAction *quitAction;
+    QAction *closeAction;
+
+    QSystemTrayIcon *tray_icon;
+    QMenu * tray_icon_menu;
+
+
+    void create_tray_icon();
+
 
 protected slots:
        void exec_plugin(QString command);
