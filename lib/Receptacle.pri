@@ -28,6 +28,7 @@ SOURCES += \
     $$PWD/src/util_runner.cpp \
     $$PWD/src/host_controller.cpp \
     $$PWD/src/log_emitter.cpp \
+    $$PWD/src/receptacle_app.cpp\
     $$PWD/src/widgets/*.cpp
 
 HEADERS += \
@@ -40,7 +41,8 @@ HEADERS += \
     $$PWD/include/host_controller.h \
     $$PWD/include/log_emitter.h \
     $$PWD/include/signal_counter.h \
-    $$PWD/include/widgets/*.h
+    $$PWD/include/widgets/*.h \
+    $$PWD/include/receptacle_app.h
 
 
 #FORMS += \

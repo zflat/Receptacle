@@ -156,18 +156,6 @@ void SelectLauncher::create_actions(){
 
     aboutQtAct = new QAction(tr("About &Qt"), this);
     connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-
-    /*
-    minimizeAction = new QAction(tr("Mi&nimize"), this);
-    connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
-    maximizeAction = new QAction(tr("Ma&ximize"), this);
-    connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
-    restoreAction = new QAction(tr("&Restore"), this);
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    */
-
-    //quitAction = new QAction(tr("&Quit"), this);
-    //connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void SelectLauncher::setVisible(bool visible){

@@ -21,9 +21,8 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDir>
 #include <iostream>
-#include <QApplication>
 #include <QCommandLineParser>
-#include "dispatcher.h"
+#include "receptacle_app.h"
 #include "log_emitter.h"
 
 
@@ -68,7 +67,7 @@ int main(int argc, char *argv[])
 
     qsrand(QTime::currentTime().msec());
 
-    QApplication app(argc, argv);
+    ReceptacleApp app(argc, argv);
     QApplication::setApplicationName("Receptacle");
     QApplication::setApplicationVersion(APP_VERSION);
     app.setQuitOnLastWindowClosed(false);
@@ -121,12 +120,6 @@ int main(int argc, char *argv[])
     }
 
 
-    UtilCollection* utils = new UtilCollection();
-    HostController* controller = new HostController(utils, logger);
-
-    // Create an instance of a server and then start it.
-    Dispatcher server(controller);
-
     QByteArray settingsData = settingsFile.readAll();
     QJsonDocument settingsDoc(QJsonDocument::fromJson(settingsData));
     QVariantMap settignsMap = qvariant_cast<QVariantMap>(settingsDoc.toVariant());
@@ -141,7 +134,6 @@ int main(int argc, char *argv[])
         }
     }
 
-
     bool port_parsed;
     int dec_port = cmd_args.value("port").toInt(&port_parsed);
 
@@ -149,17 +141,14 @@ int main(int argc, char *argv[])
         if( qApp->property("optn.verbose").toBool()){
             qDebug() << dec_port;
         }
-        server.startServer(dec_port);
+        app.startServer(dec_port, logger);
         exit_status =  app.exec();
     }else if(port_setting_read){
-        server.startServer(port_setting);
+        app.startServer(port_setting, logger);
         exit_status =  app.exec();
     }else{
         exit_status = 0;
     }
-
-    delete controller;
-    delete utils;
 
     return exit_status;
 }

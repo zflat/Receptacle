@@ -94,6 +94,8 @@ protected:
 
 
     void create_tray_icon();
+    void create_tray_actions();
+    void connect_tray_actions(SelectLauncher* window);
 
 
 protected slots:

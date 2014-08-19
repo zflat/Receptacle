@@ -31,6 +31,7 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
     warn_flag(logger, SIGNAL(warn_message(QString)))\
     {
 
+        create_tray_actions();
         create_tray_icon();
         tray_icon->show();
         if(! tray_icon->isVisible()){
@@ -40,9 +41,8 @@ HostController::HostController(UtilCollection* u_collection, LogEmitter* log_emi
 
 HostController::~HostController(){
     if(NULL != tray_icon){
-        // tray_icon->deleteLater();
-        delete tray_icon;
-        tray_icon = NULL;
+        tray_icon->hide();
+        tray_icon->deleteLater();
     }
 
     if(NULL != tray_icon_menu)
@@ -58,6 +58,7 @@ void HostController::run_job(QString command){
         qWarning() << "Main window already allocated.";
     }
     this->main_window = new SelectLauncher();
+    connect_tray_actions(main_window);
 
     if( qApp->property("optn.verbose").toBool()){
         qDebug() << "Select launcher initialized";
@@ -284,7 +285,23 @@ void HostController::job_cleanup(){
 
 
 
+void HostController::create_tray_actions(){
 
+    minimizeAction = new QAction(tr("Mi&nimize"), this);
+    maximizeAction = new QAction(tr("Ma&ximize"), this);
+    restoreAction = new QAction(tr("&Restore"), this);
+    closeAction = new QAction(tr("&Close"), this);
+
+    quitAction = new QAction(tr("&Quit"), this);
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
+
+void HostController::connect_tray_actions(SelectLauncher *window){
+    connect(minimizeAction, SIGNAL(triggered()), window, SLOT(hide()));
+    connect(maximizeAction, SIGNAL(triggered()), window, SLOT(showMaximized()));
+    connect(restoreAction, SIGNAL(triggered()), window, SLOT(showNormal()));
+    connect(closeAction, SIGNAL(triggered()), window, SLOT(close()));
+}
 
 /**
  * @brief SelectLauncher::create_tray_icon
@@ -300,17 +317,16 @@ void HostController::create_tray_icon(){
     tray_icon->setToolTip(tr("Active utility launcher"));
 
 
-    /*
     tray_icon_menu = new QMenu();
+
     tray_icon_menu->addAction(minimizeAction);
     tray_icon_menu->addAction(maximizeAction);
     tray_icon_menu->addAction(restoreAction);
     tray_icon_menu->addAction(closeAction);
+
     tray_icon_menu->addSeparator();
     tray_icon_menu->addAction(quitAction);
     tray_icon->setContextMenu(tray_icon_menu);
-    */
-
 
     if( qApp->property("optn.verbose").toBool() && !QSystemTrayIcon::isSystemTrayAvailable()){
         qDebug() << "System tray is not available";
