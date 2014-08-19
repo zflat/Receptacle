@@ -49,4 +49,4 @@ HEADERS += \
 #    $$PWD/forms/*.ui \
 
 RESOURCES += \
-    images.qrc
+    $$PWD/images.qrc
