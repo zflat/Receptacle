@@ -31,6 +31,7 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 #include <QPushButton>
 #include <QComboBox>
 #include <QString>
+#include <QShortcut>
 #include "widgets/label_for.h"
 #include "util_collection.h"
 
@@ -66,6 +67,7 @@ protected:
     QPushButton* btn;
     QComboBox* box;
     UtilCollection* utils;
+    QShortcut *returnShortcut;
 
 };
 

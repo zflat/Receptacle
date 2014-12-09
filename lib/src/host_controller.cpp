@@ -373,6 +373,8 @@ void HostController::create_tray_icon(){
             qDebug() << "Tray Icon initialization routine completed.";
         }
     }
+
+    tray_icon->showMessage("Initialized", "Plugins initialized", QSystemTrayIcon::Information, 1500);
 }
 
 void HostController::icon_activated(QSystemTrayIcon::ActivationReason reason)

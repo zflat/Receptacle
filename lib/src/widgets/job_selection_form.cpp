@@ -19,7 +19,6 @@ along with Receptacle.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include <QShortcut>
 #include "widgets/job_selection_form.h"
 
 JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
@@ -49,7 +48,7 @@ JobSelectionForm::JobSelectionForm(QWidget *parent) : QWidget(parent){
     QObject::connect(box, SIGNAL(activated(int)), btn, SLOT(setFocus()));
 
 
-    QShortcut *returnShortcut = new QShortcut(QKeySequence("Return"), this);
+    returnShortcut = new QShortcut(QKeySequence("Return"), this);
     QObject::connect(returnShortcut, SIGNAL(activated()), btn, SIGNAL(pressed()));
 
     QObject::connect(this->btn, SIGNAL(pressed()), this, SLOT(btn_pressed_handler()));
@@ -89,11 +88,15 @@ bool JobSelectionForm::command(QString cmd){
     this->box->setCurrentText(cmd);
     this->btn->setEnabled(false);
     this->box->setEnabled(false);
+    this->returnShortcut->deleteLater();
+    this->returnShortcut = NULL;
     return true;
 }
 
 void JobSelectionForm::btn_pressed_handler(){
-    this->command(this->box->currentText());
+    if(this->btn->isEnabled()){
+        this->command(this->box->currentText());
+    }
     return;
 }
 
