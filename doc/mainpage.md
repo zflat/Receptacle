@@ -13,7 +13,7 @@ Plugins have two main parts that follow a factory pattern. The first part implem
 
 ### Developing a plugin
 
-Create a library application that follows the [QT plugin API][1] and implement UtilInterface and UtilWorkerInterface. See the examples under /test/example_plugins for more information. 
+Create a library application that follows the [QT plugin API][1] and implement UtilInterface and UtilWorker interface. See the examples under /test/example_plugins for more information. 
 
 ### Adding a plugin to the application
 Plugins are discovered at runtime. Plugins are made available to the application by placing the plugin library into a /plugins subdirectory from the executable. 
