@@ -12,5 +12,6 @@ var classJobSelectionForm =
     [ "btn", "classJobSelectionForm.html#a07bad98298b9f87b72b20cff539c701d", null ],
     [ "label", "classJobSelectionForm.html#a68e0bf14e629c3f2fa9b96c3abd734bc", null ],
     [ "layout", "classJobSelectionForm.html#a30e17606f6d6a520b2c43f33b311b9e2", null ],
+    [ "returnShortcut", "classJobSelectionForm.html#ad68ea5f665b4cd681d5bbabf892403ae", null ],
     [ "utils", "classJobSelectionForm.html#a9c06debf589d3c25f4a93407bb5804ba", null ]
 ];

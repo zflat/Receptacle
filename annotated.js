@@ -8,6 +8,7 @@ var annotated =
     [ "LabelFor", "classLabelFor.html", "classLabelFor" ],
     [ "LogEmitter", "classLogEmitter.html", "classLogEmitter" ],
     [ "LogText", "classLogText.html", "classLogText" ],
+    [ "ReceptacleApp", "classReceptacleApp.html", "classReceptacleApp" ],
     [ "SelectLauncher", "classSelectLauncher.html", "classSelectLauncher" ],
     [ "SignalCounter", "classSignalCounter.html", "classSignalCounter" ],
     [ "UtilCollection", "classUtilCollection.html", "classUtilCollection" ],

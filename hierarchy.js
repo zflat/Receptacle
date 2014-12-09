@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "QApplication", null, [
+      [ "ReceptacleApp", "classReceptacleApp.html", null ]
+    ] ],
     [ "QDialog", null, [
       [ "AboutDialog", "classAboutDialog.html", null ]
     ] ],

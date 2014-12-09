@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['receptacle',['Receptacle',['../index.html',1,'']]],
-  ['request_5fcancel',['request_cancel',['../classUtilRunner.html#aa03fe88738e33a9302e17f855e88c459',1,'UtilRunner']]],
-  ['request_5fcompleted',['request_completed',['../classDispatcher.html#a8640c18f42fb6265e089f8fcf62dc399',1,'Dispatcher']]],
-  ['result',['result',['../classUtilRunner.html#a8862812047387e6362998d18e50a1576',1,'UtilRunner']]],
-  ['run',['run',['../classUtilRunner.html#a64c2b4c66a819a57bd0d2f4d0c614727',1,'UtilRunner']]]
+  ['queue_5fbusy',['queue_busy',['../classDispatcher.html#ab7a6ff9f7008454d3d75f524e77ec2aa',1,'Dispatcher']]],
+  ['queue_5frequest',['queue_request',['../classDispatcher.html#a8f35d4badbff0383de714bc7f024a50e',1,'Dispatcher']]]
 ];

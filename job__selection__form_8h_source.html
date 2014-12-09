@@ -136,51 +136,53 @@ $(document).ready(function(){initNavTree('job__selection__form_8h_source.html','
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;QComboBox&gt;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;widgets/label_for.h&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;util_collection.h&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classJobSelectionForm.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classJobSelectionForm.html">JobSelectionForm</a>: <span class="keyword">public</span> QWidget{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classJobSelectionForm.html">JobSelectionForm</a>(QWidget *parent=0);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> populate_command_options(<a class="code" href="classUtilCollection.html">UtilCollection</a>* utils);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> WARN_INDICATION_STYLE[];</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> ERR_INDICATION_STYLE[];</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;signals:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> command_selected(QString commmand);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> command_unrecognized(QString command);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> command_unspecified();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> btn_pressed_handler();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> command(QString cmd);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classJobSelectionForm.html#ab3f4d38c7773a74c478fafa382c6a265">indicate_msg_level</a>(QtMsgType type);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classLabelFor.html">LabelFor</a>* label;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QHBoxLayout* layout;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    QPushButton* btn;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QComboBox* box;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classUtilCollection.html">UtilCollection</a>* utils;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;QShortcut&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;widgets/label_for.h&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;util_collection.h&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classJobSelectionForm.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classJobSelectionForm.html">JobSelectionForm</a>: <span class="keyword">public</span> QWidget{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classJobSelectionForm.html">JobSelectionForm</a>(QWidget *parent=0);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> populate_command_options(<a class="code" href="classUtilCollection.html">UtilCollection</a>* utils);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> WARN_INDICATION_STYLE[];</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> ERR_INDICATION_STYLE[];</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;signals:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> command_selected(QString commmand);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> command_unrecognized(QString command);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> command_unspecified();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> btn_pressed_handler();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> command(QString cmd);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classJobSelectionForm.html#ab3f4d38c7773a74c478fafa382c6a265">indicate_msg_level</a>(QtMsgType type);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classLabelFor.html">LabelFor</a>* label;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    QHBoxLayout* layout;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QPushButton* btn;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QComboBox* box;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classUtilCollection.html">UtilCollection</a>* utils;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    QShortcut *returnShortcut;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // JOB_SELECTION_FORM_H</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif // JOB_SELECTION_FORM_H</span></div>
 <div class="ttc" id="classUtilCollection_html"><div class="ttname"><a href="classUtilCollection.html">UtilCollection</a></div><div class="ttdef"><b>Definition:</b> util_collection.h:34</div></div>
-<div class="ttc" id="classJobSelectionForm_html_ab3f4d38c7773a74c478fafa382c6a265"><div class="ttname"><a href="classJobSelectionForm.html#ab3f4d38c7773a74c478fafa382c6a265">JobSelectionForm::indicate_msg_level</a></div><div class="ttdeci">void indicate_msg_level(QtMsgType type)</div><div class="ttdoc">Visual indication that the message type has been published. </div><div class="ttdef"><b>Definition:</b> job_selection_form.cpp:100</div></div>
+<div class="ttc" id="classJobSelectionForm_html_ab3f4d38c7773a74c478fafa382c6a265"><div class="ttname"><a href="classJobSelectionForm.html#ab3f4d38c7773a74c478fafa382c6a265">JobSelectionForm::indicate_msg_level</a></div><div class="ttdeci">void indicate_msg_level(QtMsgType type)</div><div class="ttdoc">Visual indication that the message type has been published. </div><div class="ttdef"><b>Definition:</b> job_selection_form.cpp:103</div></div>
 <div class="ttc" id="classLabelFor_html"><div class="ttname"><a href="classLabelFor.html">LabelFor</a></div><div class="ttdef"><b>Definition:</b> label_for.h:29</div></div>
-<div class="ttc" id="classJobSelectionForm_html"><div class="ttname"><a href="classJobSelectionForm.html">JobSelectionForm</a></div><div class="ttdef"><b>Definition:</b> job_selection_form.h:37</div></div>
+<div class="ttc" id="classJobSelectionForm_html"><div class="ttname"><a href="classJobSelectionForm.html">JobSelectionForm</a></div><div class="ttdef"><b>Definition:</b> job_selection_form.h:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_5a30104352ef4255dc24354b02eb2d20.html">include</a></li><li class="navelem"><a class="el" href="dir_869aba8cd2b22a4268480a330dd5f00d.html">widgets</a></li><li class="navelem"><b>job_selection_form.h</b></li>
-    <li class="footer">Generated on Tue Jul 22 2014 23:04:02 for Receptacle by
+    <li class="footer">Generated on Mon Dec 8 2014 22:09:54 for Receptacle by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
