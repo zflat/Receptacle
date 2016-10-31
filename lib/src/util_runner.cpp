@@ -35,23 +35,43 @@ UtilRunner::UtilRunner(QString cmd, UtilWorker* util_worker, LogEmitter* err_emi
 
 void UtilRunner::run()
 {
-    if(result_code < 0){
-        worker->init();
-        if(worker->is_valid()){
-            Q_EMIT init_complete();
-            worker->start();
-
-            if( qApp->property("optn.verbose").toBool()){
-                qDebug("Worker is done running.");
-            }
-            result_code=0;
-        }else{
-            qWarning() << "Invalid preconditions.";
-            result_code=1;
-        }
-        worker->cleanup();
-        Q_EMIT result(result_code);
+  if(result_code < 0){
+    try{
+      worker->init();
+      qCritical() << "An unhandled exception ocurred.";
+    }catch(...){
     }
+    
+    if(worker->is_valid()){
+      Q_EMIT init_complete();
+	try{
+	  worker->start();
+	}catch(...){
+	  /*
+	    http://oroboro.com/stack-trace-on-crash/
+	    http://mykospark.net/2009/09/runtime-backtrace-in-c-with-name-demangling/
+	    http://panthema.net/2008/0901-stacktrace-demangled/
+	  */
+	  qCritical() << "An unhandled exception ocurred.";
+	}
+	
+	if( qApp->property("optn.verbose").toBool()){
+	  qDebug("Worker is done running.");
+	}
+	result_code=0;
+    }else{
+      qWarning() << "Invalid preconditions.";
+      result_code=1;
+    }
+
+    try{
+      worker->cleanup();
+    }catch(...){
+      qCritical() << "An unhandled exception ocurred.";
+    }
+    
+    Q_EMIT result(result_code);
+  }
 }
 
 
